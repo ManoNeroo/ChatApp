@@ -1,0 +1,13 @@
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\ChatApp.exe
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\ChatApp.pdb
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Properties.Resources.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.GenerateResource.cache
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CoreCompileInputs.cache
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.exe
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.pdb
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Frame.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\Guna.UI2.dll
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CopyComplete
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.Conversation.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.ScrollPanel.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.TestForm.resources
