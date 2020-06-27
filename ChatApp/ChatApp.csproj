@@ -58,6 +58,12 @@
     <Compile Include="Views\Components\Conversation.Designer.cs">
       <DependentUpon>Conversation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Components\InMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\InMessage.Designer.cs">
+      <DependentUpon>InMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\ScrollPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +94,9 @@
     </Compile>
     <EmbeddedResource Include="Views\Components\Conversation.resx">
       <DependentUpon>Conversation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\InMessage.resx">
+      <DependentUpon>InMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\ScrollPanel.resx">
       <DependentUpon>ScrollPanel.cs</DependentUpon>
@@ -120,6 +129,7 @@
   <ItemGroup>
     <Content Include="Resources\newchat.png" />
     <Content Include="Resources\newgroup.png" />
+    <None Include="Resources\option.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

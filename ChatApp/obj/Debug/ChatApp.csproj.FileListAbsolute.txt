@@ -11,3 +11,5 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CopyCo
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.Conversation.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.ScrollPanel.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.TestForm.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.InMessage.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csprojAssemblyReference.cache
