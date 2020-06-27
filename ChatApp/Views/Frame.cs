@@ -1,4 +1,5 @@
 ﻿using ChatApp.Views.Components;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace ChatApp.Views
             }
             scrollPanel1.UpdateUi();
             scrollPanel1.vScrollBar.Value = 0;
+            
         }
     }
 }

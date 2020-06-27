@@ -9,14 +9,14 @@ using System.Windows.Forms;
 
 namespace ChatApp.Views.Components
 {
-    public partial class InMessage : UserControl
+    public partial class OutMessage : UserControl
     {
-        public InMessage()
+        public OutMessage()
         {
             InitializeComponent();
-            setHeight();
         }
-        public InMessage(string msg, string t)
+
+        public OutMessage(string msg, string t)
         {
             InitializeComponent();
             message.Text = msg;
@@ -29,14 +29,9 @@ namespace ChatApp.Views.Components
             SizeF size = g.MeasureString(message.Text, message.Font, message.Width);
             message.Height = int.Parse(Math.Round(size.Height + 6, 0).ToString());
             bubble.Width = int.Parse(Math.Round(size.Width + 32, 0).ToString());
-            bubble.Location = new Point(500 - (bubble.Width + 24), 21);
             bubble.Height = message.Height + 12;
             this.Height = time.Height + bubble.Height + 12;
 
         }
-
-      
-
-        
     }
 }
