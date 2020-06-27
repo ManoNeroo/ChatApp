@@ -145,9 +145,14 @@
     <None Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\logo.png" />
     <Content Include="Resources\newchat.png" />
+    <None Include="Resources\newchathover.png" />
     <Content Include="Resources\newgroup.png" />
+    <None Include="Resources\newgrouphover.png" />
     <Content Include="Resources\option.png" />
+    <None Include="Resources\sendhover.png" />
+    <None Include="Resources\send.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

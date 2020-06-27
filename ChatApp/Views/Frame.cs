@@ -16,14 +16,14 @@ namespace ChatApp.Views
         public Frame()
         {
             InitializeComponent();
-            scrollPanel1.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             for(int i = 0; i < 20; i++)
             {
                 Conversation c = new Conversation();
-                scrollPanel1.flowLayoutPanel.Controls.Add(c);
+                pnlConversations.flowLayoutPanel.Controls.Add(c);
             }
-            scrollPanel1.UpdateUi();
-            scrollPanel1.vScrollBar.Value = 0;
+            pnlConversations.UpdateUi();
+            pnlConversations.vScrollBar.Value = 0;
             
         }
     }
