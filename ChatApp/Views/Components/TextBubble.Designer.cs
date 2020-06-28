@@ -1,6 +1,6 @@
 ﻿namespace ChatApp.Views.Components
 {
-    partial class InMessage
+    partial class TextBubble
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,7 +30,6 @@
         {
             this.bubble = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.message = new System.Windows.Forms.Label();
-            this.time = new System.Windows.Forms.Label();
             this.option = new System.Windows.Forms.Label();
             this.bubble.SuspendLayout();
             this.SuspendLayout();
@@ -41,13 +40,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bubble.BorderRadius = 15;
             this.bubble.Controls.Add(this.message);
-            this.bubble.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(48)))), ((int)(((byte)(90)))));
-            this.bubble.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(36)))), ((int)(((byte)(206)))));
-            this.bubble.Location = new System.Drawing.Point(136, 20);
+            this.bubble.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(152)))), ((int)(((byte)(93)))));
+            this.bubble.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(61)))), ((int)(((byte)(87)))));
+            this.bubble.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bubble.Location = new System.Drawing.Point(0, 0);
             this.bubble.Name = "bubble";
             this.bubble.ShadowDecoration.Parent = this.bubble;
-            this.bubble.Size = new System.Drawing.Size(340, 36);
-            this.bubble.TabIndex = 1;
+            this.bubble.Size = new System.Drawing.Size(303, 36);
+            this.bubble.TabIndex = 4;
             // 
             // message
             // 
@@ -56,54 +56,41 @@
             this.message.BackColor = System.Drawing.Color.Transparent;
             this.message.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.message.Location = new System.Drawing.Point(15, 9);
+            this.message.Location = new System.Drawing.Point(14, 8);
             this.message.Name = "message";
-            this.message.Size = new System.Drawing.Size(312, 18);
+            this.message.Size = new System.Drawing.Size(275, 19);
             this.message.TabIndex = 0;
-            this.message.Text = "Matching developers with great companies.\r\n";
-            // 
-            // time
-            // 
-            this.time.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.time.AutoSize = true;
-            this.time.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.time.Location = new System.Drawing.Point(420, 3);
-            this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(56, 14);
-            this.time.TabIndex = 2;
-            this.time.Text = "hh:mm AM";
+            this.message.Text = "Nội dung tin nhắn";
             // 
             // option
             // 
             this.option.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.option.Cursor = System.Windows.Forms.Cursors.Hand;
             this.option.Image = global::ChatApp.Properties.Resources.option;
-            this.option.Location = new System.Drawing.Point(483, 3);
+            this.option.Location = new System.Drawing.Point(442, -2);
             this.option.Name = "option";
-            this.option.Size = new System.Drawing.Size(15, 15);
-            this.option.TabIndex = 0;
+            this.option.Size = new System.Drawing.Size(15, 16);
+            this.option.TabIndex = 5;
             // 
-            // InMessage
+            // TextBubble
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(52)))));
-            this.Controls.Add(this.time);
-            this.Controls.Add(this.bubble);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.option);
-            this.Name = "InMessage";
-            this.Size = new System.Drawing.Size(500, 58);
+            this.Controls.Add(this.bubble);
+            this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Name = "TextBubble";
+            this.Size = new System.Drawing.Size(457, 39);
             this.bubble.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label option;
         private Guna.UI2.WinForms.Guna2GradientPanel bubble;
         private System.Windows.Forms.Label message;
-        private System.Windows.Forms.Label time;
+        private System.Windows.Forms.Label option;
     }
 }

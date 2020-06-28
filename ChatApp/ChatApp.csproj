@@ -64,23 +64,35 @@
     <Compile Include="Views\Components\Conversation.Designer.cs">
       <DependentUpon>Conversation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Components\InMessage.cs">
+    <Compile Include="Views\Components\FileBubble.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Components\InMessage.Designer.cs">
-      <DependentUpon>InMessage.cs</DependentUpon>
+    <Compile Include="Views\Components\FileBubble.Designer.cs">
+      <DependentUpon>FileBubble.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Components\OutMessage.cs">
+    <Compile Include="Views\Components\IncomingMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Components\OutMessage.Designer.cs">
-      <DependentUpon>OutMessage.cs</DependentUpon>
+    <Compile Include="Views\Components\IncomingMessage.Designer.cs">
+      <DependentUpon>IncomingMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\OutgoingMessage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\OutgoingMessage.Designer.cs">
+      <DependentUpon>OutgoingMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Components\ScrollPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\Components\ScrollPanel.Designer.cs">
       <DependentUpon>ScrollPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\TextBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\TextBubble.Designer.cs">
+      <DependentUpon>TextBubble.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Frame.cs">
       <SubType>Form</SubType>
@@ -110,14 +122,20 @@
     <EmbeddedResource Include="Views\Components\Conversation.resx">
       <DependentUpon>Conversation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Components\InMessage.resx">
-      <DependentUpon>InMessage.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Components\FileBubble.resx">
+      <DependentUpon>FileBubble.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Components\OutMessage.resx">
-      <DependentUpon>OutMessage.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Components\IncomingMessage.resx">
+      <DependentUpon>IncomingMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\OutgoingMessage.resx">
+      <DependentUpon>OutgoingMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\ScrollPanel.resx">
       <DependentUpon>ScrollPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\TextBubble.resx">
+      <DependentUpon>TextBubble.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Frame.resx">
       <DependentUpon>Frame.cs</DependentUpon>
@@ -145,6 +163,7 @@
     <None Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\file.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\newchat.png" />
     <None Include="Resources\newchathover.png" />
