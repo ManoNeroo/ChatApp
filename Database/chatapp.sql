@@ -70,24 +70,24 @@ CREATE TABLE Account2(
 	createdAt DATETIME
 )
 GO
-INSERT INTO Account(email, password, firstName, lastName) VALUES('tuananh@gmail.com','12345678',N'Lê', N'Tuấn Anh'),
-('lenam@gmail.com','12345678',N'Lê', N'Hà Nam'),
-('datnguyen@gmail.com','12345678',N'Nguyễn', N'Thành Đạt'),
-('khanhlinh@gmail.com','12345678',N'Trần', N'Khánh Linh'),
-('baongoc@gmail.com','12345678',N'Lê', N'Bảo Ngọc')
+INSERT INTO Account(email, password, firstName, lastName, avatar) VALUES('tuananh@gmail.com','12345678',N'Lê', N'Tuấn Anh','useravatar2.jpg'),
+('lenam@gmail.com','12345678',N'Lê', N'Hà Nam', 'useravatar3.jpg'),
+('datnguyen@gmail.com','12345678',N'Nguyễn', N'Thành Đạt','useravatar4.jpg'),
+('khanhlinh@gmail.com','12345678',N'Trần', N'Khánh Linh', 'useravatar.png'),
+('baongoc@gmail.com','12345678',N'Lê', N'Bảo Ngọc','useravatar.png')
 GO
 INSERT INTO Conversation(id,creatorId, title) VALUES('conversation0001',1, null), ('conversation0002',2, null),('conversation0003',1, N'League Of Legends')
 GO
 INSERT INTO Participant(conversationId,userId) VALUES('conversation0001',1),('conversation0001',2),('conversation0002',2),
 ('conversation0002',3),('conversation0003',1),('conversation0003',2),('conversation0003',3),('conversation0003',4)
 GO
-INSERT INTO Message(id, conversationId, senderId, content, messageType,createdAt) VALUES('message00001','conversation0001',1,N'Chào bạn.','TEXT', '20200612 08:09:11 AM'),
-('message00002','conversation0001',2,N'Hello bạn, có chuyện gì không bạn.','TEXT', '20200612 08:09:52 AM'),
-('message00003','conversation0001',1,N'Không bạn','TEXT', '20200612 08:12:10 AM'),
-('message00004','conversation0002',2,N'Ê','TEXT', '20200615 07:30:11 PM'),
-('message00005','conversation0002',3,N'Gì Vây???','TEXT', '20200615 07:31:01 PM'),
-('message00006','conversation0002',2,N'Làm bài tập về nhà chưa?','TEXT', '20200615 07:31:45 PM'),
-('message00007','conversation0002',3,N'Chưa.','TEXT', '20200615 07:33:02 PM'),
+INSERT INTO Message(id, conversationId, senderId, content, messageType,createdAt) VALUES('message00001','conversation0001',1,N'Tin nhắn 1.','TEXT', '20200612 08:09:11 AM'),
+('message00002','conversation0001',2,N'Tin nhắn 2.','TEXT', '20200612 08:09:52 AM'),
+('message00003','conversation0001',1,N'Tin nhắn 3.','TEXT', '20200612 08:12:10 AM'),
+('message00004','conversation0002',2,N'Tin nhắn 1.','TEXT', '20200615 07:30:11 PM'),
+('message00005','conversation0002',3,N'Tin nhắn 2.','TEXT', '20200615 07:31:01 PM'),
+('message00006','conversation0002',2,N'Tin nhắn 3.','TEXT', '20200615 07:31:45 PM'),
+('message00007','conversation0002',3,N'Tin nhắn 4.','TEXT', '20200615 07:33:02 PM'),
 ('message00008','conversation0003',1,N'Ashe Cao Bồi_000000000000000_.jpg','FILE', '20200619 03:02:14 PM'),
 ('message00009','conversation0003',1,N'Ashe Cao Bồi.','TEXT', '20200619 03:02:42 PM'),
 ('message00010','conversation0003',2,N'yasuomakiem_000000000000001_.jpg','FILE', '20200619 03:04:12 PM'),
