@@ -16,3 +16,13 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Compone
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.TextBubble.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.OutgoingMessage.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.FileBubble.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Login.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.getStarted.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.LoginBox.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.SignUpBox.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.CustomMessageBox.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\ChatApp.exe.config
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\ReferenceData.dll
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\ReferenceData.pdb
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.WelcomeBox.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csprojAssemblyReference.cache

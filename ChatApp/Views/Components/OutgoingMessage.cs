@@ -12,11 +12,20 @@ namespace ChatApp.Views.Components
     public partial class OutgoingMessage : UserControl
     {
         public List<UserControl> UList { get; set; }
-        public String Time { get; set; }
+        public DateTime Time { get; set; }
+        public int UserId { get; set; }
         public OutgoingMessage()
         {
             InitializeComponent();
             UList = new List<UserControl>();
+        }
+        public OutgoingMessage(int userId, DateTime time)
+        {
+            UserId = userId;
+            Time = time;
+            InitializeComponent();
+            UList = new List<UserControl>();
+            this.time.Text = Time.ToString("HH:mm dd/MM/yyyy");
         }
         private void setHeight()
         {
@@ -38,6 +47,27 @@ namespace ChatApp.Views.Components
             {
                 this.Dispose();
             }
+        }
+        public override bool Equals(object obj)
+        {
+            if(obj == null)
+            {
+                return false;
+            }
+            if(obj.GetType() != typeof(OutgoingMessage))
+            {
+                return false;
+            }
+            OutgoingMessage other = (OutgoingMessage)obj;
+            if(UserId != other.UserId || !Time.Equals(other.Time))
+            {
+                return false;
+            }
+            return true;
+        }
+        public override int GetHashCode()
+        {
+            return UserId.GetHashCode();
         }
     }
 }

@@ -28,130 +28,146 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.guna2CircleButton1 = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.guna2GradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
+            this.bg = new Guna.UI2.WinForms.Guna2GradientPanel();
+            this.btnState = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.unReadMessage = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.lbDate = new System.Windows.Forms.Label();
+            this.lbLatestMessage = new System.Windows.Forms.Label();
+            this.lbTitle = new System.Windows.Forms.Label();
+            this.pbAvatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.bg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
-            // guna2GradientPanel1
+            // bg
             // 
-            this.guna2GradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.bg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2GradientPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.guna2GradientPanel1.Controls.Add(this.guna2CircleButton1);
-            this.guna2GradientPanel1.Controls.Add(this.label3);
-            this.guna2GradientPanel1.Controls.Add(this.label2);
-            this.guna2GradientPanel1.Controls.Add(this.label1);
-            this.guna2GradientPanel1.Controls.Add(this.guna2CirclePictureBox1);
-            this.guna2GradientPanel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2GradientPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
-            this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
-            this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(22)))), ((int)(((byte)(32)))));
-            this.guna2GradientPanel1.ShadowDecoration.Enabled = true;
-            this.guna2GradientPanel1.ShadowDecoration.Parent = this.guna2GradientPanel1;
-            this.guna2GradientPanel1.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(2, 2, 5, 7);
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(242, 58);
-            this.guna2GradientPanel1.TabIndex = 1;
+            this.bg.BackColor = System.Drawing.Color.Transparent;
+            this.bg.BorderRadius = 12;
+            this.bg.Controls.Add(this.btnState);
+            this.bg.Controls.Add(this.unReadMessage);
+            this.bg.Controls.Add(this.lbDate);
+            this.bg.Controls.Add(this.lbLatestMessage);
+            this.bg.Controls.Add(this.lbTitle);
+            this.bg.Controls.Add(this.pbAvatar);
+            this.bg.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bg.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
+            this.bg.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
+            this.bg.Location = new System.Drawing.Point(0, 0);
+            this.bg.Name = "bg";
+            this.bg.ShadowDecoration.BorderRadius = 12;
+            this.bg.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
+            this.bg.ShadowDecoration.Enabled = true;
+            this.bg.ShadowDecoration.Parent = this.bg;
+            this.bg.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(2, 2, 5, 7);
+            this.bg.Size = new System.Drawing.Size(282, 66);
+            this.bg.TabIndex = 1;
             // 
-            // guna2CircleButton1
+            // btnState
             // 
-            this.guna2CircleButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2CircleButton1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CircleButton1.CheckedState.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.CustomImages.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.FillColor = System.Drawing.Color.Magenta;
-            this.guna2CircleButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2CircleButton1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleButton1.HoverState.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.Location = new System.Drawing.Point(197, 26);
-            this.guna2CircleButton1.Name = "guna2CircleButton1";
-            this.guna2CircleButton1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CircleButton1.ShadowDecoration.Parent = this.guna2CircleButton1;
-            this.guna2CircleButton1.Size = new System.Drawing.Size(20, 20);
-            this.guna2CircleButton1.TabIndex = 3;
-            this.guna2CircleButton1.Text = "6";
+            this.btnState.BackColor = System.Drawing.Color.Transparent;
+            this.btnState.CheckedState.Parent = this.btnState;
+            this.btnState.CustomImages.Parent = this.btnState;
+            this.btnState.FillColor = System.Drawing.Color.Lime;
+            this.btnState.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnState.ForeColor = System.Drawing.Color.White;
+            this.btnState.HoverState.Parent = this.btnState;
+            this.btnState.Location = new System.Drawing.Point(6, 6);
+            this.btnState.Name = "btnState";
+            this.btnState.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnState.ShadowDecoration.Parent = this.btnState;
+            this.btnState.Size = new System.Drawing.Size(12, 12);
+            this.btnState.TabIndex = 4;
             // 
-            // label3
+            // unReadMessage
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Gray;
-            this.label3.Location = new System.Drawing.Point(174, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 14);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "dd/MM/yyyy";
+            this.unReadMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.unReadMessage.BackColor = System.Drawing.Color.Transparent;
+            this.unReadMessage.CheckedState.Parent = this.unReadMessage;
+            this.unReadMessage.CustomImages.Parent = this.unReadMessage;
+            this.unReadMessage.FillColor = System.Drawing.Color.Magenta;
+            this.unReadMessage.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.unReadMessage.ForeColor = System.Drawing.Color.White;
+            this.unReadMessage.HoverState.Parent = this.unReadMessage;
+            this.unReadMessage.Location = new System.Drawing.Point(233, 32);
+            this.unReadMessage.Name = "unReadMessage";
+            this.unReadMessage.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.unReadMessage.ShadowDecoration.Parent = this.unReadMessage;
+            this.unReadMessage.Size = new System.Drawing.Size(20, 20);
+            this.unReadMessage.TabIndex = 3;
+            this.unReadMessage.Text = "6";
             // 
-            // label2
+            // lbDate
             // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Gray;
-            this.label2.Location = new System.Drawing.Point(55, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 32);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tin nhắn mới nhất";
+            this.lbDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbDate.BackColor = System.Drawing.Color.Transparent;
+            this.lbDate.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDate.ForeColor = System.Drawing.Color.Silver;
+            this.lbDate.Location = new System.Drawing.Point(186, 11);
+            this.lbDate.Name = "lbDate";
+            this.lbDate.Size = new System.Drawing.Size(98, 14);
+            this.lbDate.TabIndex = 2;
+            this.lbDate.Text = "hh:mm dd/";
             // 
-            // label1
+            // lbLatestMessage
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(55, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Tên người dùng";
+            this.lbLatestMessage.BackColor = System.Drawing.Color.Transparent;
+            this.lbLatestMessage.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLatestMessage.ForeColor = System.Drawing.Color.Silver;
+            this.lbLatestMessage.Location = new System.Drawing.Point(54, 32);
+            this.lbLatestMessage.Name = "lbLatestMessage";
+            this.lbLatestMessage.Size = new System.Drawing.Size(136, 28);
+            this.lbLatestMessage.TabIndex = 2;
+            this.lbLatestMessage.Text = "Tin nhắn mới nhất";
             // 
-            // guna2CirclePictureBox1
+            // lbTitle
             // 
-            this.guna2CirclePictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lbTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lbTitle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.ForeColor = System.Drawing.Color.White;
+            this.lbTitle.Location = new System.Drawing.Point(54, 11);
+            this.lbTitle.Name = "lbTitle";
+            this.lbTitle.Size = new System.Drawing.Size(128, 17);
+            this.lbTitle.TabIndex = 1;
+            this.lbTitle.Text = "Tên người dùng";
+            // 
+            // pbAvatar
+            // 
+            this.pbAvatar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CirclePictureBox1.Image = global::ChatApp.Properties.Resources.avatar;
-            this.guna2CirclePictureBox1.Location = new System.Drawing.Point(9, 9);
-            this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            this.guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CirclePictureBox1.ShadowDecoration.Parent = this.guna2CirclePictureBox1;
-            this.guna2CirclePictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.guna2CirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2CirclePictureBox1.TabIndex = 0;
-            this.guna2CirclePictureBox1.TabStop = false;
+            this.pbAvatar.BackColor = System.Drawing.Color.Transparent;
+            this.pbAvatar.Image = global::ChatApp.Properties.Resources.avatar;
+            this.pbAvatar.Location = new System.Drawing.Point(12, 11);
+            this.pbAvatar.Name = "pbAvatar";
+            this.pbAvatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.pbAvatar.ShadowDecoration.Parent = this.pbAvatar;
+            this.pbAvatar.Size = new System.Drawing.Size(40, 40);
+            this.pbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAvatar.TabIndex = 0;
+            this.pbAvatar.TabStop = false;
             // 
             // Conversation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.guna2GradientPanel1);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.Controls.Add(this.bg);
             this.Name = "Conversation";
-            this.Size = new System.Drawing.Size(242, 58);
-            this.guna2GradientPanel1.ResumeLayout(false);
-            this.guna2GradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).EndInit();
+            this.Size = new System.Drawing.Size(282, 66);
+            this.bg.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
-        private Guna.UI2.WinForms.Guna2CircleButton guna2CircleButton1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
+        private Guna.UI2.WinForms.Guna2CircleButton unReadMessage;
+        private System.Windows.Forms.Label lbDate;
+        private System.Windows.Forms.Label lbTitle;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox pbAvatar;
+        public Guna.UI2.WinForms.Guna2CircleButton btnState;
+        public Guna.UI2.WinForms.Guna2GradientPanel bg;
+        public System.Windows.Forms.Label lbLatestMessage;
     }
 }

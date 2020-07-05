@@ -1,6 +1,11 @@
-﻿using ChatApp.Views;
+﻿using ChatApp.Utils;
+using ChatApp.Views;
+using ChatApp.Views.Components;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,7 +21,9 @@ namespace ChatApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frame());
+            ChatClient client = new ChatClient("127.0.0.1", 6868);
+            Application.Run(new Login(client));
+           // MessageBox.Show("TIme: " + DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds + "\n Local folder: " + Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName));
         }
     }
 }

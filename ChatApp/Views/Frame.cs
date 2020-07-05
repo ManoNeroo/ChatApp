@@ -1,5 +1,8 @@
-﻿using ChatApp.Views.Components;
+﻿using ChatApp.Handler;
+using ChatApp.Utils;
+using ChatApp.Views.Components;
 using Microsoft.VisualBasic.ApplicationServices;
+using ReferenceData.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,34 +16,104 @@ namespace ChatApp.Views
 {
     public partial class Frame : Form
     {
-        public Frame()
+        public ChatBox ChatBox { get; set; }
+        private Components.Conversation currentConversation = null;
+        public ChatClient Client { get; set; }
+        public Account User { get; set; }
+        public List<Components.Conversation> ConversationList = new List<Components.Conversation>();
+        public Frame(ChatClient client, Account user)
         {
             InitializeComponent();
+            Client = client;
+            User = user;
+            initUi();
+        }
+        private void initUi()
+        {
+            this.lbUserName.Text = User.firstName + " " + User.lastName;
+            this.pbUserAvatar.Image = ClientUtils.ByteToImage(User.avatar);
+            this.pnlPages.Controls.Clear();
+            WelcomeBox welcomeBox = new WelcomeBox(User);
+            this.pnlPages.Controls.Add(welcomeBox);
+            welcomeBox.Location = new Point(0, 0);
+            Client.startReadResponse(new ReadResponseHandler(this));
+        }
+
+        private void Frame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Client.SignOut(User);
+        }
+
+        private void Frame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        public void AddConversationList(List<ReferenceData.Entity.Conversation> list)
+        {
             pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
-            for(int i = 0; i < 20; i++)
+            foreach (var c in list)
             {
-                Conversation c = new Conversation();
-                pnlConversations.flowLayoutPanel.Controls.Add(c);
+                Components.Conversation cvst = new Components.Conversation(c, User);
+                pnlConversations.flowLayoutPanel.Controls.Add(cvst);
+                cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
+                ConversationList.Add(cvst);
             }
             pnlConversations.UpdateUi();
-            pnlConversations.vScrollBar.Value = 0;
-            scrollPanel1.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
-            for(int i = 0; i < 3; i++)
+        }
+        public void SelectConversation(Components.Conversation cvst)
+        {
+            if (!cvst.Equals(this.currentConversation))
             {
-                IncomingMessage u = new IncomingMessage();
-                OutgoingMessage u2 = new OutgoingMessage();
-                UserControl t = new TextBubble();
-                UserControl t2 = new TextBubble();
-                UserControl t3 = new TextBubble("Ok Ok Ok ok ok ok ok ok ok", TextBubble.msgType.Out);
-                UserControl t4 = new TextBubble("Yes yes yes", TextBubble.msgType.Out);
-                u.AddBubble(t);
-                u.AddBubble(t2);
-                u2.AddBubble(t3);
-                u2.AddBubble(t4);
-                scrollPanel1.flowLayoutPanel.Controls.Add(u);
-                scrollPanel1.flowLayoutPanel.Controls.Add(u2);
+                if (this.currentConversation == null)
+                {
+                    this.currentConversation = cvst;
+                }
+                else
+                {
+                    this.currentConversation.bg.FillColor = Color.FromArgb(16, 22, 37);
+                    this.currentConversation.bg.FillColor2 = Color.FromArgb(16, 22, 37);
+                    this.currentConversation = cvst;
+                }
+                this.currentConversation.bg.FillColor = Color.FromArgb(250, 48, 90);
+                this.currentConversation.bg.FillColor2 = Color.FromArgb(128, 36, 206);
+                this.pnlPages.Controls.Clear();
+                ChatBox = new ChatBox(Client, cvst);
+                this.pnlPages.Controls.Add(ChatBox);
+                ChatBox.Location = new Point(0, 0);
             }
-            scrollPanel1.UpdateUi();
+        }
+        public void Online(Account acc)
+        {
+            foreach (var c in ConversationList)
+            {
+                if (c.Cvst.memberList.Count == 2)
+                {
+                    foreach (var mb in c.Cvst.memberList)
+                    {
+                        if (mb.id == acc.id)
+                        {
+                            c.btnState.FillColor = Color.Lime;
+                        }
+                    }
+                }
+            }
+        }
+        public void Offline(Account acc)
+        {
+            foreach (var c in ConversationList)
+            {
+                if (c.Cvst.memberList.Count == 2)
+                {
+                    foreach (var mb in c.Cvst.memberList)
+                    {
+                        if (mb.id == acc.id)
+                        {
+                            c.btnState.FillColor = Color.LightSteelBlue;
+                        }
+                    }
+                }
+            }
         }
     }
 }

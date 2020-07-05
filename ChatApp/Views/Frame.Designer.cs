@@ -38,27 +38,25 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.guna2CirclePictureBox2 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.lbUserName = new System.Windows.Forms.Label();
+            this.pbUserAvatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlPages = new System.Windows.Forms.Panel();
-            this.scrollPanel1 = new ChatApp.Views.Components.ScrollPanel();
             this.dragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.guna2Panel2.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox2)).BeginInit();
-            this.pnlPages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTop
             // 
-            this.pnlTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(22)))), ((int)(((byte)(32)))));
+            this.pnlTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(18)))), ((int)(((byte)(30)))));
             this.pnlTop.Controls.Add(this.label1);
             this.pnlTop.Controls.Add(this.pictureBox3);
             this.pnlTop.Controls.Add(this.guna2ControlBox2);
@@ -181,21 +179,13 @@
             this.guna2Button1.Text = "Chat mới";
             this.guna2Button1.TextOffset = new System.Drawing.Point(0, 8);
             // 
-            // pnlConversations
-            // 
-            this.pnlConversations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.pnlConversations.Location = new System.Drawing.Point(0, 144);
-            this.pnlConversations.Name = "pnlConversations";
-            this.pnlConversations.Size = new System.Drawing.Size(300, 392);
-            this.pnlConversations.TabIndex = 9;
-            // 
             // guna2Panel5
             // 
             this.guna2Panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
             this.guna2Panel5.Controls.Add(this.guna2Button2);
             this.guna2Panel5.Controls.Add(this.label5);
-            this.guna2Panel5.Controls.Add(this.label6);
-            this.guna2Panel5.Controls.Add(this.guna2CirclePictureBox2);
+            this.guna2Panel5.Controls.Add(this.lbUserName);
+            this.guna2Panel5.Controls.Add(this.pbUserAvatar);
             this.guna2Panel5.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel5.Name = "guna2Panel5";
             this.guna2Panel5.ShadowDecoration.Parent = this.guna2Panel5;
@@ -231,28 +221,28 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Đang hoạt động";
             // 
-            // label6
+            // lbUserName
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(53, 7);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 17);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Tên người dùng";
+            this.lbUserName.AutoSize = true;
+            this.lbUserName.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lbUserName.Location = new System.Drawing.Point(53, 7);
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(112, 17);
+            this.lbUserName.TabIndex = 7;
+            this.lbUserName.Text = "Tên người dùng";
             // 
-            // guna2CirclePictureBox2
+            // pbUserAvatar
             // 
-            this.guna2CirclePictureBox2.Image = global::ChatApp.Properties.Resources.avatar;
-            this.guna2CirclePictureBox2.Location = new System.Drawing.Point(8, 7);
-            this.guna2CirclePictureBox2.Name = "guna2CirclePictureBox2";
-            this.guna2CirclePictureBox2.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.guna2CirclePictureBox2.ShadowDecoration.Parent = this.guna2CirclePictureBox2;
-            this.guna2CirclePictureBox2.Size = new System.Drawing.Size(40, 40);
-            this.guna2CirclePictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.guna2CirclePictureBox2.TabIndex = 6;
-            this.guna2CirclePictureBox2.TabStop = false;
+            this.pbUserAvatar.Image = global::ChatApp.Properties.Resources.avatar;
+            this.pbUserAvatar.Location = new System.Drawing.Point(8, 7);
+            this.pbUserAvatar.Name = "pbUserAvatar";
+            this.pbUserAvatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.pbUserAvatar.ShadowDecoration.Parent = this.pbUserAvatar;
+            this.pbUserAvatar.Size = new System.Drawing.Size(40, 40);
+            this.pbUserAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbUserAvatar.TabIndex = 6;
+            this.pbUserAvatar.TabStop = false;
             // 
             // guna2TextBox1
             // 
@@ -286,24 +276,23 @@
             // 
             // pnlPages
             // 
-            this.pnlPages.Controls.Add(this.scrollPanel1);
             this.pnlPages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPages.Location = new System.Drawing.Point(300, 32);
             this.pnlPages.Name = "pnlPages";
             this.pnlPages.Size = new System.Drawing.Size(560, 548);
             this.pnlPages.TabIndex = 2;
             // 
-            // scrollPanel1
-            // 
-            this.scrollPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(52)))));
-            this.scrollPanel1.Location = new System.Drawing.Point(16, 7);
-            this.scrollPanel1.Name = "scrollPanel1";
-            this.scrollPanel1.Size = new System.Drawing.Size(544, 453);
-            this.scrollPanel1.TabIndex = 0;
-            // 
             // dragControl1
             // 
             this.dragControl1.TargetControl = this.pnlTop;
+            // 
+            // pnlConversations
+            // 
+            this.pnlConversations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.pnlConversations.Location = new System.Drawing.Point(0, 144);
+            this.pnlConversations.Name = "pnlConversations";
+            this.pnlConversations.Size = new System.Drawing.Size(300, 392);
+            this.pnlConversations.TabIndex = 9;
             // 
             // Frame
             // 
@@ -319,14 +308,15 @@
             this.Name = "Frame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frame";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frame_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frame_FormClosed);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox2)).EndInit();
-            this.pnlPages.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbUserAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -339,10 +329,8 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox2;
-        private Components.ScrollPanel pnlConversations;
-        private System.Windows.Forms.Panel pnlPages;
+        private System.Windows.Forms.Label lbUserName;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox pbUserAvatar;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox2;
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
         private Guna.UI2.WinForms.Guna2DragControl dragControl1;
@@ -350,6 +338,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Components.ScrollPanel scrollPanel1;
+        public Components.ScrollPanel pnlConversations;
+        public System.Windows.Forms.Panel pnlPages;
     }
 }

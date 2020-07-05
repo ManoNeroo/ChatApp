@@ -28,36 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.userName = new System.Windows.Forms.Label();
-            this.time = new System.Windows.Forms.Label();
             this.bubbleArea = new System.Windows.Forms.FlowLayoutPanel();
             this.userAvatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.info = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.userAvatar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // userName
-            // 
-            this.userName.AutoSize = true;
-            this.userName.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.userName.Location = new System.Drawing.Point(44, 0);
-            this.userName.Name = "userName";
-            this.userName.Size = new System.Drawing.Size(83, 14);
-            this.userName.TabIndex = 7;
-            this.userName.Text = "Tên người dùng";
-            // 
-            // time
-            // 
-            this.time.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.time.AutoSize = true;
-            this.time.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.time.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.time.Location = new System.Drawing.Point(129, 0);
-            this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(56, 14);
-            this.time.TabIndex = 8;
-            this.time.Text = "hh:mm AM";
             // 
             // bubbleArea
             // 
@@ -80,9 +55,20 @@
             this.userAvatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             this.userAvatar.ShadowDecoration.Parent = this.userAvatar;
             this.userAvatar.Size = new System.Drawing.Size(40, 40);
-            this.userAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.userAvatar.TabIndex = 9;
             this.userAvatar.TabStop = false;
+            // 
+            // info
+            // 
+            this.info.AutoSize = true;
+            this.info.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.info.Location = new System.Drawing.Point(46, 0);
+            this.info.Name = "info";
+            this.info.Size = new System.Drawing.Size(56, 14);
+            this.info.TabIndex = 8;
+            this.info.Text = "hh:mm AM";
             // 
             // IncomingMessage
             // 
@@ -90,8 +76,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(36)))), ((int)(((byte)(52)))));
             this.Controls.Add(this.bubbleArea);
             this.Controls.Add(this.userAvatar);
-            this.Controls.Add(this.userName);
-            this.Controls.Add(this.time);
+            this.Controls.Add(this.info);
             this.Name = "IncomingMessage";
             this.Size = new System.Drawing.Size(500, 58);
             ((System.ComponentModel.ISupportInitialize)(this.userAvatar)).EndInit();
@@ -102,8 +87,7 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2CirclePictureBox userAvatar;
-        private System.Windows.Forms.Label userName;
-        private System.Windows.Forms.Label time;
         private System.Windows.Forms.FlowLayoutPanel bubbleArea;
+        private System.Windows.Forms.Label info;
     }
 }

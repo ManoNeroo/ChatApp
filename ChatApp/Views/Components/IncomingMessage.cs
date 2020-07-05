@@ -7,22 +7,36 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
+using ChatApp.Utils;
 
 namespace ChatApp.Views.Components
 {
     public partial class IncomingMessage : UserControl
     {
+
         public List<UserControl> UList { get; set; }
-        public String Time { get; set; }
+        public DateTime Time { get; set; }
+        public int UserId { get; set; }
         public IncomingMessage()
         {
             InitializeComponent();
             UList = new List<UserControl>();
         }
+        public IncomingMessage(byte[] avatar, int userId, string userName, DateTime time)
+        {
+            InitializeComponent();
+            UList = new List<UserControl>();
+            Time = time;
+            UserId = userId;
+            this.userAvatar.Image = ClientUtils.ByteToImage(avatar);
+            this.info.Text = userName + " - " + Time.ToString("HH:mm dd/MM/yyyy");
+        }
+
+
         private void setHeight()
         {
             bubbleArea.Height = bubbleArea.PreferredSize.Height;
-            this.Height = time.Height + bubbleArea.Height + 12;
+            this.Height = info.Height + bubbleArea.Height + 12;
         }
         public void AddBubble(UserControl userControl) 
         {
@@ -39,6 +53,28 @@ namespace ChatApp.Views.Components
             {
                 this.Dispose();
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (obj.GetType() != typeof(IncomingMessage))
+            {
+                return false;
+            }
+            IncomingMessage other = (IncomingMessage)obj;
+            if (UserId != other.UserId || !Time.Equals(other.Time))
+            {
+                return false;
+            }
+            return true;
+        }
+        public override int GetHashCode()
+        {
+            return UserId.GetHashCode();
         }
     }
 }
