@@ -12,7 +12,6 @@ namespace ChatAppServer.SocketServer
 
         public Socket ClientSocket { get; set; }
         public Server Server { get; set; }
-        //public List<ReferenceData.Entity.Conversation> ConversationList = new List<ReferenceData.Entity.Conversation>();
         public ServerWorker(Server server, Socket clientSocket)
         {
             Server = server;
@@ -73,7 +72,7 @@ namespace ChatAppServer.SocketServer
         }
         public SocketData receive()
         {
-            byte[] data = new byte[1024 * 102400];
+            byte[] data = new byte[92160000];
             ClientSocket.Receive(data);
             return (SocketData)ServerUtils.Deserialize(data);
         }

@@ -94,15 +94,6 @@ namespace ChatApp.Utils
             t.IsBackground = true;
             t.Start();
         }
-        /*public void startSendRequest( handler)
-        {
-            Thread t = new Thread(() =>
-            {
-                handler.sendRe();
-            });
-            t.IsBackground = true;
-            t.Start();
-        }*/
         public void send(object obj)
         {
             if(IsConnected)
@@ -112,7 +103,7 @@ namespace ChatApp.Utils
         }
         public SocketData receive()
         {
-            byte[] data = new byte[1024 * 102400];
+            byte[] data = new byte[92160000];
             if (IsConnected)
             {
                 Socket.Receive(data);
