@@ -50,15 +50,19 @@ namespace ChatApp.Views.Components
         private string getFileSize(byte[] file)
         {
             string size = "";
-            if (file.Length < 1048576)
+            if (file.Length >= 524288)
             {
-                double a = file.Length / 1024;
-                size = Math.Round(a) + " Kb";
+                double a = ((double)file.Length) / 1048576;
+                size = Math.Round(a, 2) + " MB";
+            }
+            else if (file.Length < 524288 && file.Length >= 512)
+            {
+                double a = ((double)file.Length) / 1024;
+                size = Math.Round(a, 2) + " KB";
             }
             else
             {
-                double a = file.Length / 1048576;
-                size = Math.Round(a) + " Mb";
+                size = file.Length.ToString() + " byte";
             }
             return size;
         }

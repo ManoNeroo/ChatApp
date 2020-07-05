@@ -48,7 +48,7 @@ namespace ChatApp.Views.Components
         {
             string[] info = new string[] { "", "" };
             string[] arrName = fileName.Split('_');
-            if(arrName.Length >= 3)
+            if (arrName.Length >= 3)
             {
                 info[1] = arrName[arrName.Length - 1].ToUpper();
                 for (int i = 0; i < arrName.Length - 2; i++)
@@ -62,7 +62,8 @@ namespace ChatApp.Views.Components
                         info[0] += arrName[i] + "_";
                     }
                 }
-            } else
+            }
+            else
             {
                 info[0] = arrName[0];
             }
@@ -71,15 +72,19 @@ namespace ChatApp.Views.Components
         private string getFileSize(byte[] file)
         {
             string size = "";
-            if (file.Length < 1048576)
+            if (file.Length >= 524288)
             {
-                double a = file.Length / 1024;
-                size = Math.Round(a) + " Kb";
+                double a = ((double)file.Length) / 1048576;
+                size = Math.Round(a, 2) + " MB";
+            }
+            else if (file.Length < 524288 && file.Length >= 512)
+            {
+                double a = ((double)file.Length) / 1024;
+                size = Math.Round(a, 2) + " KB";
             }
             else
             {
-                double a = file.Length / 1048576;
-                size = Math.Round(a) + " Mb";
+                size = file.Length.ToString() + " byte";
             }
             return size;
         }
