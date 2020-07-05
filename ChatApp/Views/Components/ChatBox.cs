@@ -22,6 +22,7 @@ namespace ChatApp.Views.Components
         public Components.Conversation ConversationBox { get; set; }
         private OutgoingMessage currentOutMessage = null;
         private IncomingMessage currentInMessage = null;
+        public FileItem FileItem = null;
         public ChatBox()
         {
             InitializeComponent();
@@ -36,6 +37,14 @@ namespace ChatApp.Views.Components
         }
         private void initUi()
         {
+            if(ConversationBox.Cvst.memberList.Count <= 2)
+            {
+                this.btnAddMember.Visible = false;
+                this.lbNumMember.Visible = false;
+            } else
+            {
+                this.lbNumMember.Text = ConversationBox.Cvst.memberList.Count + " Thành viên";
+            }
             this.lbTitle.Text = ConversationBox.Cvst.title;
             new LoadMessageHandler(Client).Handle(ConversationBox.Cvst.id, 0, 15);
         }
@@ -51,20 +60,74 @@ namespace ChatApp.Views.Components
             }
         }
 
+        private void btnChoosePicture_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog choosePictureDialog = new OpenFileDialog()
+            {
+                Filter = "Image files (*.png;*.jpg;*.jpeg;*.gif) | *.png;*.jpg;*.jpeg;*.gif",
+                Title = "Chọn một file ảnh"
+            };
+            choosePictureDialog.ShowDialog();
+            if(!choosePictureDialog.FileName.Equals(""))
+            {
+                byte[] file = ClientUtils.ConvertFileToByte(choosePictureDialog.FileName);
+                string[] arrFileName = choosePictureDialog.FileName.Split('\\');
+                string fn = arrFileName[arrFileName.Length - 1];
+                FileItem = new FileItem(fn, file);
+                this.Controls.Add(FileItem);
+                FileItem.Location = new Point(25, 386);
+                FileItem.BringToFront();
+                FileItem.ButtonCloseClick(closeFileItem);
+            }
+        }
+        private void btnChooseAllFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog chooseFileDialog= new OpenFileDialog()
+            {
+                Filter = "Image files (*.*) | *.*",
+                Title = "Chọn một file"
+            };
+            chooseFileDialog.ShowDialog();
+            if (!chooseFileDialog.FileName.Equals(""))
+            {
+                byte[] file = ClientUtils.ConvertFileToByte(chooseFileDialog.FileName);
+                string[] arrFileName = chooseFileDialog.FileName.Split('\\');
+                string fn = arrFileName[arrFileName.Length - 1];
+                FileItem = new FileItem(fn, file);
+                this.Controls.Add(FileItem);
+                FileItem.Location = new Point(25, 386);
+                FileItem.BringToFront();
+                FileItem.ButtonCloseClick(closeFileItem);
+            }
+        }
+        private void closeFileItem(object sender, EventArgs e)
+        {
+            this.Controls.Remove(FileItem);
+            FileItem = null;
+        }
+
         public void AddOutMessage(ReferenceData.Entity.Message message)
         {
+            if(FileItem != null)
+            {
+                this.Controls.Remove(FileItem);
+                FileItem = null;
+            }
             currentInMessage = null;
             this.messageBox.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             this.txtMessage.Text = "";
-            TextBubble textBubble = new TextBubble();
+            UserControl bubble = null;
             if (message.messageType.ToUpper().Equals("TEXT"))
             {
-                textBubble = new TextBubble(message.content, TextBubble.msgType.Out);
+                bubble = new TextBubble(message.content, TextBubble.msgType.Out);
+            } else
+            {
+                bubble = new FileBubble(message.content, message.file, FileBubble.msgType.Out);
             }
             if (this.currentOutMessage == null)
             {
                 currentOutMessage = new OutgoingMessage(ConversationBox.Acc.id, DateTime.Now);
-                currentOutMessage.AddBubble(textBubble);
+                currentOutMessage.AddBubble(bubble);
                 this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
             }
             else
@@ -72,31 +135,35 @@ namespace ChatApp.Views.Components
                 if(compareTime(currentOutMessage.Time, DateTime.Now))
                 {
                     this.messageBox.flowLayoutPanel.Controls.Remove(currentOutMessage);
-                    currentOutMessage.AddBubble(textBubble);
+                    currentOutMessage.AddBubble(bubble);
                     this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
                 } else
                 {
                     currentOutMessage = new OutgoingMessage(ConversationBox.Acc.id, DateTime.Now);
-                    currentOutMessage.AddBubble(textBubble);
+                    currentOutMessage.AddBubble(bubble);
                     this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
                 }
             }
             this.messageBox.UpdateUi();
             this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
+            InitLatestMessage(message);
         }
         public void AddInMessage(ReferenceData.Entity.Message message)
         {
             currentOutMessage = null;
             this.messageBox.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
-            TextBubble textBubble = new TextBubble();
+            UserControl bubble = null;
             if (message.messageType.ToUpper().Equals("TEXT"))
             {
-                textBubble = new TextBubble(message.content, TextBubble.msgType.In);
+                bubble = new TextBubble(message.content, TextBubble.msgType.In);
+            } else
+            {
+                bubble = new FileBubble(message.content, message.file, FileBubble.msgType.In);
             }
             if (this.currentInMessage == null)
             {
                 currentInMessage = new IncomingMessage(message.avatar, message.senderId, message.lastName, DateTime.Now);
-                currentInMessage.AddBubble(textBubble);
+                currentInMessage.AddBubble(bubble);
                 this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
             }
             else
@@ -104,22 +171,19 @@ namespace ChatApp.Views.Components
                 if (compareTime(currentInMessage.Time, DateTime.Now))
                 {
                     this.messageBox.flowLayoutPanel.Controls.Remove(currentInMessage);
-                    currentInMessage.AddBubble(textBubble);
+                    currentInMessage.AddBubble(bubble);
                     this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
                 }
                 else
                 {
                     currentInMessage = new IncomingMessage(message.avatar, message.senderId, message.lastName, DateTime.Now);
-                    currentInMessage.AddBubble(textBubble);
+                    currentInMessage.AddBubble(bubble);
                     this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
                 }
             }
             this.messageBox.UpdateUi();
             this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
-        }
-        private long convertDateTimeToSeconds(DateTime time)
-        {
-            return (long)time.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
+            InitLatestMessage(message);
         }
         private bool compareTime(DateTime t1, DateTime t2)
         {
@@ -128,6 +192,28 @@ namespace ChatApp.Views.Components
                 return true;
             }
             return false;
+        }
+        private void InitLatestMessage(ReferenceData.Entity.Message message)
+        {
+            if (message.messageType.Equals("FILE"))
+            {
+                string[] arr = message.content.Split('_');
+                string fex = arr[arr.Length - 1];
+                if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
+                {
+                    ConversationBox.lbLatestMessage.Text = (message.senderId != ConversationBox.Acc.id ? message.lastName : "Bạn") + " đã gửi một ảnh.";
+                }
+                else
+                {
+                    ConversationBox.lbLatestMessage.Text = (message.senderId != ConversationBox.Acc.id ? message.lastName : "Bạn") + " đã gửi một file.";
+                }
+            }
+            else
+            {
+                ConversationBox.lbLatestMessage.Text = (message.senderId != ConversationBox.Acc.id ? message.lastName : "Bạn") + ": " + message.content;
+            }
+            DateTime time = (DateTime)message.createdAt;
+            ConversationBox.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
         }
         public void GenarateMessage(List<ReferenceData.Entity.Message> list, FlowDirection direction)
         {
@@ -139,20 +225,34 @@ namespace ChatApp.Views.Components
 
             DateTime time = (DateTime)list[0].createdAt;
             UserControl currentMessage;
+            UserControl bubble;
             IncomingMessage cInMessage = new IncomingMessage();
             OutgoingMessage cOutMessage = new OutgoingMessage();
             if (list[0].senderId != ConversationBox.Acc.id)
             {
                 cInMessage = new IncomingMessage(list[0].avatar, list[0].senderId, list[0].lastName, time);
-                TextBubble text = new TextBubble(list[0].content, TextBubble.msgType.In);
-                cInMessage.AddBubble(text);
+                if(list[0].messageType.Equals("FILE"))
+                {
+                    bubble = new FileBubble(list[0].content, list[0].file, FileBubble.msgType.In);
+                } else
+                {
+                    bubble = new TextBubble(list[0].content, TextBubble.msgType.In);
+                }
+                cInMessage.AddBubble(bubble);
                 currentMessage = cInMessage;
             }
             else
             {
                 cOutMessage = new OutgoingMessage(list[0].senderId, time);
-                TextBubble text = new TextBubble(list[0].content, TextBubble.msgType.Out);
-                cOutMessage.AddBubble(text);
+                if (list[0].messageType.Equals("FILE"))
+                {
+                    bubble = new FileBubble(list[0].content, list[0].file, FileBubble.msgType.Out);
+                }
+                else
+                {
+                    bubble = new TextBubble(list[0].content, TextBubble.msgType.Out);
+                }
+                cOutMessage.AddBubble(bubble);
                 currentMessage = cOutMessage;
             }
             foreach (var mes in list)
@@ -166,24 +266,45 @@ namespace ChatApp.Views.Components
                             this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
                             time = (DateTime)mes.createdAt;
                             cInMessage = new IncomingMessage(mes.avatar, mes.senderId, mes.lastName, time);
-                            TextBubble text = new TextBubble(mes.content, TextBubble.msgType.In);
-                            cInMessage.AddBubble(text);
+                            if (mes.messageType.Equals("FILE"))
+                            {
+                                bubble = new FileBubble(mes.content, mes.file, FileBubble.msgType.In);
+                            }
+                            else
+                            {
+                                bubble = new TextBubble(mes.content, TextBubble.msgType.In);
+                            }
+                            cInMessage.AddBubble(bubble);
                             currentMessage = cInMessage;
                         }
                         else
                         {
                             if (compareTime(time, (DateTime)mes.createdAt) && cInMessage.UserId == mes.senderId)
                             {
-                                TextBubble text = new TextBubble(mes.content, TextBubble.msgType.In);
-                                cInMessage.AddBubble(text);
+                                if (mes.messageType.Equals("FILE"))
+                                {
+                                    bubble = new FileBubble(mes.content, mes.file, FileBubble.msgType.In);
+                                }
+                                else
+                                {
+                                    bubble = new TextBubble(mes.content, TextBubble.msgType.In);
+                                }
+                                cInMessage.AddBubble(bubble);
                             }
                             else
                             {
                                 this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
                                 time = (DateTime)mes.createdAt;
                                 cInMessage = new IncomingMessage(mes.avatar, mes.senderId, mes.lastName, time);
-                                TextBubble text = new TextBubble(mes.content, TextBubble.msgType.In);
-                                cInMessage.AddBubble(text);
+                                if (mes.messageType.Equals("FILE"))
+                                {
+                                    bubble = new FileBubble(mes.content, mes.file, FileBubble.msgType.In);
+                                }
+                                else
+                                {
+                                    bubble = new TextBubble(mes.content, TextBubble.msgType.In);
+                                }
+                                cInMessage.AddBubble(bubble);
                                 currentMessage = cInMessage;
                             }
                         }
@@ -195,24 +316,45 @@ namespace ChatApp.Views.Components
                             this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
                             time = (DateTime)mes.createdAt;
                             cOutMessage = new OutgoingMessage(mes.senderId, time);
-                            TextBubble text = new TextBubble(mes.content, TextBubble.msgType.Out);
-                            cOutMessage.AddBubble(text);
+                            if (mes.messageType.Equals("FILE"))
+                            {
+                                bubble = new FileBubble(mes.content, mes.file, FileBubble.msgType.Out);
+                            }
+                            else
+                            {
+                                bubble = new TextBubble(mes.content, TextBubble.msgType.Out);
+                            }
+                            cOutMessage.AddBubble(bubble);
                             currentMessage = cOutMessage;
                         }
                         else
                         {
                             if (compareTime(time, (DateTime)mes.createdAt) && cOutMessage.UserId == mes.senderId)
                             {
-                                TextBubble text = new TextBubble(mes.content, TextBubble.msgType.Out);
-                                cOutMessage.AddBubble(text);
+                                if (mes.messageType.Equals("FILE"))
+                                {
+                                    bubble = new FileBubble(mes.content, mes.file, FileBubble.msgType.Out);
+                                }
+                                else
+                                {
+                                    bubble = new TextBubble(mes.content, TextBubble.msgType.Out);
+                                }
+                                cOutMessage.AddBubble(bubble);
                             }
                             else
                             {
                                 this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
                                 time = (DateTime)mes.createdAt;
                                 cOutMessage = new OutgoingMessage(mes.senderId, time);
-                                TextBubble text = new TextBubble(mes.content, TextBubble.msgType.Out);
-                                cOutMessage.AddBubble(text);
+                                if (mes.messageType.Equals("FILE"))
+                                {
+                                    bubble = new FileBubble(mes.content, mes.file, FileBubble.msgType.Out);
+                                }
+                                else
+                                {
+                                    bubble = new TextBubble(mes.content, TextBubble.msgType.Out);
+                                }
+                                cOutMessage.AddBubble(bubble);
                                 currentMessage = cOutMessage;
                             }
                         }
@@ -222,7 +364,5 @@ namespace ChatApp.Views.Components
             this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
             this.messageBox.UpdateUi();
         }
-
-        
     }
 }

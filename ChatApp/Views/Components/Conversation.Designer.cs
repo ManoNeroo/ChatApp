@@ -163,11 +163,11 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2CircleButton unReadMessage;
-        private System.Windows.Forms.Label lbDate;
         private System.Windows.Forms.Label lbTitle;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbAvatar;
         public Guna.UI2.WinForms.Guna2CircleButton btnState;
         public Guna.UI2.WinForms.Guna2GradientPanel bg;
         public System.Windows.Forms.Label lbLatestMessage;
+        public System.Windows.Forms.Label lbDate;
     }
 }

@@ -73,7 +73,7 @@ namespace ChatAppServer.SocketServer
         }
         public SocketData receive()
         {
-            byte[] data = new byte[1024 * 20500];
+            byte[] data = new byte[1024 * 102400];
             ClientSocket.Receive(data);
             return (SocketData)ServerUtils.Deserialize(data);
         }

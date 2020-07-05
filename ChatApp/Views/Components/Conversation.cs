@@ -35,45 +35,67 @@ namespace ChatApp.Views.Components
             this.pbAvatar.Image = ClientUtils.ByteToImage(Cvst.avatar);
             DateTime time = (DateTime)Cvst.createdAt;
             this.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
-            if (Cvst.messageType.Equals("FILE"))
-            {
-                if (Cvst.senderId != Acc.id)
-                {
-                    foreach (var u in Cvst.memberList)
-                    {
-                        if (u.id == Cvst.senderId)
-                        {
-                            this.lbLatestMessage.Text = u.lastName + "đã gửi một file.";
-                        }
-                    }
-                }
-                else
-                {
-                    this.lbLatestMessage.Text = "Bạn đã gửi một file.";
-                }
-            }
-            else
-            {
-                if (Cvst.senderId != Acc.id)
-                {
-                    foreach (var u in Cvst.memberList)
-                    {
-                        if (u.id == Cvst.senderId)
-                        {
-                            this.lbLatestMessage.Text = u.lastName + ": " + Cvst.content;
-                        }
-                    }
-                }
-                else
-                {
-                    this.lbLatestMessage.Text = "Bạn: " + Cvst.content;
-                }
-            }
+            InitLatestMessage();
             if (!Cvst.state)
             {
                 this.btnState.FillColor = System.Drawing.Color.LightSteelBlue;
             }
         }
+        public void InitLatestMessage()
+        {
+            if (this.Cvst.messageType.Equals("FILE"))
+            {
+                if (this.Cvst.senderId != this.Acc.id)
+                {
+                    foreach (var u in this.Cvst.memberList)
+                    {
+                        if (u.id == this.Cvst.senderId)
+                        {
+                            string[] arr = this.Cvst.content.Split('_');
+                            string fex = arr[arr.Length - 1];
+                            if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
+                            {
+                                this.lbLatestMessage.Text = u.lastName + " đã gửi một ảnh.";
+                            }
+                            else
+                            {
+                                this.lbLatestMessage.Text = u.lastName + " đã gửi một file.";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string[] arr = this.Cvst.content.Split('_');
+                    string fex = arr[arr.Length - 1];
+                    if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
+                    {
+                        this.lbLatestMessage.Text = "Bạn đã gửi một ảnh.";
+                    } else
+                    {
+                        this.lbLatestMessage.Text = "Bạn đã gửi một file.";
+                    }
+                }
+            }
+            else
+            {
+                if (this.Cvst.senderId != this.Acc.id)
+                {
+                    foreach (var u in this.Cvst.memberList)
+                    {
+                        if (u.id == this.Cvst.senderId)
+                        {
+                            this.lbLatestMessage.Text = u.lastName + ": " + this.Cvst.content;
+                        }
+                    }
+                }
+                else
+                {
+                    this.lbLatestMessage.Text = "Bạn: " + this.Cvst.content;
+                }
+            }
+        }
+
         public void ConversationClick(EventHandler e)
         {
             this.btnState.Click += new System.EventHandler(e);

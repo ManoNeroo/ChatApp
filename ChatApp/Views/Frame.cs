@@ -16,7 +16,7 @@ namespace ChatApp.Views
 {
     public partial class Frame : Form
     {
-        public ChatBox ChatBox { get; set; }
+        public ChatBox ChatBox { get; set; } = null;
         private Components.Conversation currentConversation = null;
         public ChatClient Client { get; set; }
         public Account User { get; set; }
@@ -82,6 +82,28 @@ namespace ChatApp.Views
                 this.pnlPages.Controls.Add(ChatBox);
                 ChatBox.Location = new Point(0, 0);
             }
+        }
+        public void InitLatestMessage(Components.Conversation cvst, ReferenceData.Entity.Message message)
+        {
+            if (message.messageType.Equals("FILE"))
+            {
+                string[] arr = message.content.Split('_');
+                string fex = arr[arr.Length - 1];
+                if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
+                {
+                    cvst.lbLatestMessage.Text = (message.senderId != cvst.Acc.id ? message.lastName : "Bạn") + " đã gửi một ảnh.";
+                }
+                else
+                {
+                    cvst.lbLatestMessage.Text = (message.senderId != cvst.Acc.id ? message.lastName : "Bạn") + " đã gửi một file.";
+                }
+            }
+            else
+            {
+                cvst.lbLatestMessage.Text = (message.senderId != cvst.Acc.id ? message.lastName : "Bạn") + ": " + message.content;
+            }
+            DateTime time = (DateTime)message.createdAt;
+            cvst.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
         }
         public void Online(Account acc)
         {

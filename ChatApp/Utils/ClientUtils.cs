@@ -18,5 +18,13 @@ namespace ChatApp.Utils
             mStream.Dispose();
             return bm;
         }
+        public static byte[] ConvertFileToByte(string fileName)
+        {
+            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            byte[] bytes = System.IO.File.ReadAllBytes(fileName);
+            fs.Read(bytes, 0, System.Convert.ToInt32(fs.Length));
+            fs.Close();
+            return bytes;
+        }
     }
 }

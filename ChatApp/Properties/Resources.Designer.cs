@@ -63,6 +63,16 @@ namespace ChatApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap adduser {
+            get {
+                object obj = ResourceManager.GetObject("adduser", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap attach {
             get {
                 object obj = ResourceManager.GetObject("attach", resourceCulture);
@@ -86,6 +96,16 @@ namespace ChatApp.Properties {
         internal static System.Drawing.Bitmap avatar {
             get {
                 object obj = ResourceManager.GetObject("avatar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap circleclose {
+            get {
+                object obj = ResourceManager.GetObject("circleclose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

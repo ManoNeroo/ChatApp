@@ -12,6 +12,7 @@ namespace ChatApp.Handler
         private delegate void StateDelegate(ReferenceData.Entity.Account acc);
         private delegate void GenarateMessageDelegate(List<ReferenceData.Entity.Message> list, FlowDirection direction);
         private delegate void AddInMessageDelegate(ReferenceData.Entity.Message message);
+        private delegate void InitLatestMessageDelegate(Views.Components.Conversation cvst, ReferenceData.Entity.Message message);
         private Frame form;
 
         public ReadResponseHandler(Frame form)
@@ -76,15 +77,22 @@ namespace ChatApp.Handler
         private void handleMessage(object data)
         {
             ReferenceData.Entity.Message message = (ReferenceData.Entity.Message)data;
-            if (form.ChatBox.ConversationBox.Cvst.id.Equals(message.conversationId))
+            if (form.ChatBox != null && form.ChatBox.ConversationBox.Cvst.id.Equals(message.conversationId))
             {
                 form.ChatBox.Invoke(new AddInMessageDelegate(form.ChatBox.AddInMessage), new object[] { message });
 
-            }
-            else
+            } else
             {
-                
+                foreach(var c in form.ConversationList)
+                {
+                    if(c.Cvst.id.Equals(message.conversationId))
+                    {
+                        form.Invoke(new InitLatestMessageDelegate(form.InitLatestMessage), new object[] { c, message });
+                        break;
+                    }
+                }
             }
+
         }
     }
 }

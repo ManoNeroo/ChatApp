@@ -86,6 +86,12 @@
     <Compile Include="Views\Components\FileBubble.Designer.cs">
       <DependentUpon>FileBubble.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Components\FileItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\FileItem.Designer.cs">
+      <DependentUpon>FileItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\GetStarted.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     <EmbeddedResource Include="Views\Components\FileBubble.resx">
       <DependentUpon>FileBubble.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\FileItem.resx">
+      <DependentUpon>FileItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\GetStarted.resx">
       <DependentUpon>GetStarted.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,8 +250,10 @@
     <None Include="Resources\file.png" />
     <None Include="Resources\info.png" />
     <None Include="Resources\error.png" />
+    <Content Include="Resources\adduser.png" />
     <Content Include="Resources\attach.png" />
     <None Include="Resources\attachhover.png" />
+    <None Include="Resources\circleclose.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\newchat.png" />
     <None Include="Resources\newchathover.png" />
