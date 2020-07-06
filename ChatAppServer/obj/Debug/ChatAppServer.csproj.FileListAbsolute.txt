@@ -11,4 +11,3 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\EntityFramework
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\EntityFramework.SqlServer.xml
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\ReferenceData.dll
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\ReferenceData.pdb
-F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\obj\Debug\ChatAppServer.csprojAssemblyReference.cache

@@ -15,12 +15,15 @@ namespace ChatAppServer.Utils
             MemoryStream stream = new MemoryStream();
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, obj);
-            return stream.ToArray();
+            byte[] bytes = stream.ToArray();
+            stream.Flush();
+            return bytes;
         }
 
         public static object Deserialize(byte[] data)
         {
             MemoryStream stream = new MemoryStream(data);
+            stream.Position = 0;
             BinaryFormatter formatter = new BinaryFormatter();
             return formatter.Deserialize(stream);
         }

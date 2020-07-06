@@ -127,23 +127,19 @@ namespace ChatApp.Views.Components
             if (this.currentOutMessage == null)
             {
                 currentOutMessage = new OutgoingMessage(ConversationBox.Acc.id, DateTime.Now);
-                currentOutMessage.AddBubble(bubble);
-                this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
             }
             else
             {
                 if(compareTime(currentOutMessage.Time, DateTime.Now))
                 {
                     this.messageBox.flowLayoutPanel.Controls.Remove(currentOutMessage);
-                    currentOutMessage.AddBubble(bubble);
-                    this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
                 } else
                 {
                     currentOutMessage = new OutgoingMessage(ConversationBox.Acc.id, DateTime.Now);
-                    currentOutMessage.AddBubble(bubble);
-                    this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
                 }
             }
+            currentOutMessage.AddBubble(bubble);
+            this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
             this.messageBox.UpdateUi();
             this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
             InitLatestMessage(message);
@@ -163,24 +159,27 @@ namespace ChatApp.Views.Components
             if (this.currentInMessage == null)
             {
                 currentInMessage = new IncomingMessage(message.avatar, message.senderId, message.lastName, DateTime.Now);
-                currentInMessage.AddBubble(bubble);
-                this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
             }
             else
             {
-                if (compareTime(currentInMessage.Time, DateTime.Now))
+                if (currentInMessage.UserId != message.senderId)
                 {
-                    this.messageBox.flowLayoutPanel.Controls.Remove(currentInMessage);
-                    currentInMessage.AddBubble(bubble);
-                    this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
+                    currentInMessage = new IncomingMessage(message.avatar, message.senderId, message.lastName, DateTime.Now);
                 }
                 else
                 {
-                    currentInMessage = new IncomingMessage(message.avatar, message.senderId, message.lastName, DateTime.Now);
-                    currentInMessage.AddBubble(bubble);
-                    this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
+                    if (compareTime(currentInMessage.Time, DateTime.Now))
+                    {
+                        this.messageBox.flowLayoutPanel.Controls.Remove(currentInMessage);
+                    }
+                    else
+                    {
+                        currentInMessage = new IncomingMessage(message.avatar, message.senderId, message.lastName, DateTime.Now);
+                    }
                 }
             }
+            currentInMessage.AddBubble(bubble);
+            this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
             this.messageBox.UpdateUi();
             this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
             InitLatestMessage(message);
