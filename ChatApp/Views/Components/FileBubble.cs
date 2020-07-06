@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ChatApp.Utils;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 
 namespace ChatApp.Views.Components
 {
@@ -33,7 +34,7 @@ namespace ChatApp.Views.Components
             {
                 this.picture.Size = new Size(230, 130);
                 this.picture.Location = new Point(10, 10);
-                this.picture.Image = ClientUtils.ByteToImage(File);
+                this.picture.Image = ChatAppUtils.ByteToImage(File);
                 this.fileName.Visible = false;
                 this.fileSize.Visible = false;
             }

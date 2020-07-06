@@ -1,7 +1,7 @@
 ﻿using ChatAppServer.Models;
 using ChatAppServer.SocketServer;
-using ChatAppServer.Utils;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -41,16 +41,16 @@ namespace ChatAppServer.DAO.Implements
                     {
                         if(getFileType(m.content).Equals("IMAGE"))
                         {
-                            message.file = ServerUtils.ConvertFileToByte(imagesFolder + m.content);
+                            message.file = ChatAppUtils.ConvertFileToByte(imagesFolder + m.content);
                         } else
                         {
-                            message.file = ServerUtils.ConvertFileToByte(otherFolder + m.content);
+                            message.file = ChatAppUtils.ConvertFileToByte(otherFolder + m.content);
                         }
                     }
                     message.createdAt = m.createdAt;
                     message.firstName = m.firstName;
                     message.lastName = m.lastName;
-                    message.avatar = ServerUtils.ConvertFileToByte(imagesFolder + m.avatar);
+                    message.avatar = ChatAppUtils.ConvertFileToByte(imagesFolder + m.avatar);
                     list.Add(message);
                 }
             }

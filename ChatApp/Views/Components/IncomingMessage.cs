@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using ChatApp.Utils;
+using ReferenceData.Utils;
 
 namespace ChatApp.Views.Components
 {
@@ -28,7 +29,7 @@ namespace ChatApp.Views.Components
             UList = new List<UserControl>();
             Time = time;
             UserId = userId;
-            this.userAvatar.Image = ClientUtils.ByteToImage(avatar);
+            this.userAvatar.Image = ChatAppUtils.ByteToImage(avatar);
             this.info.Text = userName + " - " + Time.ToString("HH:mm dd/MM/yyyy");
         }
 

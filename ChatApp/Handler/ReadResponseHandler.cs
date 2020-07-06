@@ -54,8 +54,6 @@ namespace ChatApp.Handler
             if (list != null)
             {
                 form.Invoke(new AddConversationListDelegate(form.AddConversationList), new object[] { list });
-
-                //File.WriteAllBytes("C:\\Users\\trinh\\Pictures\\avatar5.png", list[1].avatar);
             }
         }
 

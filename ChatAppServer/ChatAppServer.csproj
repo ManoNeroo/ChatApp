@@ -125,7 +125,6 @@
     <Compile Include="SocketServer\OnlineAccount.cs" />
     <Compile Include="SocketServer\Server.cs" />
     <Compile Include="SocketServer\ServerWorker.cs" />
-    <Compile Include="Utils\ServerUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

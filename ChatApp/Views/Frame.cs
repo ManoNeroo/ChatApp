@@ -3,6 +3,7 @@ using ChatApp.Utils;
 using ChatApp.Views.Components;
 using Microsoft.VisualBasic.ApplicationServices;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,7 @@ namespace ChatApp.Views
         private void initUi()
         {
             this.lbUserName.Text = User.firstName + " " + User.lastName;
-            this.pbUserAvatar.Image = ClientUtils.ByteToImage(User.avatar);
+            this.pbUserAvatar.Image = ChatAppUtils.ByteToImage(User.avatar);
             this.pnlPages.Controls.Clear();
             WelcomeBox welcomeBox = new WelcomeBox(User);
             this.pnlPages.Controls.Add(welcomeBox);

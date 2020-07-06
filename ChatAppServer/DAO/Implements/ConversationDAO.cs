@@ -1,7 +1,7 @@
 ﻿using ChatAppServer.Models;
 using ChatAppServer.SocketServer;
-using ChatAppServer.Utils;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -50,7 +50,7 @@ namespace ChatAppServer.DAO.Implements
                         if(cvst.memberList.Count > 2)
                         {
                             cvst.state = true;
-                            cvst.avatar = ServerUtils.ConvertFileToByte(imagesFolder + c.avatar);
+                            cvst.avatar = ChatAppUtils.ConvertFileToByte(imagesFolder + c.avatar);
                         } else
                         {
                             foreach(var u in cvst.memberList)

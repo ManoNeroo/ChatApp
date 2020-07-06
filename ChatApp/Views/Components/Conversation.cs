@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ChatApp.Utils;
+using ReferenceData.Utils;
 
 namespace ChatApp.Views.Components
 {
@@ -32,7 +32,7 @@ namespace ChatApp.Views.Components
         {
             unReadMessage.Visible = false;
             this.lbTitle.Text = Cvst.title;
-            this.pbAvatar.Image = ClientUtils.ByteToImage(Cvst.avatar);
+            this.pbAvatar.Image = ChatAppUtils.ByteToImage(Cvst.avatar);
             DateTime time = (DateTime)Cvst.createdAt;
             this.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
             InitLatestMessage();

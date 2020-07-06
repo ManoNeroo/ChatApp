@@ -12,6 +12,7 @@ using ReferenceData.Entity;
 using ChatApp.Handler;
 using Microsoft.VisualBasic.ApplicationServices;
 using ReferenceData;
+using ReferenceData.Utils;
 
 namespace ChatApp.Views.Components
 {
@@ -70,9 +71,14 @@ namespace ChatApp.Views.Components
             choosePictureDialog.ShowDialog();
             if(!choosePictureDialog.FileName.Equals(""))
             {
-                byte[] file = ClientUtils.ConvertFileToByte(choosePictureDialog.FileName);
+                byte[] file = ChatAppUtils.ConvertFileToByte(choosePictureDialog.FileName);
                 string[] arrFileName = choosePictureDialog.FileName.Split('\\');
                 string fn = arrFileName[arrFileName.Length - 1];
+                if (FileItem != null)
+                {
+                    this.Controls.Remove(FileItem);
+                    FileItem = null;
+                }
                 FileItem = new FileItem(fn, file);
                 this.Controls.Add(FileItem);
                 FileItem.Location = new Point(25, 386);
@@ -90,9 +96,14 @@ namespace ChatApp.Views.Components
             chooseFileDialog.ShowDialog();
             if (!chooseFileDialog.FileName.Equals(""))
             {
-                byte[] file = ClientUtils.ConvertFileToByte(chooseFileDialog.FileName);
+                byte[] file = ChatAppUtils.ConvertFileToByte(chooseFileDialog.FileName);
                 string[] arrFileName = chooseFileDialog.FileName.Split('\\');
                 string fn = arrFileName[arrFileName.Length - 1];
+                if(FileItem!=null)
+                {
+                    this.Controls.Remove(FileItem);
+                    FileItem = null;
+                }
                 FileItem = new FileItem(fn, file);
                 this.Controls.Add(FileItem);
                 FileItem.Location = new Point(25, 386);
@@ -105,7 +116,11 @@ namespace ChatApp.Views.Components
             this.Controls.Remove(FileItem);
             FileItem = null;
         }
-
+        public void ShowErrorSendFile()
+        {
+            CustomMessageBox mb = new CustomMessageBox();
+            mb.show("Dung lượng file quá lớn để gửi!", "Lỗi", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Error);
+        }
         public void AddOutMessage(ReferenceData.Entity.Message message)
         {
             if(FileItem != null)

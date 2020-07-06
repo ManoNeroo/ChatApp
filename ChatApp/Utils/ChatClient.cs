@@ -1,6 +1,7 @@
 ﻿using ChatApp.Handler;
 using ReferenceData;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -98,43 +99,17 @@ namespace ChatApp.Utils
         {
             if(IsConnected)
             {
-                Socket.Send(serialize(obj));
+                Socket.Send(ChatAppUtils.Serialize(obj));
             }
         }
         public SocketData receive()
         {
-            byte[] data = new byte[92160000];
+            byte[] data = new byte[79000000];
             if (IsConnected)
             {
                 Socket.Receive(data);
             }
-            return (SocketData)deserialize(data);
-        }
-        private byte[] serialize(object obj)
-        {
-            MemoryStream stream = new MemoryStream();
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, obj);
-            byte[] bytes = stream.ToArray();
-            stream.Flush();
-            return bytes;
-        }
-
-        private object deserialize(byte[] data)
-        {
-            object obj;
-            MemoryStream stream = new MemoryStream(data);
-            stream.Position = 0;
-            BinaryFormatter formatter = new BinaryFormatter();
-            try
-            {
-                obj = formatter.Deserialize(stream);
-            }catch(Exception e)
-            {
-                Console.WriteLine(e);
-                obj = null;
-            }
-            return obj;
+            return (SocketData)ChatAppUtils.Deserialize(data);
         }
         public string Test(SocketData data)
         {

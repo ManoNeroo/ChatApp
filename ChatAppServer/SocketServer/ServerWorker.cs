@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using ChatAppServer.Handler;
-using ChatAppServer.Utils;
 using ReferenceData;
+using ReferenceData.Utils;
 
 namespace ChatAppServer.SocketServer
 {
@@ -68,13 +68,13 @@ namespace ChatAppServer.SocketServer
         }
         public void send(object obj)
         {
-            ClientSocket.Send(ServerUtils.Serialize(obj));
+            ClientSocket.Send(ChatAppUtils.Serialize(obj));
         }
         public SocketData receive()
         {
-            byte[] data = new byte[92160000];
+            byte[] data = new byte[79000000];
             ClientSocket.Receive(data);
-            return (SocketData)ServerUtils.Deserialize(data);
+            return (SocketData)ChatAppUtils.Deserialize(data);
         }
 
     }

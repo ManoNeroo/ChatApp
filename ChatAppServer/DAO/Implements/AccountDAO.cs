@@ -1,6 +1,6 @@
 ﻿using ChatAppServer.Models;
-using ChatAppServer.Utils;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -38,7 +38,7 @@ namespace ChatAppServer.DAO.Implements
                     acc.lastName = a.lastName;
                     acc.birthday = a.birthday;
                     acc.createdAt = a.createdAt;
-                    acc.avatar = ServerUtils.ConvertFileToByte(imagesFolder + a.avatar);
+                    acc.avatar = ChatAppUtils.ConvertFileToByte(imagesFolder + a.avatar);
                     list.Add(acc);
                 }
             }
@@ -60,7 +60,7 @@ namespace ChatAppServer.DAO.Implements
                     acc.password = u.password;
                     acc.firstName = u.firstName;
                     acc.lastName = u.lastName;
-                    acc.avatar = ServerUtils.ConvertFileToByte(imagesFolder + u.avatar);
+                    acc.avatar = ChatAppUtils.ConvertFileToByte(imagesFolder + u.avatar);
                     acc.birthday = u.birthday;
                     acc.createdAt = u.createdAt;
                 }
