@@ -1,5 +1,6 @@
 ﻿using ChatApp.Views.Components;
 using ReferenceData;
+using ReferenceData.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,13 @@ namespace ChatApp.Handler
         }
         public void Handle()
         {
+            int a = 0;
             string textMsg = chatBox.txtMessage.Text.Trim();
+            if (chatBox.Conversation.id == null)
+            {
+                insertConversation();
+                a = 1;
+            }
             int b = sendFile();
             if (!textMsg.Equals("") && b != 2)
             {
@@ -30,18 +37,34 @@ namespace ChatApp.Handler
                 }
                 ReferenceData.Entity.Message textMessage = new ReferenceData.Entity.Message();
                 textMessage.id = "" + DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-                textMessage.conversationId = chatBox.ConversationBox.Cvst.id;
-                textMessage.senderId = chatBox.ConversationBox.Acc.id;
+                //textMessage.conversationId = chatBox.ConversationBox.Cvst.id;
+                textMessage.conversationId = chatBox.Conversation.id;
+                //textMessage.senderId = chatBox.ConversationBox.Acc.id;
+                textMessage.senderId = chatBox.Form.User.id;
                 textMessage.content = textMsg;
                 textMessage.messageType = "TEXT";
-                textMessage.firstName = chatBox.ConversationBox.Acc.firstName;
-                textMessage.lastName = chatBox.ConversationBox.Acc.lastName;
-                textMessage.avatar = chatBox.ConversationBox.Acc.avatar;
+                //textMessage.firstName = chatBox.ConversationBox.Acc.firstName;
+                textMessage.firstName = chatBox.Form.User.firstName;
+                //textMessage.lastName = chatBox.ConversationBox.Acc.lastName;
+                textMessage.lastName = chatBox.Form.User.lastName;
+                //textMessage.avatar = chatBox.ConversationBox.Acc.avatar;
+                textMessage.avatar = chatBox.Form.User.avatar;
                 textMessage.createdAt = DateTime.Now;
-                textMessage.Conversation = chatBox.ConversationBox.Cvst;
+                //textMessage.Conversation = chatBox.ConversationBox.Cvst;
+                textMessage.Conversation = chatBox.Conversation;
+                chatBox.Conversation.createdAt = DateTime.Now;
+                chatBox.Conversation.messageType = "TEXT";
+                chatBox.Conversation.content = textMsg;
                 chatBox.AddOutMessage(textMessage);
-                chatBox.Client.send(new SocketData("MESSAGE", textMessage));
+                chatBox.Form.Client.send(new SocketData("MESSAGE", textMessage));
 
+            }
+            if (a == 1)
+            {
+                chatBox.Form.InsertConversationList(chatBox.Conversation);
+                chatBox.Form.DisplayConversationList();
+                chatBox.Form.SelectConversation(chatBox.Conversation);
+                chatBox.Form.Client.send(new SocketData("INSERTCONVERSATIONLIST", chatBox.Conversation));
             }
         }
         private int sendFile()
@@ -53,8 +76,10 @@ namespace ChatApp.Handler
                     string[] fileInfo = getFileInfo(chatBox.FileItem.FileName);
                     ReferenceData.Entity.Message fileMessage = new ReferenceData.Entity.Message();
                     fileMessage.id = "" + DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
-                    fileMessage.conversationId = chatBox.ConversationBox.Cvst.id;
-                    fileMessage.senderId = chatBox.ConversationBox.Acc.id;
+                    // fileMessage.conversationId = chatBox.ConversationBox.Cvst.id;
+                    fileMessage.conversationId = chatBox.Conversation.id;
+                    //fileMessage.senderId = chatBox.ConversationBox.Acc.id;
+                    fileMessage.senderId = chatBox.Form.User.id;
                     if (fileInfo[0].Length == chatBox.FileItem.FileName.Length)
                     {
                         fileMessage.content = fileInfo[0] + "_" + fileMessage.id;
@@ -65,13 +90,20 @@ namespace ChatApp.Handler
                     }
                     fileMessage.file = chatBox.FileItem.File;
                     fileMessage.messageType = "FILE";
-                    fileMessage.firstName = chatBox.ConversationBox.Acc.firstName;
-                    fileMessage.lastName = chatBox.ConversationBox.Acc.lastName;
-                    fileMessage.avatar = chatBox.ConversationBox.Acc.avatar;
+                    //fileMessage.firstName = chatBox.ConversationBox.Acc.firstName;
+                    fileMessage.firstName = chatBox.Form.User.firstName;
+                    //fileMessage.lastName = chatBox.ConversationBox.Acc.lastName;
+                    fileMessage.lastName = chatBox.Form.User.lastName;
+                    //fileMessage.avatar = chatBox.ConversationBox.Acc.avatar;
+                    fileMessage.avatar = chatBox.Form.User.avatar;
                     fileMessage.createdAt = DateTime.Now;
-                    fileMessage.Conversation = chatBox.ConversationBox.Cvst;
+                    //fileMessage.Conversation = chatBox.ConversationBox.Cvst;
+                    fileMessage.Conversation = chatBox.Conversation;
+                    chatBox.Conversation.createdAt = DateTime.Now;
+                    chatBox.Conversation.messageType = "FILE";
+                    chatBox.Conversation.content = fileMessage.content;
                     chatBox.AddOutMessage(fileMessage);
-                    chatBox.Client.send(new SocketData("MESSAGE", fileMessage));
+                    chatBox.Form.Client.send(new SocketData("MESSAGE", fileMessage));
                     return 1;
                 }
                 else
@@ -107,6 +139,23 @@ namespace ChatApp.Handler
                 info[0] = arrName[0];
             }
             return info;
+        }
+        private void insertConversation()
+        {
+            chatBox.Conversation.id = "conversation" + DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds;
+            new InsertConversationHandler(chatBox.Form.Client).Handle(chatBox.Conversation);
+            insertParticipant(chatBox.Conversation.memberList, chatBox.Conversation.id);
+        }
+        private void insertParticipant(List<ReferenceData.Entity.Account> list, string conversationId)
+        {
+            foreach (var acc in list)
+            {
+                Participant p = new Participant();
+                p.userId = acc.id;
+                p.conversationId = conversationId;
+                new InsertParticipantHandler(chatBox.Form.Client).Handle(p);
+                Thread.Sleep(150);
+            }
         }
     }
 }

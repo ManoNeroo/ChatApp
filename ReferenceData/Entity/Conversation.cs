@@ -20,7 +20,9 @@ namespace ReferenceData.Entity
         public string id { get; set; }
         public int creatorId { get; set; }
         public byte[] avatar { get; set; }
+        public string avatar2 { get; set; } = null;
         public string title { get; set; }
+        public string title2 { get; set; } = null;
         public int senderId { get; set; }
         public string messageType { get; set; }
         public string content { get; set; }

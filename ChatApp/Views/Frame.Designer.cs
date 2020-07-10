@@ -37,16 +37,16 @@
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAddNewChat = new Guna.UI2.WinForms.Guna2Button();
+            this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
             this.lbUserName = new System.Windows.Forms.Label();
             this.pbUserAvatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtSearchAccount = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlPages = new System.Windows.Forms.Panel();
             this.dragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
-            this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -120,10 +120,10 @@
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
             this.guna2Panel2.Controls.Add(this.guna2Button3);
-            this.guna2Panel2.Controls.Add(this.guna2Button1);
+            this.guna2Panel2.Controls.Add(this.btnAddNewChat);
             this.guna2Panel2.Controls.Add(this.pnlConversations);
             this.guna2Panel2.Controls.Add(this.guna2Panel5);
-            this.guna2Panel2.Controls.Add(this.guna2TextBox1);
+            this.guna2Panel2.Controls.Add(this.txtSearchAccount);
             this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2Panel2.Location = new System.Drawing.Point(0, 32);
             this.guna2Panel2.Name = "guna2Panel2";
@@ -155,29 +155,38 @@
             this.guna2Button3.Text = "Nhóm mới";
             this.guna2Button3.TextOffset = new System.Drawing.Point(0, 8);
             // 
-            // guna2Button1
+            // btnAddNewChat
             // 
-            this.guna2Button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
-            this.guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(6)))), ((int)(((byte)(200)))));
-            this.guna2Button1.HoverState.Image = global::ChatApp.Properties.Resources.newchathover;
-            this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.Image = global::ChatApp.Properties.Resources.newchat;
-            this.guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button1.ImageOffset = new System.Drawing.Point(6, -9);
-            this.guna2Button1.Location = new System.Drawing.Point(8, 61);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(54, 35);
-            this.guna2Button1.TabIndex = 10;
-            this.guna2Button1.Text = "Chat mới";
-            this.guna2Button1.TextOffset = new System.Drawing.Point(0, 8);
+            this.btnAddNewChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.btnAddNewChat.CheckedState.Parent = this.btnAddNewChat;
+            this.btnAddNewChat.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddNewChat.CustomImages.Parent = this.btnAddNewChat;
+            this.btnAddNewChat.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.btnAddNewChat.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAddNewChat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAddNewChat.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.btnAddNewChat.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(6)))), ((int)(((byte)(200)))));
+            this.btnAddNewChat.HoverState.Image = global::ChatApp.Properties.Resources.newchathover;
+            this.btnAddNewChat.HoverState.Parent = this.btnAddNewChat;
+            this.btnAddNewChat.Image = global::ChatApp.Properties.Resources.newchat;
+            this.btnAddNewChat.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddNewChat.ImageOffset = new System.Drawing.Point(6, -9);
+            this.btnAddNewChat.Location = new System.Drawing.Point(8, 61);
+            this.btnAddNewChat.Name = "btnAddNewChat";
+            this.btnAddNewChat.ShadowDecoration.Parent = this.btnAddNewChat;
+            this.btnAddNewChat.Size = new System.Drawing.Size(54, 35);
+            this.btnAddNewChat.TabIndex = 10;
+            this.btnAddNewChat.Text = "Chat mới";
+            this.btnAddNewChat.TextOffset = new System.Drawing.Point(0, 8);
+            this.btnAddNewChat.Click += new System.EventHandler(this.btnAddNewChat_Click);
+            // 
+            // pnlConversations
+            // 
+            this.pnlConversations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.pnlConversations.Location = new System.Drawing.Point(0, 144);
+            this.pnlConversations.Name = "pnlConversations";
+            this.pnlConversations.Size = new System.Drawing.Size(300, 392);
+            this.pnlConversations.TabIndex = 9;
             // 
             // guna2Panel5
             // 
@@ -244,35 +253,36 @@
             this.pbUserAvatar.TabIndex = 6;
             this.pbUserAvatar.TabStop = false;
             // 
-            // guna2TextBox1
+            // txtSearchAccount
             // 
-            this.guna2TextBox1.BorderColor = System.Drawing.Color.Transparent;
-            this.guna2TextBox1.BorderRadius = 8;
-            this.guna2TextBox1.BorderThickness = 0;
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.Parent = this.guna2TextBox1;
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.FocusedState.Parent = this.guna2TextBox1;
-            this.guna2TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.HoverState.Parent = this.guna2TextBox1;
-            this.guna2TextBox1.IconLeftSize = new System.Drawing.Size(16, 16);
-            this.guna2TextBox1.Location = new System.Drawing.Point(8, 102);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PasswordChar = '\0';
-            this.guna2TextBox1.PlaceholderForeColor = System.Drawing.Color.Gray;
-            this.guna2TextBox1.PlaceholderText = "Người dùng hoặc  nhóm chat";
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.ShadowDecoration.Parent = this.guna2TextBox1;
-            this.guna2TextBox1.Size = new System.Drawing.Size(284, 36);
-            this.guna2TextBox1.TabIndex = 7;
-            this.guna2TextBox1.TextOffset = new System.Drawing.Point(8, 0);
+            this.txtSearchAccount.BorderColor = System.Drawing.Color.Transparent;
+            this.txtSearchAccount.BorderRadius = 8;
+            this.txtSearchAccount.BorderThickness = 0;
+            this.txtSearchAccount.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSearchAccount.DefaultText = "";
+            this.txtSearchAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSearchAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSearchAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearchAccount.DisabledState.Parent = this.txtSearchAccount;
+            this.txtSearchAccount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSearchAccount.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
+            this.txtSearchAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearchAccount.FocusedState.Parent = this.txtSearchAccount;
+            this.txtSearchAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtSearchAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSearchAccount.HoverState.Parent = this.txtSearchAccount;
+            this.txtSearchAccount.IconLeftSize = new System.Drawing.Size(16, 16);
+            this.txtSearchAccount.Location = new System.Drawing.Point(8, 102);
+            this.txtSearchAccount.Name = "txtSearchAccount";
+            this.txtSearchAccount.PasswordChar = '\0';
+            this.txtSearchAccount.PlaceholderForeColor = System.Drawing.Color.Gray;
+            this.txtSearchAccount.PlaceholderText = "Người dùng hoặc  nhóm chat";
+            this.txtSearchAccount.SelectedText = "";
+            this.txtSearchAccount.ShadowDecoration.Parent = this.txtSearchAccount;
+            this.txtSearchAccount.Size = new System.Drawing.Size(284, 36);
+            this.txtSearchAccount.TabIndex = 7;
+            this.txtSearchAccount.TextOffset = new System.Drawing.Point(8, 0);
+            this.txtSearchAccount.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearchAccount_KeyUp);
             // 
             // pnlPages
             // 
@@ -285,14 +295,6 @@
             // dragControl1
             // 
             this.dragControl1.TargetControl = this.pnlTop;
-            // 
-            // pnlConversations
-            // 
-            this.pnlConversations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.pnlConversations.Location = new System.Drawing.Point(0, 144);
-            this.pnlConversations.Name = "pnlConversations";
-            this.pnlConversations.Size = new System.Drawing.Size(300, 392);
-            this.pnlConversations.TabIndex = 9;
             // 
             // Frame
             // 
@@ -310,6 +312,7 @@
             this.Text = "Frame";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frame_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frame_FormClosed);
+            this.Load += new System.EventHandler(this.Frame_Load);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -325,7 +328,7 @@
 
         private Guna.UI2.WinForms.Guna2Panel pnlTop;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearchAccount;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private System.Windows.Forms.Label label5;
@@ -337,7 +340,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnAddNewChat;
         public Components.ScrollPanel pnlConversations;
         public System.Windows.Forms.Panel pnlPages;
     }

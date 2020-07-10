@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReferenceData.Entity
 {
+    [Serializable]
     public class Participant
     {
         public int id { get; set; }

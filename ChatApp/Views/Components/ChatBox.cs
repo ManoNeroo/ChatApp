@@ -18,6 +18,8 @@ namespace ChatApp.Views.Components
 {
     public partial class ChatBox : UserControl
     {
+        public Frame Form { get; set; }
+        public ReferenceData.Entity.Conversation Conversation { get; set; }
         public List<ReferenceData.Entity.Message> MessageList { get; set; } = new List<ReferenceData.Entity.Message>();
         public ChatClient Client { get; set; }
         public Components.Conversation ConversationBox { get; set; }
@@ -34,7 +36,29 @@ namespace ChatApp.Views.Components
             ConversationBox = cvst;
             InitializeComponent();
             this.messageBox.flowLayoutPanel.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            initUi();
+            //initUi();
+        }
+        public ChatBox(Frame form, ReferenceData.Entity.Conversation cvst)
+        {
+            InitializeComponent();
+            Form = form;
+            Conversation = cvst;
+        }
+        private void ChatBox_Load(object sender, EventArgs e)
+        {
+            if(Conversation.memberList.Count <= 2)
+            {
+                this.btnAddMember.Visible = false;
+                this.lbNumMember.Visible = false;
+            }else
+            {
+                this.lbNumMember.Text = Conversation.memberList.Count + " Thành viên";
+            }
+            this.lbTitle.Text = Conversation.title;
+            if (Conversation.id != null)
+            {
+                new LoadMessageHandler(Form.Client).Handle(Conversation.id, 0, 15);
+            }
         }
         private void initUi()
         {
@@ -141,7 +165,7 @@ namespace ChatApp.Views.Components
             }
             if (this.currentOutMessage == null)
             {
-                currentOutMessage = new OutgoingMessage(ConversationBox.Acc.id, DateTime.Now);
+                currentOutMessage = new OutgoingMessage(/*ConversationBox.Acc.id*/ Form.User.id, DateTime.Now);
             }
             else
             {
@@ -150,14 +174,26 @@ namespace ChatApp.Views.Components
                     this.messageBox.flowLayoutPanel.Controls.Remove(currentOutMessage);
                 } else
                 {
-                    currentOutMessage = new OutgoingMessage(ConversationBox.Acc.id, DateTime.Now);
+                    currentOutMessage = new OutgoingMessage(/*ConversationBox.Acc.id*/ Form.User.id, DateTime.Now);
                 }
             }
             currentOutMessage.AddBubble(bubble);
             this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
             this.messageBox.UpdateUi();
-            this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
-            InitLatestMessage(message);
+            if(this.messageBox.panelBg.Size.Height < this.messageBox.flowLayoutPanel.PreferredSize.Height)
+            {
+                this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
+            }
+            
+            //InitLatestMessage(message);
+            foreach (var c in Form.ConversationList)
+            {
+                if (c.Cvst.id.Equals(message.conversationId))
+                {
+                    Form.InitLatestMessage(c, message);
+                    break;
+                }
+            }
         }
         public void AddInMessage(ReferenceData.Entity.Message message)
         {
@@ -196,8 +232,19 @@ namespace ChatApp.Views.Components
             currentInMessage.AddBubble(bubble);
             this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
             this.messageBox.UpdateUi();
-            this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
-            InitLatestMessage(message);
+            if (this.messageBox.panelBg.Size.Height < this.messageBox.flowLayoutPanel.PreferredSize.Height)
+            {
+                this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
+            }
+            //InitLatestMessage(message);
+            foreach (var c in Form.ConversationList)
+            {
+                if (c.Cvst.id.Equals(message.conversationId))
+                {
+                    Form.InitLatestMessage(c, message);
+                    break;
+                }
+            }
         }
         private bool compareTime(DateTime t1, DateTime t2)
         {
@@ -242,7 +289,7 @@ namespace ChatApp.Views.Components
             UserControl bubble;
             IncomingMessage cInMessage = new IncomingMessage();
             OutgoingMessage cOutMessage = new OutgoingMessage();
-            if (list[0].senderId != ConversationBox.Acc.id)
+            if (list[0].senderId != /*ConversationBox.Acc.id*/Form.User.id)
             {
                 cInMessage = new IncomingMessage(list[0].avatar, list[0].senderId, list[0].lastName, time);
                 if(list[0].messageType.Equals("FILE"))
@@ -273,7 +320,7 @@ namespace ChatApp.Views.Components
             {
                 if (!mes.Equals(list[0]))
                 {
-                    if (mes.senderId != ConversationBox.Acc.id)
+                    if (mes.senderId != /*ConversationBox.Acc.id*/ Form.User.id)
                     {
                         if (currentMessage.GetType() != typeof(IncomingMessage))
                         {

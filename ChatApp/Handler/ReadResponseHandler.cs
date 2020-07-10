@@ -1,6 +1,7 @@
 ﻿using ChatApp.Views;
 using ChatApp.Views.Components;
 using ReferenceData;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -13,6 +14,9 @@ namespace ChatApp.Handler
         private delegate void GenarateMessageDelegate(List<ReferenceData.Entity.Message> list, FlowDirection direction);
         private delegate void AddInMessageDelegate(ReferenceData.Entity.Message message);
         private delegate void InitLatestMessageDelegate(Views.Components.Conversation cvst, ReferenceData.Entity.Message message);
+        private delegate void DisplaySearchResultDelegate(List<ReferenceData.Entity.Account> list);
+        private delegate void InsertConversationListDelegate(ReferenceData.Entity.Conversation cv);
+        private delegate void NoArgumentDelegate();
         private Frame form;
 
         public ReadResponseHandler(Frame form)
@@ -44,10 +48,33 @@ namespace ChatApp.Handler
                         case "MESSAGE":
                             handleMessage(data.Data);
                             break;
+                        case "SEARCHRESULT":
+                            handleSearchResult(data.Data);
+                            break;
+                        case "INSERTCONVERSATION":
+                            handleInsertConversation(data.Data);
+                            break;
                     }
                 }
             }
         }
+
+        private void handleInsertConversation(object data)
+        {
+            ReferenceData.Entity.Conversation cvst = (ReferenceData.Entity.Conversation)data;
+            form.Invoke(new InsertConversationListDelegate(form.InsertConversationList), new object[] { cvst });
+            form.Invoke(new NoArgumentDelegate(form.DisplayConversationList), new object[] { });
+        }
+
+        private void handleSearchResult(object data)
+        {
+            List<ReferenceData.Entity.Account> list = (List<ReferenceData.Entity.Account>)data;
+            if(list!=null)
+            {
+                form.Invoke(new DisplaySearchResultDelegate(form.DisplaySearchResult), new object[] { list });
+            }
+        }
+
         private void handleConversationList(object data)
         {
             List<ReferenceData.Entity.Conversation> list = (List<ReferenceData.Entity.Conversation>)data;
@@ -75,7 +102,9 @@ namespace ChatApp.Handler
         private void handleMessage(object data)
         {
             ReferenceData.Entity.Message message = (ReferenceData.Entity.Message)data;
-            if (form.ChatBox != null && form.ChatBox.ConversationBox.Cvst.id.Equals(message.conversationId))
+            if (form.ChatBox != null && /*form.ChatBox.ConversationBox.Cvst.id.Equals(message.conversationId)*/
+                form.ChatBox.Conversation.id.Equals(message.conversationId)
+                )
             {
                 form.ChatBox.Invoke(new AddInMessageDelegate(form.ChatBox.AddInMessage), new object[] { message });
 

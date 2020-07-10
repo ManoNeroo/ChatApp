@@ -156,5 +156,72 @@ namespace ChatAppServer.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_SearchAccountByEmailOrName_Result>("Usp_SearchAccountByEmailOrName", keywordParameter);
         }
+    
+        public virtual int Usp_InsertConversation(string id, Nullable<int> creatorId, string avatar, string title)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var creatorIdParameter = creatorId.HasValue ?
+                new ObjectParameter("creatorId", creatorId) :
+                new ObjectParameter("creatorId", typeof(int));
+    
+            var avatarParameter = avatar != null ?
+                new ObjectParameter("avatar", avatar) :
+                new ObjectParameter("avatar", typeof(string));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("title", title) :
+                new ObjectParameter("title", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertConversation", idParameter, creatorIdParameter, avatarParameter, titleParameter);
+        }
+    
+        public virtual int Usp_InsertParticipant(Nullable<int> userId, string conversationId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var conversationIdParameter = conversationId != null ?
+                new ObjectParameter("conversationId", conversationId) :
+                new ObjectParameter("conversationId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertParticipant", userIdParameter, conversationIdParameter);
+        }
+    
+        public virtual int Usp_UpdateAccount(Nullable<int> id, string email, string password, string firstName, string lastName, Nullable<System.DateTime> birthday, string avatar)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var firstNameParameter = firstName != null ?
+                new ObjectParameter("firstName", firstName) :
+                new ObjectParameter("firstName", typeof(string));
+    
+            var lastNameParameter = lastName != null ?
+                new ObjectParameter("lastName", lastName) :
+                new ObjectParameter("lastName", typeof(string));
+    
+            var birthdayParameter = birthday.HasValue ?
+                new ObjectParameter("birthday", birthday) :
+                new ObjectParameter("birthday", typeof(System.DateTime));
+    
+            var avatarParameter = avatar != null ?
+                new ObjectParameter("avatar", avatar) :
+                new ObjectParameter("avatar", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_UpdateAccount", idParameter, emailParameter, passwordParameter, firstNameParameter, lastNameParameter, birthdayParameter, avatarParameter);
+        }
     }
 }

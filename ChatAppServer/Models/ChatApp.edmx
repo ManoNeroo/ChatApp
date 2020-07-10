@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChatAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChatAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -134,6 +134,12 @@
           <Parameter Name="firstName" Type="nvarchar" Mode="In" />
           <Parameter Name="lastName" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Usp_InsertConversation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+          <Parameter Name="creatorId" Type="int" Mode="In" />
+          <Parameter Name="avatar" Type="nvarchar" Mode="In" />
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Usp_InsertMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="varchar" Mode="In" />
           <Parameter Name="conversationId" Type="varchar" Mode="In" />
@@ -142,8 +148,21 @@
           <Parameter Name="messageType" Type="varchar" Mode="In" />
           <Parameter Name="createdAt" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="Usp_InsertParticipant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+          <Parameter Name="conversationId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Usp_SearchAccountByEmailOrName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Usp_UpdateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="birthday" Type="datetime" Mode="In" />
+          <Parameter Name="avatar" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="ChatAppModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -171,8 +190,7 @@
             <End Role="Participant" EntitySet="Participant" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -314,17 +332,17 @@
             <End Role="Participant" EntitySet="Participants" />
           </AssociationSet>
           <FunctionImport Name="Usp_GetAccountById" ReturnType="Collection(ChatAppModel.Usp_GetAccountById_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetAccountBySignInInfo" ReturnType="Collection(ChatAppModel.Usp_GetAccountBySignInInfo_Result)">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetConversationsByUserId" ReturnType="Collection(ChatAppModel.Usp_GetConversationsByUserId_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetMembersOfConversation" ReturnType="Collection(ChatAppModel.Usp_GetMembersOfConversation_Result)">
-            <Parameter Name="conversationId" Mode="In" Type="String" />
+          <Parameter Name="conversationId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetMessagesByConversationId" ReturnType="Collection(ChatAppModel.Usp_GetMessagesByConversationId_Result)">
             <Parameter Name="conversationId" Mode="In" Type="String" />
@@ -332,7 +350,7 @@
             <Parameter Name="limit" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetParticipantsByConversationId" ReturnType="Collection(ChatAppModel.Usp_GetParticipantsByConversationId_Result)">
-            <Parameter Name="conversationId" Mode="In" Type="String" />
+          <Parameter Name="conversationId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_InsertAccount">
             <Parameter Name="email" Mode="In" Type="String" />
@@ -349,7 +367,26 @@
             <Parameter Name="createdAt" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="Usp_SearchAccountByEmailOrName" ReturnType="Collection(ChatAppModel.Usp_SearchAccountByEmailOrName_Result)">
-            <Parameter Name="keyword" Mode="In" Type="String" />
+          <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_InsertConversation">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="creatorId" Mode="In" Type="Int32" />
+            <Parameter Name="avatar" Mode="In" Type="String" />
+            <Parameter Name="title" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_InsertParticipant">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+            <Parameter Name="conversationId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_UpdateAccount">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="firstName" Mode="In" Type="String" />
+            <Parameter Name="lastName" Mode="In" Type="String" />
+            <Parameter Name="birthday" Mode="In" Type="DateTime" />
+            <Parameter Name="avatar" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Usp_GetAccountById_Result">
@@ -566,6 +603,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_InsertConversation" FunctionName="ChatAppModel.Store.Usp_InsertConversation" />
+          <FunctionImportMapping FunctionImportName="Usp_InsertParticipant" FunctionName="ChatAppModel.Store.Usp_InsertParticipant" />
+          <FunctionImportMapping FunctionImportName="Usp_UpdateAccount" FunctionName="ChatAppModel.Store.Usp_UpdateAccount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

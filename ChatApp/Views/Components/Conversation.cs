@@ -25,17 +25,30 @@ namespace ChatApp.Views.Components
             InitializeComponent();
             Cvst = conversation;
             Acc = acc;
-            initUi();
         }
 
         private void initUi()
         {
             unReadMessage.Visible = false;
-            this.lbTitle.Text = Cvst.title;
-            this.pbAvatar.Image = ChatAppUtils.ByteToImage(Cvst.avatar);
+            if (Cvst.creatorId != Acc.id && Cvst.memberList.Count == 2)
+            {
+                foreach (var mb in Cvst.memberList)
+                {
+                    if (mb.id == Cvst.creatorId)
+                    {
+                        this.lbTitle.Text = mb.firstName + " " + mb.lastName;
+                        this.pbAvatar.Image = ChatAppUtils.ByteToImage(mb.avatar);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                this.lbTitle.Text = Cvst.title;
+                this.pbAvatar.Image = ChatAppUtils.ByteToImage(Cvst.avatar);
+            }
             DateTime time = (DateTime)Cvst.createdAt;
             this.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
-            InitLatestMessage();
             if (!Cvst.state)
             {
                 this.btnState.FillColor = System.Drawing.Color.LightSteelBlue;
@@ -43,15 +56,15 @@ namespace ChatApp.Views.Components
         }
         public void InitLatestMessage()
         {
-            if (this.Cvst.messageType.Equals("FILE"))
+            if (Cvst.messageType.Equals("FILE"))
             {
-                if (this.Cvst.senderId != this.Acc.id)
+                if (Cvst.senderId != Acc.id)
                 {
-                    foreach (var u in this.Cvst.memberList)
+                    foreach (var u in Cvst.memberList)
                     {
-                        if (u.id == this.Cvst.senderId)
+                        if (u.id == Cvst.senderId)
                         {
-                            string[] arr = this.Cvst.content.Split('_');
+                            string[] arr = Cvst.content.Split('_');
                             string fex = arr[arr.Length - 1];
                             if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
                             {
@@ -66,7 +79,7 @@ namespace ChatApp.Views.Components
                 }
                 else
                 {
-                    string[] arr = this.Cvst.content.Split('_');
+                    string[] arr = Cvst.content.Split('_');
                     string fex = arr[arr.Length - 1];
                     if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
                     {
@@ -79,19 +92,19 @@ namespace ChatApp.Views.Components
             }
             else
             {
-                if (this.Cvst.senderId != this.Acc.id)
+                if (Cvst.senderId != Acc.id)
                 {
-                    foreach (var u in this.Cvst.memberList)
+                    foreach (var u in Cvst.memberList)
                     {
-                        if (u.id == this.Cvst.senderId)
+                        if (u.id == Cvst.senderId)
                         {
-                            this.lbLatestMessage.Text = u.lastName + ": " + this.Cvst.content;
+                            this.lbLatestMessage.Text = u.lastName + ": " + Cvst.content;
                         }
                     }
                 }
                 else
                 {
-                    this.lbLatestMessage.Text = "Bạn: " + this.Cvst.content;
+                    this.lbLatestMessage.Text = "Bạn: " + Cvst.content;
                 }
             }
         }
@@ -129,6 +142,12 @@ namespace ChatApp.Views.Components
             int hash = 0;
             hash += (Cvst.id != null ? Cvst.id.GetHashCode() : 0);
             return hash;
+        }
+
+        private void Conversation_Load(object sender, EventArgs e)
+        {
+            InitLatestMessage();
+            initUi();
         }
     }
 }

@@ -32,8 +32,8 @@ namespace ChatAppServer.DAO.Implements
                 {
                     ReferenceData.Entity.Account acc = new ReferenceData.Entity.Account();
                     acc.id = (int)a.id;
-                    acc.email = acc.email;
-                    acc.password = acc.password;
+                    acc.email = a.email;
+                    acc.password = a.password;
                     acc.firstName = a.firstName;
                     acc.lastName = a.lastName;
                     acc.birthday = a.birthday;
@@ -66,6 +66,43 @@ namespace ChatAppServer.DAO.Implements
                 }
             }
             return acc;
+        }
+        public List<ReferenceData.Entity.Account> SearchAccount(string keyword)
+        {
+            List<ReferenceData.Entity.Account> list = null;
+            var resultSet = db.Usp_SearchAccountByEmailOrName(keyword).ToList();
+            if (resultSet.Count > 0)
+            {
+                string imagesFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Files\Images\";
+                list = new List<ReferenceData.Entity.Account>();
+                foreach (var a in resultSet)
+                {
+                    ReferenceData.Entity.Account acc = new ReferenceData.Entity.Account();
+                    acc.id = (int)a.id;
+                    acc.email = a.email;
+                    acc.password = a.password;
+                    acc.firstName = a.firstName;
+                    acc.lastName = a.lastName;
+                    acc.birthday = a.birthday;
+                    acc.createdAt = a.createdAt;
+                    acc.avatar = ChatAppUtils.ConvertFileToByte(imagesFolder + a.avatar);
+                    list.Add(acc);
+                }
+            }
+            return list;
+        }
+
+        public ReferenceData.Entity.Account UpdateAccount(ReferenceData.Entity.Account acc)
+        {
+            string imagesFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Files\Images\";
+            string avatar = "avatar" + acc.id + ".png";
+            int result = db.Usp_UpdateAccount(acc.id, acc.email, acc.password, acc.firstName, acc.lastName, acc.birthday, avatar);
+            if (result == 1)
+            {
+                File.WriteAllBytes(imagesFolder + avatar, acc.avatar);
+                return acc;
+            }
+            return null;
         }
     }
 }

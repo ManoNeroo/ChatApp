@@ -235,6 +235,7 @@
             this.Controls.Add(this.sendBox);
             this.Name = "ChatBox";
             this.Size = new System.Drawing.Size(560, 548);
+            this.Load += new System.EventHandler(this.ChatBox_Load);
             this.sendBox.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
             this.pnlTop.ResumeLayout(false);

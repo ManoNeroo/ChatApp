@@ -99,9 +99,8 @@
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2GradientPanel panelBg;
         public Guna.UI2.WinForms.Guna2VScrollBar vScrollBar;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        public Guna.UI2.WinForms.Guna2GradientPanel panelBg;
     }
 }

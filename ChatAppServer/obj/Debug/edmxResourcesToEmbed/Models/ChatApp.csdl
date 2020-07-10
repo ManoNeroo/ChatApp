@@ -175,6 +175,25 @@
     <FunctionImport Name="Usp_SearchAccountByEmailOrName" ReturnType="Collection(ChatAppModel.Usp_SearchAccountByEmailOrName_Result)">
       <Parameter Name="keyword" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Usp_InsertConversation">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="creatorId" Mode="In" Type="Int32" />
+      <Parameter Name="avatar" Mode="In" Type="String" />
+      <Parameter Name="title" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_InsertParticipant">
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="conversationId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_UpdateAccount">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="firstName" Mode="In" Type="String" />
+      <Parameter Name="lastName" Mode="In" Type="String" />
+      <Parameter Name="birthday" Mode="In" Type="DateTime" />
+      <Parameter Name="avatar" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="Usp_GetAccountById_Result">
     <Property Type="Int32" Name="id" Nullable="false" />

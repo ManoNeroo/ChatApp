@@ -129,6 +129,12 @@
     <Parameter Name="firstName" Type="nvarchar" Mode="In" />
     <Parameter Name="lastName" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="Usp_InsertConversation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="varchar" Mode="In" />
+    <Parameter Name="creatorId" Type="int" Mode="In" />
+    <Parameter Name="avatar" Type="nvarchar" Mode="In" />
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="Usp_InsertMessage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="varchar" Mode="In" />
     <Parameter Name="conversationId" Type="varchar" Mode="In" />
@@ -137,8 +143,21 @@
     <Parameter Name="messageType" Type="varchar" Mode="In" />
     <Parameter Name="createdAt" Type="datetime" Mode="In" />
   </Function>
+  <Function Name="Usp_InsertParticipant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+    <Parameter Name="conversationId" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="Usp_SearchAccountByEmailOrName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="keyword" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Usp_UpdateAccount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="password" Type="varchar" Mode="In" />
+    <Parameter Name="firstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="lastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="birthday" Type="datetime" Mode="In" />
+    <Parameter Name="avatar" Type="nvarchar" Mode="In" />
   </Function>
   <EntityContainer Name="ChatAppModelStoreContainer">
     <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />

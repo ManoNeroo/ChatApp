@@ -78,5 +78,9 @@ namespace ChatAppServer.DAO.Implements
             }
             return list;
         }
+        public void InsertConversation(ReferenceData.Entity.Conversation c)
+        {
+            db.Usp_InsertConversation(c.id, c.creatorId, c.avatar2, c.title2);
+        }
     }
 }

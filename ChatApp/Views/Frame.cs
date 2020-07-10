@@ -27,17 +27,6 @@ namespace ChatApp.Views
             InitializeComponent();
             Client = client;
             User = user;
-            initUi();
-        }
-        private void initUi()
-        {
-            this.lbUserName.Text = User.firstName + " " + User.lastName;
-            this.pbUserAvatar.Image = ChatAppUtils.ByteToImage(User.avatar);
-            this.pnlPages.Controls.Clear();
-            WelcomeBox welcomeBox = new WelcomeBox(User);
-            this.pnlPages.Controls.Add(welcomeBox);
-            welcomeBox.Location = new Point(0, 0);
-            Client.startReadResponse(new ReadResponseHandler(this));
         }
 
         private void Frame_FormClosing(object sender, FormClosingEventArgs e)
@@ -49,10 +38,42 @@ namespace ChatApp.Views
         {
             Application.Exit();
         }
-
+        public void ResetCurrentConversation() { 
+            if(currentConversation!= null)
+            {
+                currentConversation.bg.FillColor = Color.FromArgb(16, 22, 37);
+                currentConversation.bg.FillColor2 = Color.FromArgb(16, 22, 37);
+                currentConversation = null;
+            }
+        }
+        public void DisplaySearchResult(List<Account> list)
+        {
+            pnlConversations.flowLayoutPanel.Controls.Clear();
+            foreach(var acc in list)
+            {
+                if(acc.id != User.id)
+                {
+                    SearchResult searchResult = new SearchResult(acc);
+                    pnlConversations.flowLayoutPanel.Controls.Add(searchResult);
+                    searchResult.SearchResultClick(new SearchResultClickHandler(this,acc).Handle);
+                }
+            }
+            pnlConversations.UpdateUi();
+        }
+        
+        public void DisplayConversationList()
+        {
+            txtSearchAccount.Text = "";
+            pnlConversations.flowLayoutPanel.Controls.Clear();
+            foreach(var cvst in ConversationList)
+            {
+                pnlConversations.flowLayoutPanel.Controls.Add(cvst);
+                cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
+            }
+            pnlConversations.UpdateUi();
+        }
         public void AddConversationList(List<ReferenceData.Entity.Conversation> list)
         {
-            pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             foreach (var c in list)
             {
                 Components.Conversation cvst = new Components.Conversation(c, User);
@@ -62,27 +83,48 @@ namespace ChatApp.Views
             }
             pnlConversations.UpdateUi();
         }
-        public void SelectConversation(Components.Conversation cvst)
+        public void InsertConversationList(ReferenceData.Entity.Conversation cv)
         {
-            if (!cvst.Equals(this.currentConversation))
+            Components.Conversation cvst = new Components.Conversation(cv, User);
+            cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
+            ConversationList.Add(cvst);
+        }
+        public void AddChatBox(ReferenceData.Entity.Conversation cvst)
+        {
+            this.pnlPages.Controls.Clear();
+            ChatBox = new ChatBox(this, cvst);
+            this.pnlPages.Controls.Add(ChatBox);
+            ChatBox.Location = new Point(0, 0);
+        }
+        public void SelectConversation(ReferenceData.Entity.Conversation cv)
+        {
+            foreach(var cvst in ConversationList)
             {
-                if (this.currentConversation == null)
+                if (cvst.Cvst.Equals(cv))
                 {
-                    this.currentConversation = cvst;
+                    if (!cvst.Equals(this.currentConversation))
+                    {
+                        if (this.currentConversation == null)
+                        {
+                            this.currentConversation = cvst;
+                        }
+                        else
+                        {
+                            this.currentConversation.bg.FillColor = Color.FromArgb(16, 22, 37);
+                            this.currentConversation.bg.FillColor2 = Color.FromArgb(16, 22, 37);
+                            this.currentConversation = cvst;
+                        }
+                        this.currentConversation.bg.FillColor = Color.FromArgb(250, 48, 90);
+                        this.currentConversation.bg.FillColor2 = Color.FromArgb(128, 36, 206);
+                        this.pnlPages.Controls.Clear();
+                        ChatBox = new ChatBox(this, cvst.Cvst);
+                        this.pnlPages.Controls.Add(ChatBox);
+                        ChatBox.Location = new Point(0, 0);
+                    }
+                    break;
                 }
-                else
-                {
-                    this.currentConversation.bg.FillColor = Color.FromArgb(16, 22, 37);
-                    this.currentConversation.bg.FillColor2 = Color.FromArgb(16, 22, 37);
-                    this.currentConversation = cvst;
-                }
-                this.currentConversation.bg.FillColor = Color.FromArgb(250, 48, 90);
-                this.currentConversation.bg.FillColor2 = Color.FromArgb(128, 36, 206);
-                this.pnlPages.Controls.Clear();
-                ChatBox = new ChatBox(Client, cvst);
-                this.pnlPages.Controls.Add(ChatBox);
-                ChatBox.Location = new Point(0, 0);
             }
+            
         }
         public void InitLatestMessage(Components.Conversation cvst, ReferenceData.Entity.Message message)
         {
@@ -137,6 +179,36 @@ namespace ChatApp.Views
                     }
                 }
             }
+        }
+
+        private void txtSearchAccount_KeyUp(object sender, KeyEventArgs e)
+        {
+            string keyword = this.txtSearchAccount.Text.Trim();
+            if(e.KeyCode == Keys.Enter)
+            {
+                new SearchAccountHandler(this).Handle(keyword);
+            }
+            if(keyword.Length == 0)
+            {
+                DisplayConversationList();
+            }
+        }
+
+        private void Frame_Load(object sender, EventArgs e)
+        {
+            pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            this.lbUserName.Text = User.firstName + " " + User.lastName;
+            this.pbUserAvatar.Image = ChatAppUtils.ByteToImage(User.avatar);
+            this.pnlPages.Controls.Clear();
+            WelcomeBox welcomeBox = new WelcomeBox(User);
+            this.pnlPages.Controls.Add(welcomeBox);
+            welcomeBox.Location = new Point(0, 0);
+            Client.startReadResponse(new ReadResponseHandler(this));
+        }
+
+        private void btnAddNewChat_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -61,6 +61,18 @@ namespace ChatAppServer.SocketServer
                         case "MESSAGE":
                             new MessageHandler(this).Handle(data);
                             break;
+                        case "SEARCHACCOUNT":
+                            new SearchAccountHandle(this).Handle(data);
+                            break;
+                        case "INSERTCONVERSATION":
+                            new InsertConversationHandler(this).Handle(data);
+                            break;
+                        case "INSERTPARTICIPANT":
+                            new InsertParticipantHandler(this).Handle(data);
+                            break;
+                        case "INSERTCONVERSATIONLIST":
+                            new InsertConversationListHandler(this).Handle(data);
+                            break;
                     }
                 }
             }

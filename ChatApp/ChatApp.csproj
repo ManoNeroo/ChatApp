@@ -57,9 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler\InsertConversationHandler.cs" />
+    <Compile Include="Handler\InsertParticipantHandler.cs" />
     <Compile Include="Handler\LoadMessageHandler.cs" />
     <Compile Include="Handler\OpenConversationHandler.cs" />
     <Compile Include="Handler\ReadResponseHandler.cs" />
+    <Compile Include="Handler\SearchAccountHandler.cs" />
+    <Compile Include="Handler\SearchResultClickHandler.cs" />
     <Compile Include="Handler\SendMessageHandler.cs" />
     <Compile Include="Handler\SendRequestHandler.cs" />
     <Compile Include="Handler\SignInHandler.cs" />
@@ -121,6 +125,12 @@
     </Compile>
     <Compile Include="Views\Components\ScrollPanel.Designer.cs">
       <DependentUpon>ScrollPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\SearchResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\SearchResult.Designer.cs">
+      <DependentUpon>SearchResult.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Components\SignUpBox.cs">
       <SubType>UserControl</SubType>
@@ -200,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\ScrollPanel.resx">
       <DependentUpon>ScrollPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\SearchResult.resx">
+      <DependentUpon>SearchResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\SignUpBox.resx">
       <DependentUpon>SignUpBox.cs</DependentUpon>

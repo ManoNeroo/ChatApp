@@ -10,7 +10,7 @@ namespace ChatApp.Handler
 {
     public class OpenConversationHandler
     {
-        private delegate void SelectConversationDelegate(Conversation cvst);
+        private delegate void SelectConversationDelegate(ReferenceData.Entity.Conversation cvst);
         private Frame form;
         private Conversation conversation;
 
@@ -21,7 +21,7 @@ namespace ChatApp.Handler
         }
         public void Handle(object sender, EventArgs e)
         {
-            form.Invoke(new SelectConversationDelegate(form.SelectConversation), new object[] { conversation });
+            form.Invoke(new SelectConversationDelegate(form.SelectConversation), new object[] { conversation.Cvst });
         }
     }
 }

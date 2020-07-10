@@ -143,5 +143,8 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_InsertConversation" FunctionName="ChatAppModel.Store.Usp_InsertConversation" />
+    <FunctionImportMapping FunctionImportName="Usp_InsertParticipant" FunctionName="ChatAppModel.Store.Usp_InsertParticipant" />
+    <FunctionImportMapping FunctionImportName="Usp_UpdateAccount" FunctionName="ChatAppModel.Store.Usp_UpdateAccount" />
   </EntityContainerMapping>
 </Mapping>

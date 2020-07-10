@@ -113,6 +113,10 @@ CREATE PROCEDURE Usp_GetAccountById(@id AS INT)
 AS
 SELECT * FROM Account WHERE id = @id
 GO
+CREATE PROCEDURE Usp_UpdateAccount(@id AS INT, @email AS VARCHAR(50), @password AS VARCHAR(100), @firstName AS NVARCHAR(20), @lastName AS NVARCHAR(30), @birthday AS DATETIME, @avatar AS NVARCHAR(100))
+AS
+UPDATE Account SET email = @email, password = @password, firstName = @firstName, lastName = @lastName, birthday = @birthday, avatar = @avatar WHERE id = @id
+GO
 CREATE PROCEDURE Usp_InsertAccount(@email AS VARCHAR(50), @password AS VARCHAR(100), @firstName AS NVARCHAR(20), @lastName AS NVARCHAR(30))
 AS
 INSERT INTO Account(email, password, firstName, lastName) VALUES(@email, @password, @firstName, @lastName)
@@ -121,6 +125,14 @@ CREATE PROCEDURE Usp_GetParticipantsByConversationId(@conversationId AS VARCHAR(
 AS
 SELECT * FROM Participant WHERE conversationId = @conversationId
 GO 
+CREATE PROCEDURE Usp_InsertParticipant(@userId AS INT, @conversationId AS VARCHAR(30))
+AS
+INSERT INTO Participant(userId, conversationId) VALUES(@userId, @conversationId)
+GO
+CREATE PROCEDURE Usp_InsertConversation(@id AS VARCHAR(30), @creatorId AS INT, @avatar AS NVARCHAR(100), @title AS NVARCHAR(100))
+AS
+INSERT INTO Conversation(id, creatorId,avatar,title) VALUES(@id, @creatorId, @avatar, @title)
+GO
 CREATE PROCEDURE Usp_GetMessagesByConversationId(@conversationId AS VARCHAR(30), @offset AS INT, @limit AS INT)
 AS
 BEGIN

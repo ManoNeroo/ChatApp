@@ -66,8 +66,14 @@
     <Compile Include="DAO\Implements\AccountDAO.cs" />
     <Compile Include="DAO\Implements\ConversationDAO.cs" />
     <Compile Include="DAO\Implements\MessageDAO.cs" />
+    <Compile Include="DAO\Implements\ParticipantDAO.cs" />
+    <Compile Include="DAO\IParticipantDAO.cs" />
+    <Compile Include="Handler\InsertConversationHandler.cs" />
+    <Compile Include="Handler\InsertConversationListHandler.cs" />
+    <Compile Include="Handler\InsertParticipantHandler.cs" />
     <Compile Include="Handler\LoadMessageHandler.cs" />
     <Compile Include="Handler\MessageHandler.cs" />
+    <Compile Include="Handler\SearchAccountHandle.cs" />
     <Compile Include="Handler\SignInHandler.cs" />
     <Compile Include="Handler\SignOutHandler.cs" />
     <Compile Include="Handler\SignUpHandler.cs" />

@@ -9,5 +9,6 @@ namespace ChatAppServer.DAO
     interface IConversationDAO
     {
         List<ReferenceData.Entity.Conversation> GetConversationListOfAccount(int accId);
+        void InsertConversation(ReferenceData.Entity.Conversation c);
     }
 }
