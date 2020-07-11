@@ -48,7 +48,10 @@ namespace ChatApp.Views.Components
                 }
             }
         }
-
+        public void VScrollBarValueChanged(EventHandler e)
+        {
+            this.vScrollBar.ValueChanged += e;
+        }
         private void vScrollBar_ValueChanged(object sender, EventArgs e)
         {
             this.flowLayoutPanel.Location = new Point(0, -this.vScrollBar.Value);

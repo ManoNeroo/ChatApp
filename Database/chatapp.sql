@@ -143,6 +143,10 @@ WITH Message_CTE AS
 SELECT id, conversationId, senderId,firstName, lastName, avatar, content, messageType, createdAt FROM Message_CTE WHERE rowNum >= @offset AND rowNum < @offset + @limit
 END
 GO 
+CREATE PROCEDURE Usp_GetAllMessageByConversationId(@conversationId AS VARCHAR(30))
+AS
+SELECT msg.*, acc.firstName, acc.lastName, acc.avatar FROM Message AS msg, Account AS acc WHERE msg.conversationId = @conversationId AND msg.senderId = acc.id ORDER BY msg.createdAt DESC
+GO
 CREATE PROCEDURE Usp_InsertToConversations(@uId AS INT)
 AS
 BEGIN
@@ -204,3 +208,4 @@ BEGIN
  EXEC Usp_InsertToAccount2 @cId = @conversationId
  SELECT * FROM Account2
 END
+

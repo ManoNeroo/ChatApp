@@ -60,6 +60,7 @@
     <Compile Include="Handler\InsertConversationHandler.cs" />
     <Compile Include="Handler\InsertParticipantHandler.cs" />
     <Compile Include="Handler\LoadMessageHandler.cs" />
+    <Compile Include="Handler\LoadMoreMessageHandler.cs" />
     <Compile Include="Handler\OpenConversationHandler.cs" />
     <Compile Include="Handler\ReadResponseHandler.cs" />
     <Compile Include="Handler\SearchAccountHandler.cs" />

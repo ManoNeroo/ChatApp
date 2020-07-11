@@ -144,6 +144,9 @@
       <Parameter Name="email" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Usp_GetAllMessageByConversationId" ReturnType="Collection(ChatAppModel.Usp_GetAllMessageByConversationId_Result)">
+      <Parameter Name="conversationId" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="Usp_GetConversationsByUserId" ReturnType="Collection(ChatAppModel.Usp_GetConversationsByUserId_Result)">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -164,6 +167,12 @@
       <Parameter Name="firstName" Mode="In" Type="String" />
       <Parameter Name="lastName" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Usp_InsertConversation">
+      <Parameter Name="id" Mode="In" Type="String" />
+      <Parameter Name="creatorId" Mode="In" Type="Int32" />
+      <Parameter Name="avatar" Mode="In" Type="String" />
+      <Parameter Name="title" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="Usp_InsertMessage">
       <Parameter Name="id" Mode="In" Type="String" />
       <Parameter Name="conversationId" Mode="In" Type="String" />
@@ -172,18 +181,12 @@
       <Parameter Name="messageType" Mode="In" Type="String" />
       <Parameter Name="createdAt" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="Usp_SearchAccountByEmailOrName" ReturnType="Collection(ChatAppModel.Usp_SearchAccountByEmailOrName_Result)">
-      <Parameter Name="keyword" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="Usp_InsertConversation">
-      <Parameter Name="id" Mode="In" Type="String" />
-      <Parameter Name="creatorId" Mode="In" Type="Int32" />
-      <Parameter Name="avatar" Mode="In" Type="String" />
-      <Parameter Name="title" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="Usp_InsertParticipant">
       <Parameter Name="userId" Mode="In" Type="Int32" />
       <Parameter Name="conversationId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_SearchAccountByEmailOrName" ReturnType="Collection(ChatAppModel.Usp_SearchAccountByEmailOrName_Result)">
+      <Parameter Name="keyword" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="Usp_UpdateAccount">
       <Parameter Name="id" Mode="In" Type="Int32" />
@@ -214,6 +217,17 @@
     <Property Type="DateTime" Name="birthday" Nullable="true" Precision="23" />
     <Property Type="String" Name="avatar" Nullable="true" MaxLength="100" />
     <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="Usp_GetAllMessageByConversationId_Result">
+    <Property Type="String" Name="id" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="conversationId" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="senderId" Nullable="false" />
+    <Property Type="String" Name="content" Nullable="false" MaxLength="Max" />
+    <Property Type="String" Name="messageType" Nullable="false" MaxLength="4" />
+    <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+    <Property Type="String" Name="firstName" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="lastName" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="avatar" Nullable="true" MaxLength="100" />
   </ComplexType>
   <ComplexType Name="Usp_GetConversationsByUserId_Result">
     <Property Type="String" Name="id" Nullable="false" MaxLength="30" />

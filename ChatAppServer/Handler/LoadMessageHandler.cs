@@ -26,6 +26,8 @@ namespace ChatAppServer.Handler
             int limit = d.Limit;
             List<ReferenceData.Entity.Message> list = new MessageDAO().GetMessagesByConversationId(conversationId, offset, limit);
             worker.send(new SocketData("MESSAGELIST", list));
+            worker.From = limit;
+            worker.MessageList = new MessageDAO().GetAllMessagesByConversationId(conversationId);
         }
     }
 }

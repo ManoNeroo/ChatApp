@@ -16,6 +16,7 @@ namespace ChatApp.Handler
         private delegate void InitLatestMessageDelegate(Views.Components.Conversation cvst, ReferenceData.Entity.Message message);
         private delegate void DisplaySearchResultDelegate(List<ReferenceData.Entity.Account> list);
         private delegate void InsertConversationListDelegate(ReferenceData.Entity.Conversation cv);
+        private delegate void LoadMoreMessageDelegate(List<ReferenceData.Entity.Message> list);
         private delegate void NoArgumentDelegate();
         private Frame form;
 
@@ -54,8 +55,20 @@ namespace ChatApp.Handler
                         case "INSERTCONVERSATION":
                             handleInsertConversation(data.Data);
                             break;
+                        case "LOADMOREMESSAGE":
+                            handleLoadMoreMessage(data.Data);
+                            break;
                     }
                 }
+            }
+        }
+
+        private void handleLoadMoreMessage(object data)
+        {
+            List<ReferenceData.Entity.Message> list = (List<ReferenceData.Entity.Message>)data;
+            if(form.ChatBox != null)
+            {
+                form.ChatBox.Invoke(new LoadMoreMessageDelegate(form.ChatBox.LoadMoreMessage), new object[] { list });
             }
         }
 

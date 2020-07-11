@@ -20,6 +20,45 @@ namespace ChatAppServer.DAO.Implements
         {
             this.db = new ChatAppModels();
         }
+
+        public List<ReferenceData.Entity.Message> GetAllMessagesByConversationId(string conversationId)
+        {
+            string imagesFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Files\Images\";
+            string otherFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Files\Another_Files\";
+            var resultSet = db.Usp_GetAllMessageByConversationId(conversationId).ToList();
+            List<ReferenceData.Entity.Message> list = null;
+            if (resultSet.Count > 0)
+            {
+                list = new List<ReferenceData.Entity.Message>();
+                foreach (var m in resultSet)
+                {
+                    ReferenceData.Entity.Message message = new ReferenceData.Entity.Message();
+                    message.id = m.id;
+                    message.conversationId = m.conversationId;
+                    message.senderId = m.senderId;
+                    message.content = m.content;
+                    message.messageType = m.messageType;
+                    if (m.messageType.Equals("FILE"))
+                    {
+                        if (getFileType(m.content).Equals("IMAGE"))
+                        {
+                            message.file = ChatAppUtils.ConvertFileToByte(imagesFolder + m.content);
+                        }
+                        else
+                        {
+                            message.file = ChatAppUtils.ConvertFileToByte(otherFolder + m.content);
+                        }
+                    }
+                    message.createdAt = m.createdAt;
+                    message.firstName = m.firstName;
+                    message.lastName = m.lastName;
+                    message.avatar = ChatAppUtils.ConvertFileToByte(imagesFolder + m.avatar);
+                    list.Add(message);
+                }
+            }
+            return list;
+        }
+
         public List<ReferenceData.Entity.Message> GetMessagesByConversationId(string conversationId, int offset, int limit)
         {
             string imagesFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Files\Images\";

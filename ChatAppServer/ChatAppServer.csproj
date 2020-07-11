@@ -72,6 +72,7 @@
     <Compile Include="Handler\InsertConversationListHandler.cs" />
     <Compile Include="Handler\InsertParticipantHandler.cs" />
     <Compile Include="Handler\LoadMessageHandler.cs" />
+    <Compile Include="Handler\LoadMoreMessageHandler.cs" />
     <Compile Include="Handler\MessageHandler.cs" />
     <Compile Include="Handler\SearchAccountHandle.cs" />
     <Compile Include="Handler\SignInHandler.cs" />
@@ -110,6 +111,9 @@
     <Compile Include="Models\Usp_GetAccountBySignInInfo_Result.cs">
       <DependentUpon>ChatApp.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Usp_GetAllMessageByConversationId_Result.cs">
+      <DependentUpon>ChatApp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usp_GetConversationsByUserId_Result.cs">
       <DependentUpon>ChatApp.tt</DependentUpon>
     </Compile>
@@ -146,7 +150,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\ChatApp.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

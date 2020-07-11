@@ -9,7 +9,8 @@ namespace ChatAppServer.SocketServer
 {
     public class ServerWorker : BaseThread
     {
-
+        public int From = 0;
+        public List<ReferenceData.Entity.Message> MessageList = new List<ReferenceData.Entity.Message>();
         public Socket ClientSocket { get; set; }
         public Server Server { get; set; }
         public ServerWorker(Server server, Socket clientSocket)
@@ -37,17 +38,19 @@ namespace ChatAppServer.SocketServer
             {
                 SocketData data = receive();
                 string dataType = data.DataType.ToUpper();
-                if(dataType.Equals("CLOSE"))
+                if (dataType.Equals("CLOSE"))
                 {
                     Server.RemoveWorker(this);
                     break;
-                }else if(dataType.Equals("SIGNOUT")) 
+                }
+                else if (dataType.Equals("SIGNOUT"))
                 {
                     new SignOutHandler(this).Handle(data);
                     break;
-                } else
+                }
+                else
                 {
-                    switch(dataType)
+                    switch (dataType)
                     {
                         case "SIGNUP":
                             new SignUpHandler(this).Handle(data);
@@ -72,6 +75,9 @@ namespace ChatAppServer.SocketServer
                             break;
                         case "INSERTCONVERSATIONLIST":
                             new InsertConversationListHandler(this).Handle(data);
+                            break;
+                        case "LOADMOREMESSAGE":
+                            new LoadMoreMessageHandler(this).Handle();
                             break;
                     }
                 }

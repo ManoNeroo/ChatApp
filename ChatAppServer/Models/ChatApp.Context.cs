@@ -54,6 +54,15 @@ namespace ChatAppServer.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_GetAccountBySignInInfo_Result>("Usp_GetAccountBySignInInfo", emailParameter, passwordParameter);
         }
     
+        public virtual ObjectResult<Usp_GetAllMessageByConversationId_Result> Usp_GetAllMessageByConversationId(string conversationId)
+        {
+            var conversationIdParameter = conversationId != null ?
+                new ObjectParameter("conversationId", conversationId) :
+                new ObjectParameter("conversationId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_GetAllMessageByConversationId_Result>("Usp_GetAllMessageByConversationId", conversationIdParameter);
+        }
+    
         public virtual ObjectResult<Usp_GetConversationsByUserId_Result> Usp_GetConversationsByUserId(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -119,6 +128,27 @@ namespace ChatAppServer.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertAccount", emailParameter, passwordParameter, firstNameParameter, lastNameParameter);
         }
     
+        public virtual int Usp_InsertConversation(string id, Nullable<int> creatorId, string avatar, string title)
+        {
+            var idParameter = id != null ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(string));
+    
+            var creatorIdParameter = creatorId.HasValue ?
+                new ObjectParameter("creatorId", creatorId) :
+                new ObjectParameter("creatorId", typeof(int));
+    
+            var avatarParameter = avatar != null ?
+                new ObjectParameter("avatar", avatar) :
+                new ObjectParameter("avatar", typeof(string));
+    
+            var titleParameter = title != null ?
+                new ObjectParameter("title", title) :
+                new ObjectParameter("title", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertConversation", idParameter, creatorIdParameter, avatarParameter, titleParameter);
+        }
+    
         public virtual int Usp_InsertMessage(string id, string conversationId, Nullable<int> senderId, string content, string messageType, Nullable<System.DateTime> createdAt)
         {
             var idParameter = id != null ?
@@ -148,36 +178,6 @@ namespace ChatAppServer.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertMessage", idParameter, conversationIdParameter, senderIdParameter, contentParameter, messageTypeParameter, createdAtParameter);
         }
     
-        public virtual ObjectResult<Usp_SearchAccountByEmailOrName_Result> Usp_SearchAccountByEmailOrName(string keyword)
-        {
-            var keywordParameter = keyword != null ?
-                new ObjectParameter("keyword", keyword) :
-                new ObjectParameter("keyword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_SearchAccountByEmailOrName_Result>("Usp_SearchAccountByEmailOrName", keywordParameter);
-        }
-    
-        public virtual int Usp_InsertConversation(string id, Nullable<int> creatorId, string avatar, string title)
-        {
-            var idParameter = id != null ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(string));
-    
-            var creatorIdParameter = creatorId.HasValue ?
-                new ObjectParameter("creatorId", creatorId) :
-                new ObjectParameter("creatorId", typeof(int));
-    
-            var avatarParameter = avatar != null ?
-                new ObjectParameter("avatar", avatar) :
-                new ObjectParameter("avatar", typeof(string));
-    
-            var titleParameter = title != null ?
-                new ObjectParameter("title", title) :
-                new ObjectParameter("title", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertConversation", idParameter, creatorIdParameter, avatarParameter, titleParameter);
-        }
-    
         public virtual int Usp_InsertParticipant(Nullable<int> userId, string conversationId)
         {
             var userIdParameter = userId.HasValue ?
@@ -189,6 +189,15 @@ namespace ChatAppServer.Models
                 new ObjectParameter("conversationId", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Usp_InsertParticipant", userIdParameter, conversationIdParameter);
+        }
+    
+        public virtual ObjectResult<Usp_SearchAccountByEmailOrName_Result> Usp_SearchAccountByEmailOrName(string keyword)
+        {
+            var keywordParameter = keyword != null ?
+                new ObjectParameter("keyword", keyword) :
+                new ObjectParameter("keyword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Usp_SearchAccountByEmailOrName_Result>("Usp_SearchAccountByEmailOrName", keywordParameter);
         }
     
         public virtual int Usp_UpdateAccount(Nullable<int> id, string email, string password, string firstName, string lastName, Nullable<System.DateTime> birthday, string avatar)

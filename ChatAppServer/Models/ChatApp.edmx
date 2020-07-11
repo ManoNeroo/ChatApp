@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChatAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChatAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -114,6 +114,9 @@
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="Usp_GetAllMessageByConversationId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="conversationId" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Usp_GetConversationsByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -190,7 +193,8 @@
             <End Role="Participant" EntitySet="Participant" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -332,17 +336,20 @@
             <End Role="Participant" EntitySet="Participants" />
           </AssociationSet>
           <FunctionImport Name="Usp_GetAccountById" ReturnType="Collection(ChatAppModel.Usp_GetAccountById_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetAccountBySignInInfo" ReturnType="Collection(ChatAppModel.Usp_GetAccountBySignInInfo_Result)">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Usp_GetAllMessageByConversationId" ReturnType="Collection(ChatAppModel.Usp_GetAllMessageByConversationId_Result)">
+            <Parameter Name="conversationId" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="Usp_GetConversationsByUserId" ReturnType="Collection(ChatAppModel.Usp_GetConversationsByUserId_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetMembersOfConversation" ReturnType="Collection(ChatAppModel.Usp_GetMembersOfConversation_Result)">
-          <Parameter Name="conversationId" Mode="In" Type="String" />
+            <Parameter Name="conversationId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetMessagesByConversationId" ReturnType="Collection(ChatAppModel.Usp_GetMessagesByConversationId_Result)">
             <Parameter Name="conversationId" Mode="In" Type="String" />
@@ -350,13 +357,19 @@
             <Parameter Name="limit" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Usp_GetParticipantsByConversationId" ReturnType="Collection(ChatAppModel.Usp_GetParticipantsByConversationId_Result)">
-          <Parameter Name="conversationId" Mode="In" Type="String" />
+            <Parameter Name="conversationId" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_InsertAccount">
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
             <Parameter Name="firstName" Mode="In" Type="String" />
             <Parameter Name="lastName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_InsertConversation">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="creatorId" Mode="In" Type="Int32" />
+            <Parameter Name="avatar" Mode="In" Type="String" />
+            <Parameter Name="title" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_InsertMessage">
             <Parameter Name="id" Mode="In" Type="String" />
@@ -366,18 +379,12 @@
             <Parameter Name="messageType" Mode="In" Type="String" />
             <Parameter Name="createdAt" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="Usp_SearchAccountByEmailOrName" ReturnType="Collection(ChatAppModel.Usp_SearchAccountByEmailOrName_Result)">
-          <Parameter Name="keyword" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Usp_InsertConversation">
-            <Parameter Name="id" Mode="In" Type="String" />
-            <Parameter Name="creatorId" Mode="In" Type="Int32" />
-            <Parameter Name="avatar" Mode="In" Type="String" />
-            <Parameter Name="title" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="Usp_InsertParticipant">
             <Parameter Name="userId" Mode="In" Type="Int32" />
             <Parameter Name="conversationId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_SearchAccountByEmailOrName" ReturnType="Collection(ChatAppModel.Usp_SearchAccountByEmailOrName_Result)">
+            <Parameter Name="keyword" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Usp_UpdateAccount">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -408,6 +415,17 @@
           <Property Type="DateTime" Name="birthday" Nullable="true" Precision="23" />
           <Property Type="String" Name="avatar" Nullable="true" MaxLength="100" />
           <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="Usp_GetAllMessageByConversationId_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="conversationId" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="senderId" Nullable="false" />
+          <Property Type="String" Name="content" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="messageType" Nullable="false" MaxLength="4" />
+          <Property Type="DateTime" Name="createdAt" Nullable="true" Precision="23" />
+          <Property Type="String" Name="firstName" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="lastName" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="avatar" Nullable="true" MaxLength="100" />
         </ComplexType>
         <ComplexType Name="Usp_GetConversationsByUserId_Result">
           <Property Type="String" Name="id" Nullable="false" MaxLength="30" />
@@ -535,6 +553,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetAllMessageByConversationId" FunctionName="ChatAppModel.Store.Usp_GetAllMessageByConversationId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChatAppModel.Usp_GetAllMessageByConversationId_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="conversationId" ColumnName="conversationId" />
+                <ScalarProperty Name="senderId" ColumnName="senderId" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="messageType" ColumnName="messageType" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Usp_GetConversationsByUserId" FunctionName="ChatAppModel.Store.Usp_GetConversationsByUserId">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ChatAppModel.Usp_GetConversationsByUserId_Result">
@@ -588,7 +621,9 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Usp_InsertAccount" FunctionName="ChatAppModel.Store.Usp_InsertAccount" />
+          <FunctionImportMapping FunctionImportName="Usp_InsertConversation" FunctionName="ChatAppModel.Store.Usp_InsertConversation" />
           <FunctionImportMapping FunctionImportName="Usp_InsertMessage" FunctionName="ChatAppModel.Store.Usp_InsertMessage" />
+          <FunctionImportMapping FunctionImportName="Usp_InsertParticipant" FunctionName="ChatAppModel.Store.Usp_InsertParticipant" />
           <FunctionImportMapping FunctionImportName="Usp_SearchAccountByEmailOrName" FunctionName="ChatAppModel.Store.Usp_SearchAccountByEmailOrName">
             <ResultMapping>
               <ComplexTypeMapping TypeName="ChatAppModel.Usp_SearchAccountByEmailOrName_Result">
@@ -603,8 +638,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Usp_InsertConversation" FunctionName="ChatAppModel.Store.Usp_InsertConversation" />
-          <FunctionImportMapping FunctionImportName="Usp_InsertParticipant" FunctionName="ChatAppModel.Store.Usp_InsertParticipant" />
           <FunctionImportMapping FunctionImportName="Usp_UpdateAccount" FunctionName="ChatAppModel.Store.Usp_UpdateAccount" />
         </EntityContainerMapping>
       </Mapping>

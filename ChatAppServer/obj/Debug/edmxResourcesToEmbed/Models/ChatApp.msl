@@ -75,6 +75,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Usp_GetAllMessageByConversationId" FunctionName="ChatAppModel.Store.Usp_GetAllMessageByConversationId">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ChatAppModel.Usp_GetAllMessageByConversationId_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="conversationId" ColumnName="conversationId" />
+          <ScalarProperty Name="senderId" ColumnName="senderId" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="messageType" ColumnName="messageType" />
+          <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Usp_GetConversationsByUserId" FunctionName="ChatAppModel.Store.Usp_GetConversationsByUserId">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ChatAppModel.Usp_GetConversationsByUserId_Result">
@@ -128,7 +143,9 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Usp_InsertAccount" FunctionName="ChatAppModel.Store.Usp_InsertAccount" />
+    <FunctionImportMapping FunctionImportName="Usp_InsertConversation" FunctionName="ChatAppModel.Store.Usp_InsertConversation" />
     <FunctionImportMapping FunctionImportName="Usp_InsertMessage" FunctionName="ChatAppModel.Store.Usp_InsertMessage" />
+    <FunctionImportMapping FunctionImportName="Usp_InsertParticipant" FunctionName="ChatAppModel.Store.Usp_InsertParticipant" />
     <FunctionImportMapping FunctionImportName="Usp_SearchAccountByEmailOrName" FunctionName="ChatAppModel.Store.Usp_SearchAccountByEmailOrName">
       <ResultMapping>
         <ComplexTypeMapping TypeName="ChatAppModel.Usp_SearchAccountByEmailOrName_Result">
@@ -143,8 +160,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Usp_InsertConversation" FunctionName="ChatAppModel.Store.Usp_InsertConversation" />
-    <FunctionImportMapping FunctionImportName="Usp_InsertParticipant" FunctionName="ChatAppModel.Store.Usp_InsertParticipant" />
     <FunctionImportMapping FunctionImportName="Usp_UpdateAccount" FunctionName="ChatAppModel.Store.Usp_UpdateAccount" />
   </EntityContainerMapping>
 </Mapping>

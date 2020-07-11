@@ -30,14 +30,6 @@ namespace ChatApp.Views.Components
         {
             InitializeComponent();
         }
-        public ChatBox(ChatClient client, Components.Conversation cvst)
-        {
-            Client = client;
-            ConversationBox = cvst;
-            InitializeComponent();
-            this.messageBox.flowLayoutPanel.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            //initUi();
-        }
         public ChatBox(Frame form, ReferenceData.Entity.Conversation cvst)
         {
             InitializeComponent();
@@ -46,33 +38,26 @@ namespace ChatApp.Views.Components
         }
         private void ChatBox_Load(object sender, EventArgs e)
         {
-            if(Conversation.memberList.Count <= 2)
+            if (Conversation.memberList.Count <= 2)
             {
                 this.btnAddMember.Visible = false;
                 this.lbNumMember.Visible = false;
-            }else
+            }
+            else
             {
                 this.lbNumMember.Text = Conversation.memberList.Count + " Thành viên";
             }
             this.lbTitle.Text = Conversation.title;
             if (Conversation.id != null)
             {
-                new LoadMessageHandler(Form.Client).Handle(Conversation.id, 0, 15);
+                new LoadMessageHandler(Form.Client).Handle(Conversation.id, 0, 16);
             }
+            this.messageBox.VScrollBarValueChanged(new LoadMoreMessageHandler(Form.Client).Handle);
         }
-        private void initUi()
+        public void LoadMoreMessage(List<ReferenceData.Entity.Message> list)
         {
-            if(ConversationBox.Cvst.memberList.Count <= 2)
-            {
-                this.btnAddMember.Visible = false;
-                this.lbNumMember.Visible = false;
-            } else
-            {
-                this.lbNumMember.Text = ConversationBox.Cvst.memberList.Count + " Thành viên";
-            }
-            this.lbTitle.Text = ConversationBox.Cvst.title;
-            new LoadMessageHandler(Client).Handle(ConversationBox.Cvst.id, 0, 15);
         }
+
         private void btnSend_Click(object sender, EventArgs e)
         {
             new SendMessageHandler(this).Handle();
@@ -93,7 +78,7 @@ namespace ChatApp.Views.Components
                 Title = "Chọn một file ảnh"
             };
             choosePictureDialog.ShowDialog();
-            if(!choosePictureDialog.FileName.Equals(""))
+            if (!choosePictureDialog.FileName.Equals(""))
             {
                 byte[] file = ChatAppUtils.ConvertFileToByte(choosePictureDialog.FileName);
                 string[] arrFileName = choosePictureDialog.FileName.Split('\\');
@@ -112,7 +97,7 @@ namespace ChatApp.Views.Components
         }
         private void btnChooseAllFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog chooseFileDialog= new OpenFileDialog()
+            OpenFileDialog chooseFileDialog = new OpenFileDialog()
             {
                 Filter = "Image files (*.*) | *.*",
                 Title = "Chọn một file"
@@ -123,7 +108,7 @@ namespace ChatApp.Views.Components
                 byte[] file = ChatAppUtils.ConvertFileToByte(chooseFileDialog.FileName);
                 string[] arrFileName = chooseFileDialog.FileName.Split('\\');
                 string fn = arrFileName[arrFileName.Length - 1];
-                if(FileItem!=null)
+                if (FileItem != null)
                 {
                     this.Controls.Remove(FileItem);
                     FileItem = null;
@@ -147,7 +132,7 @@ namespace ChatApp.Views.Components
         }
         public void AddOutMessage(ReferenceData.Entity.Message message)
         {
-            if(FileItem != null)
+            if (FileItem != null)
             {
                 this.Controls.Remove(FileItem);
                 FileItem = null;
@@ -159,7 +144,8 @@ namespace ChatApp.Views.Components
             if (message.messageType.ToUpper().Equals("TEXT"))
             {
                 bubble = new TextBubble(message.content, TextBubble.msgType.Out);
-            } else
+            }
+            else
             {
                 bubble = new FileBubble(message.content, message.file, FileBubble.msgType.Out);
             }
@@ -169,10 +155,11 @@ namespace ChatApp.Views.Components
             }
             else
             {
-                if(compareTime(currentOutMessage.Time, DateTime.Now))
+                if (compareTime(currentOutMessage.Time, DateTime.Now))
                 {
                     this.messageBox.flowLayoutPanel.Controls.Remove(currentOutMessage);
-                } else
+                }
+                else
                 {
                     currentOutMessage = new OutgoingMessage(/*ConversationBox.Acc.id*/ Form.User.id, DateTime.Now);
                 }
@@ -180,12 +167,11 @@ namespace ChatApp.Views.Components
             currentOutMessage.AddBubble(bubble);
             this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
             this.messageBox.UpdateUi();
-            if(this.messageBox.panelBg.Size.Height < this.messageBox.flowLayoutPanel.PreferredSize.Height)
+            if (this.messageBox.panelBg.Size.Height < this.messageBox.flowLayoutPanel.PreferredSize.Height)
             {
                 this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
             }
-            
-            //InitLatestMessage(message);
+
             foreach (var c in Form.ConversationList)
             {
                 if (c.Cvst.id.Equals(message.conversationId))
@@ -203,7 +189,8 @@ namespace ChatApp.Views.Components
             if (message.messageType.ToUpper().Equals("TEXT"))
             {
                 bubble = new TextBubble(message.content, TextBubble.msgType.In);
-            } else
+            }
+            else
             {
                 bubble = new FileBubble(message.content, message.file, FileBubble.msgType.In);
             }
@@ -236,7 +223,6 @@ namespace ChatApp.Views.Components
             {
                 this.messageBox.vScrollBar.Value = this.messageBox.vScrollBar.Maximum;
             }
-            //InitLatestMessage(message);
             foreach (var c in Form.ConversationList)
             {
                 if (c.Cvst.id.Equals(message.conversationId))
@@ -289,13 +275,14 @@ namespace ChatApp.Views.Components
             UserControl bubble;
             IncomingMessage cInMessage = new IncomingMessage();
             OutgoingMessage cOutMessage = new OutgoingMessage();
-            if (list[0].senderId != /*ConversationBox.Acc.id*/Form.User.id)
+            if (list[0].senderId != Form.User.id)
             {
                 cInMessage = new IncomingMessage(list[0].avatar, list[0].senderId, list[0].lastName, time);
-                if(list[0].messageType.Equals("FILE"))
+                if (list[0].messageType.Equals("FILE"))
                 {
                     bubble = new FileBubble(list[0].content, list[0].file, FileBubble.msgType.In);
-                } else
+                }
+                else
                 {
                     bubble = new TextBubble(list[0].content, TextBubble.msgType.In);
                 }
@@ -320,7 +307,7 @@ namespace ChatApp.Views.Components
             {
                 if (!mes.Equals(list[0]))
                 {
-                    if (mes.senderId != /*ConversationBox.Acc.id*/ Form.User.id)
+                    if (mes.senderId != Form.User.id)
                     {
                         if (currentMessage.GetType() != typeof(IncomingMessage))
                         {
