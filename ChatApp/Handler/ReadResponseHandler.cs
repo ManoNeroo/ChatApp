@@ -69,9 +69,12 @@ namespace ChatApp.Handler
         private void handleSearchResult(object data)
         {
             List<ReferenceData.Entity.Account> list = (List<ReferenceData.Entity.Account>)data;
-            if(list!=null)
+            if(list!=null && form.NewChat == null)
             {
                 form.Invoke(new DisplaySearchResultDelegate(form.DisplaySearchResult), new object[] { list });
+            } else if(list != null && form.NewChat != null)
+            {
+                form.NewChat.Invoke(new DisplaySearchResultDelegate(form.NewChat.DisplaySearchResult), new object[] { list });
             }
         }
 

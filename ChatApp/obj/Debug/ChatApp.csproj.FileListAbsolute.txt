@@ -27,4 +27,5 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\ReferenceData.pdb
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.WelcomeBox.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.FileItem.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.SearchResult.resources
-F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csprojAssemblyReference.cache
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Overlay.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.AddNewChat.resources

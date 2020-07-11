@@ -17,6 +17,7 @@ namespace ChatApp.Views
 {
     public partial class Frame : Form
     {
+        public AddNewChat NewChat { get; set; } = null;
         public ChatBox ChatBox { get; set; } = null;
         private Components.Conversation currentConversation = null;
         public ChatClient Client { get; set; }
@@ -60,12 +61,13 @@ namespace ChatApp.Views
             }
             pnlConversations.UpdateUi();
         }
-        
         public void DisplayConversationList()
         {
+            ConversationList.Reverse();
             txtSearchAccount.Text = "";
             pnlConversations.flowLayoutPanel.Controls.Clear();
-            foreach(var cvst in ConversationList)
+            pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            foreach (var cvst in ConversationList)
             {
                 pnlConversations.flowLayoutPanel.Controls.Add(cvst);
                 cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
@@ -77,11 +79,10 @@ namespace ChatApp.Views
             foreach (var c in list)
             {
                 Components.Conversation cvst = new Components.Conversation(c, User);
-                pnlConversations.flowLayoutPanel.Controls.Add(cvst);
                 cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
                 ConversationList.Add(cvst);
             }
-            pnlConversations.UpdateUi();
+            DisplayConversationList();
         }
         public void InsertConversationList(ReferenceData.Entity.Conversation cv)
         {
@@ -202,13 +203,20 @@ namespace ChatApp.Views
             this.pnlPages.Controls.Clear();
             WelcomeBox welcomeBox = new WelcomeBox(User);
             this.pnlPages.Controls.Add(welcomeBox);
+            welcomeBox.BtnconversationClick(btnAddNewChat_Click);
             welcomeBox.Location = new Point(0, 0);
             Client.startReadResponse(new ReadResponseHandler(this));
         }
 
         private void btnAddNewChat_Click(object sender, EventArgs e)
         {
-            
+            Overlay overlay = new Overlay();
+            overlay.Location = new Point(this.Location.X, this.Location.Y + 32);
+            overlay.Show();
+            NewChat = new AddNewChat(this);
+            NewChat.ShowDialog();
+            overlay.Dispose();
+            NewChat = null;
         }
     }
 }

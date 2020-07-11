@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ReferenceData.Entity;
+using ReferenceData.Utils;
 
 namespace ChatApp.Views.Components
 {
@@ -25,8 +26,9 @@ namespace ChatApp.Views.Components
         private void genarate()
         {
             this.lbWelcome.Text = "Xin chào " + user.lastName;
+            this.userAvatar.Image = ChatAppUtils.ByteToImage(user.avatar);
         }
-        public void BtnSonversationClick(EventHandler e)
+        public void BtnconversationClick(EventHandler e)
         {
             this.btnConversation.Click += new System.EventHandler(e);
         }

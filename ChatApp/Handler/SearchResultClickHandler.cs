@@ -20,6 +20,11 @@ namespace ChatApp.Handler
         }
         public void Handle(object sender, EventArgs e)
         {
+            if(form.NewChat != null)
+            {
+                form.NewChat.Dispose();
+                form.NewChat = null;
+            }
             int b = 0;
             foreach(var c in form.ConversationList)
             {

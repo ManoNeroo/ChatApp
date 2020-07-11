@@ -29,6 +29,28 @@ namespace ChatAppServer.Handler
                     }
                 }
             }
+            if (cvst.memberList.Count == 2)
+            {
+                int a = -2;
+                int b = -2;
+                int i = 0;
+                foreach (var onl in worker.Server.OnlineList)
+                {
+                    if(cvst.memberList[0].id == onl.Acc.id )
+                    {
+                        a = i;
+                    } else if(cvst.memberList[1].id == onl.Acc.id) 
+                    {
+                        b = i;
+                    }
+                    i++;
+                }
+                if(a >= 0 && b >= 0)
+                {
+                    worker.Server.OnlineList.ToList()[a].Worker.send(new SocketData("ONLINE", cvst.memberList[1]));
+                    worker.Server.OnlineList.ToList()[b].Worker.send(new SocketData("ONLINE", cvst.memberList[0]));
+                }
+            }
         }
     }
 }
