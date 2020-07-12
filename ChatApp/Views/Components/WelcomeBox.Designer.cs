@@ -59,7 +59,7 @@
             // 
             // btnConversation
             // 
-            this.btnConversation.BorderRadius = 15;
+            this.btnConversation.BorderRadius = 20;
             this.btnConversation.CheckedState.Parent = this.btnConversation;
             this.btnConversation.CustomImages.Parent = this.btnConversation;
             this.btnConversation.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(26)))), ((int)(((byte)(206)))));

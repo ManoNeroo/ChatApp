@@ -38,7 +38,6 @@
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnAddNewGroup = new Guna.UI2.WinForms.Guna2Button();
             this.btnAddNewChat = new Guna.UI2.WinForms.Guna2Button();
-            this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             this.btnSetting = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.txtSearchAccount = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlPages = new System.Windows.Forms.Panel();
             this.dragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
+            this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.guna2Panel2.SuspendLayout();
@@ -181,14 +181,6 @@
             this.btnAddNewChat.TextOffset = new System.Drawing.Point(0, 8);
             this.btnAddNewChat.Click += new System.EventHandler(this.btnAddNewChat_Click);
             // 
-            // pnlConversations
-            // 
-            this.pnlConversations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.pnlConversations.Location = new System.Drawing.Point(0, 144);
-            this.pnlConversations.Name = "pnlConversations";
-            this.pnlConversations.Size = new System.Drawing.Size(300, 392);
-            this.pnlConversations.TabIndex = 9;
-            // 
             // guna2Panel5
             // 
             this.guna2Panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
@@ -297,6 +289,14 @@
             // dragControl1
             // 
             this.dragControl1.TargetControl = this.pnlTop;
+            // 
+            // pnlConversations
+            // 
+            this.pnlConversations.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.pnlConversations.Location = new System.Drawing.Point(0, 144);
+            this.pnlConversations.Name = "pnlConversations";
+            this.pnlConversations.Size = new System.Drawing.Size(300, 392);
+            this.pnlConversations.TabIndex = 9;
             // 
             // Frame
             // 

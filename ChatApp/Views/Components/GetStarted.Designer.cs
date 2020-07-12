@@ -45,7 +45,7 @@
             // 
             // signInOrCreate
             // 
-            this.signInOrCreate.BorderRadius = 15;
+            this.signInOrCreate.BorderRadius = 20;
             this.signInOrCreate.CheckedState.Parent = this.signInOrCreate;
             this.signInOrCreate.CustomImages.Parent = this.signInOrCreate;
             this.signInOrCreate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(26)))), ((int)(((byte)(206)))));

@@ -21,9 +21,7 @@ namespace ChatApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ChatClient client = new ChatClient("127.0.0.1", 6868);
-            Application.Run(new Login(client));
-           // MessageBox.Show("TIme: " + DateTime.Now.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds + "\n Local folder: " + Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName));
+            Application.Run(new Login());
         }
     }
 }

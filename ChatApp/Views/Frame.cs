@@ -1,16 +1,12 @@
 ﻿using ChatApp.Handler;
 using ChatApp.Utils;
 using ChatApp.Views.Components;
-using Microsoft.VisualBasic.ApplicationServices;
 using ReferenceData.Entity;
 using ReferenceData.Utils;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ChatApp.Views
@@ -34,22 +30,7 @@ namespace ChatApp.Views
             User = user;
         }
 
-        private void Frame_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Client.SignOut(User);
-        }
 
-        private void Frame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try
-            {
-                Application.Exit();
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
         public void ResetCurrentConversation()
         {
             if (currentConversation != null)
@@ -292,6 +273,16 @@ namespace ChatApp.Views
         {
             CustomMessageBox msb = new CustomMessageBox();
             msb.show("Cập nhật không thành công!", "Không thành công", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Error);
+        }
+
+        private void Frame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void Frame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Client.SignOut(User);
         }
     }
 }

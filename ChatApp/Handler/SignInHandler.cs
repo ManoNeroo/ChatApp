@@ -1,11 +1,8 @@
-﻿using ChatApp.Views;
+﻿using ChatApp.Utils;
+using ChatApp.Views;
 using ReferenceData;
 using ReferenceData.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChatApp.Handler
@@ -13,31 +10,35 @@ namespace ChatApp.Handler
     public class SignInHandler
     {
         private Login form;
+        public ChatClient client { get; set; }
 
         public SignInHandler(Login form)
         {
             this.form = form;
+            client = new ChatClient("127.0.0.1", 6868);
         }
 
         public void Handle(object sender, EventArgs e)
         {
             if (form.LoginBox.CheckSignIn())
             {
-                if (form.Client.IsConnected)
+                client.Connect();
+                if (client.IsConnected)
                 {
                     Account acc = new Account();
                     acc.email = form.LoginBox.txtEmail.Text;
                     acc.password = form.LoginBox.txtPassword.Text;
-                    Account user = form.Client.SignIn(new SocketData("SIGNIN", acc));
+                    Account user = client.SignIn(new SocketData("SIGNIN", acc));
                     if (user != null)
                     {
                         form.Hide();
-                        new Frame(form.Client, user).Show();
+                        new Frame(client, user).Show();
                     }
                     else
                     {
                         form.LoginBox.pnlError.Visible = true;
                         form.LoginBox.lbError.Text = "Không đúng email hoặc mật khẩu.";
+                        client.Close();
                     }
                 }
                 else
@@ -53,21 +54,24 @@ namespace ChatApp.Handler
             {
                 if (form.LoginBox.CheckSignIn())
                 {
-                    if (form.Client.IsConnected)
+                    client.Connect();
+                    if (client.IsConnected)
                     {
                         Account acc = new Account();
                         acc.email = form.LoginBox.txtEmail.Text;
                         acc.password = form.LoginBox.txtPassword.Text;
-                        Account user = form.Client.SignIn(new SocketData("SIGNIN", acc));
+                        Account user = client.SignIn(new SocketData("SIGNIN", acc));
                         if (user != null)
                         {
                             form.Hide();
-                            new Frame(form.Client, user).Show();
+                            new Frame(client, user).Show();
                         }
                         else
                         {
                             form.LoginBox.pnlError.Visible = true;
                             form.LoginBox.lbError.Text = "Không đúng email hoặc mật khẩu.";
+                            client.Close();
+
                         }
                     }
                     else

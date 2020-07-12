@@ -17,19 +17,15 @@ namespace ChatAppServer.Handler
     public class SignInHandler
     {
         private ServerWorker worker;
-        private AccountDAO accountDAO;
-        private ConversationDAO conversationDAO;
 
         public SignInHandler(ServerWorker worker)
         {
             this.worker = worker;
-            this.accountDAO = new AccountDAO();
-            this.conversationDAO = new ConversationDAO(worker.Server.OnlineList);
         }
         public void Handle(SocketData data)
         {
             ReferenceData.Entity.Account acc = (ReferenceData.Entity.Account)data.Data;
-            ReferenceData.Entity.Account user = accountDAO.GetAccountBySignInInfo(acc.email, acc.password);
+            ReferenceData.Entity.Account user = new AccountDAO().GetAccountBySignInInfo(acc.email, acc.password);
             SocketData response = new SocketData("ACCOUNT", user);
             worker.send(response);
             if (user != null)
@@ -41,23 +37,26 @@ namespace ChatAppServer.Handler
 
         private void sendConversationList(ServerWorker worker, ReferenceData.Entity.Account user)
         {
-            List<ReferenceData.Entity.Conversation> list = conversationDAO.GetConversationListOfAccount(user.id);
-            SocketData response = new SocketData("CONVERSATIONLIST", list);
-            worker.send(response);
-            foreach(var onl in worker.Server.OnlineList)
+            List<ReferenceData.Entity.Conversation> list = new ConversationDAO(worker.Server.OnlineList).GetConversationListOfAccount(user.id);
+            if (list != null)
             {
-               if(onl.Acc.id != user.id)
+                SocketData response = new SocketData("CONVERSATIONLIST", list);
+                worker.send(response);
+                foreach (var onl in worker.Server.OnlineList)
                 {
-                    foreach (var c in list)
+                    if (onl.Acc.id != user.id)
                     {
-                        if (c.memberList.Count == 2)
+                        foreach (var c in list)
                         {
-                            onl.Worker.send(new SocketData("ONLINE", user));
+                            if (c.memberList.Count == 2)
+                            {
+                                onl.Worker.send(new SocketData("ONLINE", user));
+                            }
                         }
                     }
                 }
             }
         }
-        
+
     }
 }

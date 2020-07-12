@@ -23,7 +23,6 @@ namespace ChatAppServer.Handler
             string keyword = (string)data.Data;
             List<Account> list = new AccountDAO().SearchAccount(keyword);
             worker.send(new SocketData("SEARCHRESULT", list));
-
         }
     }
 }

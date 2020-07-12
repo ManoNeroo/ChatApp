@@ -1,17 +1,9 @@
 ﻿using ChatApp.Handler;
-using ChatApp.Utils;
 using ChatApp.Views.Components;
-using Microsoft.VisualBasic.ApplicationServices;
 using ReferenceData.Entity;
 using ReferenceData.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChatApp.Views
@@ -122,12 +114,7 @@ namespace ChatApp.Views
             int result = msb.Result;
             if(result == 1)
             {
-                this.Dispose();
-                form.Client.SignOut(form.User);
-                form.Dispose();
-                ChatClient client = new ChatClient("127.0.0.1", 6868);
-                Login login = new Login(client);
-                login.Show();
+                form.Close();
             }
         }
     }

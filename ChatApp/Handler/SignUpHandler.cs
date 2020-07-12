@@ -1,15 +1,9 @@
 ﻿using ChatApp.Utils;
 using ChatApp.Views;
 using ChatApp.Views.Components;
-using Microsoft.VisualBasic;
 using ReferenceData;
 using ReferenceData.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ChatApp.Handler
 {
@@ -26,7 +20,9 @@ namespace ChatApp.Handler
         {
             if(form.SignUpBox.CheckSignUp())
             {
-                if (form.Client.IsConnected)
+                ChatClient client = new ChatClient("127.0.0.1", 6868);
+                client.Connect();
+                if (client.IsConnected)
                 {
                     Account acc = new Account();
                     acc.email = form.SignUpBox.txtEmail.Text;
@@ -34,7 +30,7 @@ namespace ChatApp.Handler
                     acc.firstName = form.SignUpBox.txtFirstName.Text;
                     acc.lastName = form.SignUpBox.txtLastName.Text;
                     CustomMessageBox msb = new CustomMessageBox();
-                    if (form.Client.SignUp(new SocketData("SIGNUP", acc)))
+                    if (client.SignUp(new SocketData("SIGNUP", acc)))
                     {
                         msb.show("Đăng ký thành công", "Thành công", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Success);
                         form.pnlPages.Controls.Clear();

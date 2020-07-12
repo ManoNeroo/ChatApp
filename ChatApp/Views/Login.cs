@@ -1,13 +1,7 @@
 ﻿using ChatApp.Handler;
-using ChatApp.Utils;
 using ChatApp.Views.Components;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ChatApp.Views
@@ -16,17 +10,14 @@ namespace ChatApp.Views
     {
         public SignUpBox SignUpBox { get; set; }
         public LoginBox LoginBox { get; set; }
-        public ChatClient Client { get; set; }
         int pbHeight;
         bool collapse;
-        public Login(ChatClient client)
+        public Login()
         {
             InitializeComponent();
             this.getStarted.SignInOrCreateClick(signInOrCreate_Click);
             pbHeight = pbLogo.Height;
             collapse = false;
-            Client = client;
-            Client.Connect();
         }
         public void addSignUpBox()
         {
@@ -83,19 +74,6 @@ namespace ChatApp.Views
                     collapse = true;
                     this.Refresh();
                 }
-            }
-        }
-
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Client.Close();
-            try
-            {
-                Application.Exit();
-            }
-            catch (Exception ex)
-            {
-
             }
         }
     }
