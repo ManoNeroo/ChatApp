@@ -15,7 +15,6 @@ namespace ChatApp.Views.Components
         public LoginBox()
         {
             InitializeComponent();
-            pnlError.Visible = false;
         }
         public void BtnLoginClick(EventHandler e)
         {
@@ -49,6 +48,28 @@ namespace ChatApp.Views.Components
         public void LinkToSignUpClick(EventHandler e)
         {
             this.linkToSignUp.Click += new System.EventHandler(e);
+        }
+
+        private void txtEmail_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string str = txtEmail.Text.Trim();
+                if (str.Length > 0)
+                {
+                    txtPassword.Focus();
+                }
+            }
+        }
+        public void TxtPasswordEnter(KeyEventHandler e)
+        {
+            this.txtPassword.KeyUp += e;
+        }
+
+        private void LoginBox_Load(object sender, EventArgs e)
+        {
+            this.pnlError.Visible = false;
+            this.txtEmail.Focus();
         }
     }
 }

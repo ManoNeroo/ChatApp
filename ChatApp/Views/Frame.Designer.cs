@@ -36,11 +36,11 @@
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnAddNewGroup = new Guna.UI2.WinForms.Guna2Button();
             this.btnAddNewChat = new Guna.UI2.WinForms.Guna2Button();
             this.pnlConversations = new ChatApp.Views.Components.ScrollPanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSetting = new Guna.UI2.WinForms.Guna2Button();
             this.label5 = new System.Windows.Forms.Label();
             this.lbUserName = new System.Windows.Forms.Label();
             this.pbUserAvatar = new Guna.UI2.WinForms.Guna2CirclePictureBox();
@@ -119,7 +119,7 @@
             // guna2Panel2
             // 
             this.guna2Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.guna2Panel2.Controls.Add(this.guna2Button3);
+            this.guna2Panel2.Controls.Add(this.btnAddNewGroup);
             this.guna2Panel2.Controls.Add(this.btnAddNewChat);
             this.guna2Panel2.Controls.Add(this.pnlConversations);
             this.guna2Panel2.Controls.Add(this.guna2Panel5);
@@ -131,29 +131,30 @@
             this.guna2Panel2.Size = new System.Drawing.Size(300, 548);
             this.guna2Panel2.TabIndex = 1;
             // 
-            // guna2Button3
+            // btnAddNewGroup
             // 
-            this.guna2Button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
-            this.guna2Button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
-            this.guna2Button3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.guna2Button3.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button3.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(6)))), ((int)(((byte)(200)))));
-            this.guna2Button3.HoverState.Image = global::ChatApp.Properties.Resources.newgrouphover;
-            this.guna2Button3.HoverState.Parent = this.guna2Button3;
-            this.guna2Button3.Image = global::ChatApp.Properties.Resources.newgroup;
-            this.guna2Button3.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.guna2Button3.ImageOffset = new System.Drawing.Point(15, -9);
-            this.guna2Button3.Location = new System.Drawing.Point(68, 61);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
-            this.guna2Button3.Size = new System.Drawing.Size(69, 35);
-            this.guna2Button3.TabIndex = 10;
-            this.guna2Button3.Text = "Nhóm mới";
-            this.guna2Button3.TextOffset = new System.Drawing.Point(0, 8);
+            this.btnAddNewGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.btnAddNewGroup.CheckedState.Parent = this.btnAddNewGroup;
+            this.btnAddNewGroup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddNewGroup.CustomImages.Parent = this.btnAddNewGroup;
+            this.btnAddNewGroup.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(28)))), ((int)(((byte)(41)))));
+            this.btnAddNewGroup.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAddNewGroup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnAddNewGroup.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.btnAddNewGroup.HoverState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(6)))), ((int)(((byte)(200)))));
+            this.btnAddNewGroup.HoverState.Image = global::ChatApp.Properties.Resources.newgrouphover;
+            this.btnAddNewGroup.HoverState.Parent = this.btnAddNewGroup;
+            this.btnAddNewGroup.Image = global::ChatApp.Properties.Resources.newgroup;
+            this.btnAddNewGroup.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnAddNewGroup.ImageOffset = new System.Drawing.Point(15, -9);
+            this.btnAddNewGroup.Location = new System.Drawing.Point(68, 61);
+            this.btnAddNewGroup.Name = "btnAddNewGroup";
+            this.btnAddNewGroup.ShadowDecoration.Parent = this.btnAddNewGroup;
+            this.btnAddNewGroup.Size = new System.Drawing.Size(69, 35);
+            this.btnAddNewGroup.TabIndex = 10;
+            this.btnAddNewGroup.Text = "Nhóm mới";
+            this.btnAddNewGroup.TextOffset = new System.Drawing.Point(0, 8);
+            this.btnAddNewGroup.Click += new System.EventHandler(this.btnAddNewGroup_Click);
             // 
             // btnAddNewChat
             // 
@@ -191,7 +192,7 @@
             // guna2Panel5
             // 
             this.guna2Panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
-            this.guna2Panel5.Controls.Add(this.guna2Button2);
+            this.guna2Panel5.Controls.Add(this.btnSetting);
             this.guna2Panel5.Controls.Add(this.label5);
             this.guna2Panel5.Controls.Add(this.lbUserName);
             this.guna2Panel5.Controls.Add(this.pbUserAvatar);
@@ -201,23 +202,24 @@
             this.guna2Panel5.Size = new System.Drawing.Size(300, 55);
             this.guna2Panel5.TabIndex = 8;
             // 
-            // guna2Button2
+            // btnSetting
             // 
-            this.guna2Button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
-            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
-            this.guna2Button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
-            this.guna2Button2.FillColor = System.Drawing.Color.Empty;
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.HoverState.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.Image = global::ChatApp.Properties.Resources.setting;
-            this.guna2Button2.Location = new System.Drawing.Point(273, 14);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
-            this.guna2Button2.Size = new System.Drawing.Size(19, 24);
-            this.guna2Button2.TabIndex = 9;
+            this.btnSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(22)))), ((int)(((byte)(37)))));
+            this.btnSetting.CheckedState.Parent = this.btnSetting;
+            this.btnSetting.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSetting.CustomImages.Parent = this.btnSetting;
+            this.btnSetting.FillColor = System.Drawing.Color.Empty;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSetting.ForeColor = System.Drawing.Color.White;
+            this.btnSetting.HoverState.FillColor = System.Drawing.Color.Transparent;
+            this.btnSetting.HoverState.Parent = this.btnSetting;
+            this.btnSetting.Image = global::ChatApp.Properties.Resources.setting;
+            this.btnSetting.Location = new System.Drawing.Point(273, 14);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.ShadowDecoration.Parent = this.btnSetting;
+            this.btnSetting.Size = new System.Drawing.Size(19, 24);
+            this.btnSetting.TabIndex = 9;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // label5
             // 
@@ -330,7 +332,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2TextBox txtSearchAccount;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btnSetting;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lbUserName;
         private Guna.UI2.WinForms.Guna2CirclePictureBox pbUserAvatar;
@@ -339,7 +341,7 @@
         private Guna.UI2.WinForms.Guna2DragControl dragControl1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button btnAddNewGroup;
         private Guna.UI2.WinForms.Guna2Button btnAddNewChat;
         public Components.ScrollPanel pnlConversations;
         public System.Windows.Forms.Panel pnlPages;

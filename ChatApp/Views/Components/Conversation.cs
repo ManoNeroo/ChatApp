@@ -45,11 +45,14 @@ namespace ChatApp.Views.Components
             else
             {
                 this.lbTitle.Text = Cvst.title;
-                this.pbAvatar.Image = ChatAppUtils.ByteToImage(Cvst.avatar);
+                if(Cvst.avatar != null)
+                {
+                    this.pbAvatar.Image = ChatAppUtils.ByteToImage(Cvst.avatar);
+                }
             }
             DateTime time = (DateTime)Cvst.createdAt;
             this.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
-            if (!Cvst.state)
+            if (!Cvst.state && Cvst.memberList.Count == 2)
             {
                 this.btnState.FillColor = System.Drawing.Color.LightSteelBlue;
             }
@@ -146,7 +149,10 @@ namespace ChatApp.Views.Components
 
         private void Conversation_Load(object sender, EventArgs e)
         {
-            InitLatestMessage();
+            if(Cvst.messageType != null)
+            {
+                InitLatestMessage();
+            }
             initUi();
         }
     }

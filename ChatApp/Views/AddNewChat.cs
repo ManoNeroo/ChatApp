@@ -21,12 +21,12 @@ namespace ChatApp.Views
         {
             InitializeComponent();
         }
-        
+
         public AddNewChat(Frame form)
         {
             InitializeComponent();
             this.form = form;
-            this.pnlResultList.flowLayoutPanel.Padding = new Padding(20, 0, 20, 0);
+            this.pnlResultList.flowLayoutPanel.Padding = new Padding(16, 0, 0, 0);
         }
         public void DisplaySearchResult(List<Account> list)
         {

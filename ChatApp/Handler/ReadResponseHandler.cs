@@ -11,7 +11,7 @@ namespace ChatApp.Handler
     {
         private delegate void AddConversationListDelegate(List<ReferenceData.Entity.Conversation> list);
         private delegate void StateDelegate(ReferenceData.Entity.Account acc);
-        private delegate void GenarateMessageDelegate(List<ReferenceData.Entity.Message> list, FlowDirection direction);
+        private delegate void GenarateMessageDelegate(List<ReferenceData.Entity.Message> list, FlowLayoutPanel fl);
         private delegate void AddInMessageDelegate(ReferenceData.Entity.Message message);
         private delegate void InitLatestMessageDelegate(Views.Components.Conversation cvst, ReferenceData.Entity.Message message);
         private delegate void DisplaySearchResultDelegate(List<ReferenceData.Entity.Account> list);
@@ -76,7 +76,7 @@ namespace ChatApp.Handler
         {
             ReferenceData.Entity.Conversation cvst = (ReferenceData.Entity.Conversation)data;
             form.Invoke(new InsertConversationListDelegate(form.InsertConversationList), new object[] { cvst });
-            form.Invoke(new NoArgumentDelegate(form.DisplayConversationList), new object[] { });
+            form.Invoke(new NoArgumentDelegate(form.DisplayNewConversation), new object[] { });
         }
 
         private void handleSearchResult(object data)
@@ -113,7 +113,7 @@ namespace ChatApp.Handler
         private void handleMessageList(object data)
         {
             List<ReferenceData.Entity.Message> messageList = (List<ReferenceData.Entity.Message>)data;
-            form.ChatBox.Invoke(new GenarateMessageDelegate(form.ChatBox.GenarateMessage), new object[] { messageList, FlowDirection.TopDown });
+            form.ChatBox.Invoke(new GenarateMessageDelegate(form.ChatBox.GenarateMessage), new object[] { messageList, form.ChatBox.FPMessage1 });
         }
         private void handleMessage(object data)
         {

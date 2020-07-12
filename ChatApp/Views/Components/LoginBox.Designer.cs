@@ -46,7 +46,7 @@
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtEmail.BorderRadius = 15;
+            this.txtEmail.BorderRadius = 18;
             this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtEmail.DefaultText = "";
             this.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -69,13 +69,14 @@
             this.txtEmail.Size = new System.Drawing.Size(250, 36);
             this.txtEmail.TabIndex = 0;
             this.txtEmail.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtEmail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyUp);
             // 
             // txtPassword
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtPassword.BorderRadius = 15;
+            this.txtPassword.BorderRadius = 18;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
             this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -101,7 +102,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.BorderRadius = 15;
+            this.btnLogin.BorderRadius = 18;
             this.btnLogin.CheckedState.Parent = this.btnLogin;
             this.btnLogin.CustomImages.Parent = this.btnLogin;
             this.btnLogin.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(26)))), ((int)(((byte)(206)))));
@@ -196,6 +197,7 @@
             this.Controls.Add(this.txtEmail);
             this.Name = "LoginBox";
             this.Size = new System.Drawing.Size(450, 370);
+            this.Load += new System.EventHandler(this.LoginBox_Load);
             this.pnlError.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

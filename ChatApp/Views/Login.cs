@@ -43,6 +43,7 @@ namespace ChatApp.Views
             LoginBox.Location = new Point(0, 0);
             LoginBox.LinkToSignUpClick(linkToSignUp_Click);
             LoginBox.BtnLoginClick(new SignInHandler(this).Handle);
+            LoginBox.TxtPasswordEnter(new SignInHandler(this).Handle2);
         }
         private void signInOrCreate_Click(object sender, EventArgs e)
         {

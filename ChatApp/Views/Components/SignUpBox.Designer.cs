@@ -225,7 +225,7 @@
             // 
             // btnContinue
             // 
-            this.btnContinue.BorderRadius = 15;
+            this.btnContinue.BorderRadius = 18;
             this.btnContinue.CheckedState.Parent = this.btnContinue;
             this.btnContinue.CustomImages.Parent = this.btnContinue;
             this.btnContinue.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(26)))), ((int)(((byte)(206)))));
@@ -260,7 +260,7 @@
             this.txtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLastName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtLastName.BorderRadius = 15;
+            this.txtLastName.BorderRadius = 18;
             this.txtLastName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtLastName.DefaultText = "";
             this.txtLastName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -289,7 +289,7 @@
             this.txtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFirstName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtFirstName.BorderRadius = 15;
+            this.txtFirstName.BorderRadius = 18;
             this.txtFirstName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtFirstName.DefaultText = "";
             this.txtFirstName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));

@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler\AddGroupHandler.cs" />
     <Compile Include="Handler\InsertConversationHandler.cs" />
     <Compile Include="Handler\InsertParticipantHandler.cs" />
     <Compile Include="Handler\LoadMessageHandler.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Handler\ReadResponseHandler.cs" />
     <Compile Include="Handler\SearchAccountHandler.cs" />
     <Compile Include="Handler\SearchResultClickHandler.cs" />
+    <Compile Include="Handler\SelectMemberHandler.cs" />
     <Compile Include="Handler\SendMessageHandler.cs" />
     <Compile Include="Handler\SendRequestHandler.cs" />
     <Compile Include="Handler\SignInHandler.cs" />
@@ -78,6 +80,12 @@
     </Compile>
     <Compile Include="Views\AddNewChat.Designer.cs">
       <DependentUpon>AddNewChat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNewGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddNewGroup.Designer.cs">
+      <DependentUpon>AddNewGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Components\ChatBox.cs">
       <SubType>UserControl</SubType>
@@ -108,6 +116,12 @@
     </Compile>
     <Compile Include="Views\Components\GetStarted.Designer.cs">
       <DependentUpon>GetStarted.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\GroupMember.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\GroupMember.Designer.cs">
+      <DependentUpon>GroupMember.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Components\IncomingMessage.cs">
       <SubType>UserControl</SubType>
@@ -200,6 +214,9 @@
     <EmbeddedResource Include="Views\AddNewChat.resx">
       <DependentUpon>AddNewChat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddNewGroup.resx">
+      <DependentUpon>AddNewGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\ChatBox.resx">
       <DependentUpon>ChatBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\GetStarted.resx">
       <DependentUpon>GetStarted.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\GroupMember.resx">
+      <DependentUpon>GroupMember.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\IncomingMessage.resx">
       <DependentUpon>IncomingMessage.cs</DependentUpon>
@@ -287,6 +307,7 @@
     <None Include="Resources\attachhover.png" />
     <None Include="Resources\circleclose.png" />
     <None Include="Resources\close.png" />
+    <None Include="Resources\groupavatar.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\newchat.png" />
     <None Include="Resources\newchathover.png" />

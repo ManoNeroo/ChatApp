@@ -18,11 +18,14 @@ namespace ChatApp.Views
     public partial class Frame : Form
     {
         public AddNewChat NewChat { get; set; } = null;
+        public AddNewGroup NewGroup { get; set; } = null;
         public ChatBox ChatBox { get; set; } = null;
         private Components.Conversation currentConversation = null;
         public ChatClient Client { get; set; }
         public Account User { get; set; }
         public List<Components.Conversation> ConversationList = new List<Components.Conversation>();
+        FlowLayoutPanel PnlConversation1 = new FlowLayoutPanel();
+        FlowLayoutPanel PnlConversation2 = new FlowLayoutPanel();
         public Frame(ChatClient client, Account user)
         {
             InitializeComponent();
@@ -37,7 +40,13 @@ namespace ChatApp.Views
 
         private void Frame_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            try
+            {
+                Application.Exit();
+            }catch (Exception ex)
+            {
+
+            }
         }
         public void ResetCurrentConversation() { 
             if(currentConversation!= null)
@@ -49,30 +58,37 @@ namespace ChatApp.Views
         }
         public void DisplaySearchResult(List<Account> list)
         {
-            pnlConversations.flowLayoutPanel.Controls.Clear();
-            foreach(var acc in list)
+            PnlConversation1.Controls.Clear();
+            PnlConversation2.Controls.Clear();
+            foreach (var acc in list)
             {
                 if(acc.id != User.id)
                 {
                     SearchResult searchResult = new SearchResult(acc);
-                    pnlConversations.flowLayoutPanel.Controls.Add(searchResult);
+                    PnlConversation1.Controls.Add(searchResult);
                     searchResult.SearchResultClick(new SearchResultClickHandler(this,acc).Handle);
                 }
             }
             pnlConversations.UpdateUi();
         }
-        public void DisplayConversationList()
+        public void DisplayNewConversation()
+        {
+            PnlConversation2.Controls.Add(ConversationList.Last());
+            pnlConversations.UpdateUi();
+            pnlConversations.vScrollBar.Value = 0;
+        }
+        public void DisplayConversations()
         {
             ConversationList.Reverse();
             txtSearchAccount.Text = "";
-            pnlConversations.flowLayoutPanel.Controls.Clear();
-            pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            PnlConversation1.Controls.Clear();
+            PnlConversation2.Controls.Clear();
             foreach (var cvst in ConversationList)
             {
-                pnlConversations.flowLayoutPanel.Controls.Add(cvst);
-                cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
+                PnlConversation1.Controls.Add(cvst);
             }
             pnlConversations.UpdateUi();
+            pnlConversations.vScrollBar.Value = 0;
         }
         public void AddConversationList(List<ReferenceData.Entity.Conversation> list)
         {
@@ -82,7 +98,7 @@ namespace ChatApp.Views
                 cvst.ConversationClick(new OpenConversationHandler(this, cvst).Handle);
                 ConversationList.Add(cvst);
             }
-            DisplayConversationList();
+            DisplayConversations();
         }
         public void InsertConversationList(ReferenceData.Entity.Conversation cv)
         {
@@ -191,15 +207,27 @@ namespace ChatApp.Views
             }
             if(keyword.Length == 0)
             {
-                DisplayConversationList();
+                DisplayConversations();
             }
         }
 
         private void Frame_Load(object sender, EventArgs e)
         {
-            pnlConversations.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             this.lbUserName.Text = User.firstName + " " + User.lastName;
             this.pbUserAvatar.Image = ChatAppUtils.ByteToImage(User.avatar);
+
+            PnlConversation1.AutoScroll = false;
+            PnlConversation2.AutoScroll = false;
+            PnlConversation1.WrapContents = false;
+            PnlConversation2.WrapContents = false;
+            PnlConversation1.AutoSize = true;
+            PnlConversation2.AutoSize = true;
+            PnlConversation1.FlowDirection = FlowDirection.TopDown;
+            PnlConversation2.FlowDirection = FlowDirection.BottomUp;
+            pnlConversations.flowLayoutPanel.Controls.Add(PnlConversation2);
+            pnlConversations.flowLayoutPanel.Controls.Add(PnlConversation1);
+            pnlConversations.UpdateUi();
+
             this.pnlPages.Controls.Clear();
             WelcomeBox welcomeBox = new WelcomeBox(User);
             this.pnlPages.Controls.Add(welcomeBox);
@@ -217,6 +245,23 @@ namespace ChatApp.Views
             NewChat.ShowDialog();
             overlay.Dispose();
             NewChat = null;
+        }
+
+        private void btnAddNewGroup_Click(object sender, EventArgs e)
+        {
+            Overlay overlay = new Overlay();
+            overlay.Location = new Point(this.Location.X, this.Location.Y + 32);
+            overlay.Show();
+            NewGroup = new AddNewGroup(this);
+            NewGroup.BtnCreateGroupClick(new AddGroupHandler(this).Handle);
+            NewGroup.ShowDialog();
+            overlay.Dispose();
+            NewGroup = null;
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

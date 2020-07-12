@@ -137,7 +137,7 @@
             this.pbAvatar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pbAvatar.BackColor = System.Drawing.Color.Transparent;
-            this.pbAvatar.Image = global::ChatApp.Properties.Resources.avatar;
+            this.pbAvatar.Image = global::ChatApp.Properties.Resources.groupavatar;
             this.pbAvatar.Location = new System.Drawing.Point(12, 11);
             this.pbAvatar.Name = "pbAvatar";
             this.pbAvatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;

@@ -32,7 +32,7 @@ namespace ChatApp.Handler
                 {
                     if(account.id == c.Cvst.memberList[0].id || account.id == c.Cvst.memberList[1].id)
                     {
-                        form.DisplayConversationList();
+                        form.DisplayConversations();
                         form.SelectConversation(c.Cvst);
                         form.AddChatBox(c.Cvst);
                         b = 1;
@@ -52,7 +52,7 @@ namespace ChatApp.Handler
                 cvst.senderId = form.User.id;
                 form.AddChatBox(cvst);
                 form.ResetCurrentConversation();
-                form.DisplayConversationList();
+                form.DisplayConversations();
             }
         }
     }

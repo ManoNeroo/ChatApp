@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ChatApp.Handler
 {
@@ -17,11 +18,12 @@ namespace ChatApp.Handler
         {
             this.form = form;
         }
+
         public void Handle(object sender, EventArgs e)
         {
-            if(form.LoginBox.CheckSignIn())
+            if (form.LoginBox.CheckSignIn())
             {
-                if(form.Client.IsConnected)
+                if (form.Client.IsConnected)
                 {
                     Account acc = new Account();
                     acc.email = form.LoginBox.txtEmail.Text;
@@ -37,10 +39,42 @@ namespace ChatApp.Handler
                         form.LoginBox.pnlError.Visible = true;
                         form.LoginBox.lbError.Text = "Không đúng email hoặc mật khẩu.";
                     }
-                } else
+                }
+                else
                 {
                     CustomMessageBox msb = new CustomMessageBox();
                     msb.show("Lỗi kết nối!", "Lỗi", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Error);
+                }
+            }
+        }
+        public void Handle2(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (form.LoginBox.CheckSignIn())
+                {
+                    if (form.Client.IsConnected)
+                    {
+                        Account acc = new Account();
+                        acc.email = form.LoginBox.txtEmail.Text;
+                        acc.password = form.LoginBox.txtPassword.Text;
+                        Account user = form.Client.SignIn(new SocketData("SIGNIN", acc));
+                        if (user != null)
+                        {
+                            form.Hide();
+                            new Frame(form.Client, user).Show();
+                        }
+                        else
+                        {
+                            form.LoginBox.pnlError.Visible = true;
+                            form.LoginBox.lbError.Text = "Không đúng email hoặc mật khẩu.";
+                        }
+                    }
+                    else
+                    {
+                        CustomMessageBox msb = new CustomMessageBox();
+                        msb.show("Lỗi kết nối!", "Lỗi", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Error);
+                    }
                 }
             }
         }

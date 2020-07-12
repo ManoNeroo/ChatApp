@@ -26,6 +26,8 @@ namespace ChatApp.Views.Components
         private OutgoingMessage currentOutMessage = null;
         private IncomingMessage currentInMessage = null;
         public FileItem FileItem = null;
+        public FlowLayoutPanel FPMessage1 = new FlowLayoutPanel();
+        public FlowLayoutPanel FPMessage2 = new FlowLayoutPanel();
         public ChatBox()
         {
             InitializeComponent();
@@ -35,9 +37,22 @@ namespace ChatApp.Views.Components
             InitializeComponent();
             Form = form;
             Conversation = cvst;
+            this.messageBox.flowLayoutPanel.Padding = new Padding(10, 0, 0, 0);
+            FPMessage1.AutoScroll = false;
+            FPMessage2.AutoScroll = false;
+            FPMessage1.WrapContents = false;
+            FPMessage2.WrapContents = false;
+            FPMessage1.AutoSize = true;
+            FPMessage2.AutoSize = true;
+            FPMessage1.FlowDirection = FlowDirection.TopDown;
+            FPMessage2.FlowDirection = FlowDirection.BottomUp;
+            this.messageBox.flowLayoutPanel.Controls.Add(FPMessage2);
+            this.messageBox.flowLayoutPanel.Controls.Add(FPMessage1);
+            this.messageBox.UpdateUi();
         }
         private void ChatBox_Load(object sender, EventArgs e)
         {
+            this.txtMessage.Focus();
             if (Conversation.memberList.Count <= 2)
             {
                 this.btnAddMember.Visible = false;
@@ -56,11 +71,13 @@ namespace ChatApp.Views.Components
         }
         public void LoadMoreMessage(List<ReferenceData.Entity.Message> list)
         {
+            GenarateMessage(list, FPMessage2);
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
             new SendMessageHandler(this).Handle();
+            txtMessage.Focus();
         }
         private void txtMessage_KeyUp(object sender, KeyEventArgs e)
         {
@@ -94,6 +111,7 @@ namespace ChatApp.Views.Components
                 FileItem.BringToFront();
                 FileItem.ButtonCloseClick(closeFileItem);
             }
+            this.txtMessage.Focus();
         }
         private void btnChooseAllFile_Click(object sender, EventArgs e)
         {
@@ -119,11 +137,13 @@ namespace ChatApp.Views.Components
                 FileItem.BringToFront();
                 FileItem.ButtonCloseClick(closeFileItem);
             }
+            this.txtMessage.Focus();
         }
         private void closeFileItem(object sender, EventArgs e)
         {
             this.Controls.Remove(FileItem);
             FileItem = null;
+            txtMessage.Focus();
         }
         public void ShowErrorSendFile()
         {
@@ -138,7 +158,6 @@ namespace ChatApp.Views.Components
                 FileItem = null;
             }
             currentInMessage = null;
-            this.messageBox.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             this.txtMessage.Text = "";
             UserControl bubble = null;
             if (message.messageType.ToUpper().Equals("TEXT"))
@@ -151,21 +170,21 @@ namespace ChatApp.Views.Components
             }
             if (this.currentOutMessage == null)
             {
-                currentOutMessage = new OutgoingMessage(/*ConversationBox.Acc.id*/ Form.User.id, DateTime.Now);
+                currentOutMessage = new OutgoingMessage(Form.User.id, DateTime.Now);
             }
             else
             {
                 if (compareTime(currentOutMessage.Time, DateTime.Now))
                 {
-                    this.messageBox.flowLayoutPanel.Controls.Remove(currentOutMessage);
+                    FPMessage1.Controls.Remove(currentOutMessage);
                 }
                 else
                 {
-                    currentOutMessage = new OutgoingMessage(/*ConversationBox.Acc.id*/ Form.User.id, DateTime.Now);
+                    currentOutMessage = new OutgoingMessage(Form.User.id, DateTime.Now);
                 }
             }
             currentOutMessage.AddBubble(bubble);
-            this.messageBox.flowLayoutPanel.Controls.Add(currentOutMessage);
+            FPMessage1.Controls.Add(currentOutMessage);
             this.messageBox.UpdateUi();
             if (this.messageBox.panelBg.Size.Height < this.messageBox.flowLayoutPanel.PreferredSize.Height)
             {
@@ -184,7 +203,6 @@ namespace ChatApp.Views.Components
         public void AddInMessage(ReferenceData.Entity.Message message)
         {
             currentOutMessage = null;
-            this.messageBox.flowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             UserControl bubble = null;
             if (message.messageType.ToUpper().Equals("TEXT"))
             {
@@ -208,7 +226,7 @@ namespace ChatApp.Views.Components
                 {
                     if (compareTime(currentInMessage.Time, DateTime.Now))
                     {
-                        this.messageBox.flowLayoutPanel.Controls.Remove(currentInMessage);
+                        FPMessage1.Controls.Remove(currentInMessage);
                     }
                     else
                     {
@@ -217,7 +235,7 @@ namespace ChatApp.Views.Components
                 }
             }
             currentInMessage.AddBubble(bubble);
-            this.messageBox.flowLayoutPanel.Controls.Add(currentInMessage);
+            FPMessage1.Controls.Add(currentInMessage);
             this.messageBox.UpdateUi();
             if (this.messageBox.panelBg.Size.Height < this.messageBox.flowLayoutPanel.PreferredSize.Height)
             {
@@ -240,35 +258,20 @@ namespace ChatApp.Views.Components
             }
             return false;
         }
-        private void InitLatestMessage(ReferenceData.Entity.Message message)
+        public void GenarateMessage(List<ReferenceData.Entity.Message> list, FlowLayoutPanel fl)
         {
-            if (message.messageType.Equals("FILE"))
-            {
-                string[] arr = message.content.Split('_');
-                string fex = arr[arr.Length - 1];
-                if (fex.Equals(".jpg") || fex.Equals(".png") || fex.Equals(".jpeg") || fex.Equals(".gif"))
-                {
-                    ConversationBox.lbLatestMessage.Text = (message.senderId != ConversationBox.Acc.id ? message.lastName : "Bạn") + " đã gửi một ảnh.";
-                }
-                else
-                {
-                    ConversationBox.lbLatestMessage.Text = (message.senderId != ConversationBox.Acc.id ? message.lastName : "Bạn") + " đã gửi một file.";
-                }
-            }
-            else
-            {
-                ConversationBox.lbLatestMessage.Text = (message.senderId != ConversationBox.Acc.id ? message.lastName : "Bạn") + ": " + message.content;
-            }
-            DateTime time = (DateTime)message.createdAt;
-            ConversationBox.lbDate.Text = time.ToString("HH:mm dd/MM/yyyy");
-        }
-        public void GenarateMessage(List<ReferenceData.Entity.Message> list, FlowDirection direction)
-        {
-            if (direction == FlowDirection.TopDown)
+            FlowLayoutPanel flow = new FlowLayoutPanel();
+            flow.AutoScroll = false;
+            flow.WrapContents = false;
+            flow.AutoSize = true;
+            if (fl.Equals(FPMessage1))
             {
                 list.Reverse();
+                flow.FlowDirection = FlowDirection.TopDown;
+            } else
+            {
+                flow.FlowDirection = FlowDirection.BottomUp;
             }
-            this.messageBox.flowLayoutPanel.FlowDirection = direction;
 
             DateTime time = (DateTime)list[0].createdAt;
             UserControl currentMessage;
@@ -311,7 +314,7 @@ namespace ChatApp.Views.Components
                     {
                         if (currentMessage.GetType() != typeof(IncomingMessage))
                         {
-                            this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
+                            flow.Controls.Add(currentMessage);
                             time = (DateTime)mes.createdAt;
                             cInMessage = new IncomingMessage(mes.avatar, mes.senderId, mes.lastName, time);
                             if (mes.messageType.Equals("FILE"))
@@ -341,7 +344,7 @@ namespace ChatApp.Views.Components
                             }
                             else
                             {
-                                this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
+                                flow.Controls.Add(currentMessage);
                                 time = (DateTime)mes.createdAt;
                                 cInMessage = new IncomingMessage(mes.avatar, mes.senderId, mes.lastName, time);
                                 if (mes.messageType.Equals("FILE"))
@@ -361,7 +364,7 @@ namespace ChatApp.Views.Components
                     {
                         if (currentMessage.GetType() != typeof(OutgoingMessage))
                         {
-                            this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
+                            flow.Controls.Add(currentMessage);
                             time = (DateTime)mes.createdAt;
                             cOutMessage = new OutgoingMessage(mes.senderId, time);
                             if (mes.messageType.Equals("FILE"))
@@ -391,7 +394,7 @@ namespace ChatApp.Views.Components
                             }
                             else
                             {
-                                this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
+                                flow.Controls.Add(currentMessage);
                                 time = (DateTime)mes.createdAt;
                                 cOutMessage = new OutgoingMessage(mes.senderId, time);
                                 if (mes.messageType.Equals("FILE"))
@@ -409,7 +412,8 @@ namespace ChatApp.Views.Components
                     }
                 }
             }
-            this.messageBox.flowLayoutPanel.Controls.Add(currentMessage);
+            flow.Controls.Add(currentMessage);
+            fl.Controls.Add(flow);
             this.messageBox.UpdateUi();
         }
     }
