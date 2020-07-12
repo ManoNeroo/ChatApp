@@ -1,6 +1,7 @@
 ﻿using ChatApp.Views;
 using ChatApp.Views.Components;
 using ReferenceData;
+using ReferenceData.Entity;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -58,15 +59,31 @@ namespace ChatApp.Handler
                         case "LOADMOREMESSAGE":
                             handleLoadMoreMessage(data.Data);
                             break;
+                        case "RESULTUPDATE":
+                            handleResultUpdate(data.Data);
+                            break;
                     }
                 }
+            }
+        }
+
+        private void handleResultUpdate(object data)
+        {
+            if (data == null)
+            {
+                form.Invoke(new NoArgumentDelegate(form.FailUpdate), new object[] { });
+            }
+            else
+            {
+                Account acc = (Account)data;
+                form.Invoke(new StateDelegate(form.SuccessUpdate), new object[] { acc });
             }
         }
 
         private void handleLoadMoreMessage(object data)
         {
             List<ReferenceData.Entity.Message> list = (List<ReferenceData.Entity.Message>)data;
-            if(form.ChatBox != null)
+            if (form.ChatBox != null)
             {
                 form.ChatBox.Invoke(new LoadMoreMessageDelegate(form.ChatBox.LoadMoreMessage), new object[] { list });
             }
@@ -82,10 +99,11 @@ namespace ChatApp.Handler
         private void handleSearchResult(object data)
         {
             List<ReferenceData.Entity.Account> list = (List<ReferenceData.Entity.Account>)data;
-            if(list!=null && form.NewChat == null)
+            if (list != null && form.NewChat == null)
             {
                 form.Invoke(new DisplaySearchResultDelegate(form.DisplaySearchResult), new object[] { list });
-            } else if(list != null && form.NewChat != null)
+            }
+            else if (list != null && form.NewChat != null)
             {
                 form.NewChat.Invoke(new DisplaySearchResultDelegate(form.NewChat.DisplaySearchResult), new object[] { list });
             }
@@ -124,11 +142,12 @@ namespace ChatApp.Handler
             {
                 form.ChatBox.Invoke(new AddInMessageDelegate(form.ChatBox.AddInMessage), new object[] { message });
 
-            } else
+            }
+            else
             {
-                foreach(var c in form.ConversationList)
+                foreach (var c in form.ConversationList)
                 {
-                    if(c.Cvst.id.Equals(message.conversationId))
+                    if (c.Cvst.id.Equals(message.conversationId))
                     {
                         form.Invoke(new InitLatestMessageDelegate(form.InitLatestMessage), new object[] { c, message });
                         break;

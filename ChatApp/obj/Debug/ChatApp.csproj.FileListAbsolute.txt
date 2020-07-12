@@ -31,3 +31,7 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Overlay
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.AddNewChat.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.AddNewGroup.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.GroupMember.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Setting.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.EditUserName.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.EditBirthDay.resources
+F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.EditPassword.resources

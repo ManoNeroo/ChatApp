@@ -89,6 +89,14 @@ namespace ChatApp.Views
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
             Client.Close();
+            try
+            {
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

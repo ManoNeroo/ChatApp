@@ -79,6 +79,9 @@ namespace ChatAppServer.SocketServer
                         case "LOADMOREMESSAGE":
                             new LoadMoreMessageHandler(this).Handle();
                             break;
+                        case "UPDATEACCOUNT":
+                            new UpdateAccountHandler(this).Handle(data);
+                            break;
                     }
                 }
             }

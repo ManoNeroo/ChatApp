@@ -78,6 +78,7 @@
     <Compile Include="Handler\SignInHandler.cs" />
     <Compile Include="Handler\SignOutHandler.cs" />
     <Compile Include="Handler\SignUpHandler.cs" />
+    <Compile Include="Handler\UpdateAccountHandler.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>ChatApp.tt</DependentUpon>
     </Compile>

@@ -17,6 +17,7 @@ namespace ChatApp.Views
 {
     public partial class Frame : Form
     {
+        public Setting Setting { get; set; } = null;
         public AddNewChat NewChat { get; set; } = null;
         public AddNewGroup NewGroup { get; set; } = null;
         public ChatBox ChatBox { get; set; } = null;
@@ -43,13 +44,15 @@ namespace ChatApp.Views
             try
             {
                 Application.Exit();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
         }
-        public void ResetCurrentConversation() { 
-            if(currentConversation!= null)
+        public void ResetCurrentConversation()
+        {
+            if (currentConversation != null)
             {
                 currentConversation.bg.FillColor = Color.FromArgb(16, 22, 37);
                 currentConversation.bg.FillColor2 = Color.FromArgb(16, 22, 37);
@@ -62,11 +65,11 @@ namespace ChatApp.Views
             PnlConversation2.Controls.Clear();
             foreach (var acc in list)
             {
-                if(acc.id != User.id)
+                if (acc.id != User.id)
                 {
                     SearchResult searchResult = new SearchResult(acc);
                     PnlConversation1.Controls.Add(searchResult);
-                    searchResult.SearchResultClick(new SearchResultClickHandler(this,acc).Handle);
+                    searchResult.SearchResultClick(new SearchResultClickHandler(this, acc).Handle);
                 }
             }
             pnlConversations.UpdateUi();
@@ -115,7 +118,7 @@ namespace ChatApp.Views
         }
         public void SelectConversation(ReferenceData.Entity.Conversation cv)
         {
-            foreach(var cvst in ConversationList)
+            foreach (var cvst in ConversationList)
             {
                 if (cvst.Cvst.Equals(cv))
                 {
@@ -141,7 +144,7 @@ namespace ChatApp.Views
                     break;
                 }
             }
-            
+
         }
         public void InitLatestMessage(Components.Conversation cvst, ReferenceData.Entity.Message message)
         {
@@ -201,11 +204,11 @@ namespace ChatApp.Views
         private void txtSearchAccount_KeyUp(object sender, KeyEventArgs e)
         {
             string keyword = this.txtSearchAccount.Text.Trim();
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 new SearchAccountHandler(this).Handle(keyword);
             }
-            if(keyword.Length == 0)
+            if (keyword.Length == 0)
             {
                 DisplayConversations();
             }
@@ -261,7 +264,34 @@ namespace ChatApp.Views
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
-
+            Overlay overlay = new Overlay();
+            overlay.Location = new Point(this.Location.X, this.Location.Y + 32);
+            overlay.Show();
+            Setting = new Setting(this);
+            Setting.ShowDialog();
+            overlay.Dispose();
+            Setting = null;
+        }
+        public void SuccessUpdate(Account acc)
+        {
+            if (Setting != null)
+            {
+                Setting.lbEmail.Text = acc.email;
+                Setting.lbFullName.Text = acc.firstName + " " + acc.lastName;
+                if (acc.birthday != null)
+                {
+                    DateTime birthday = (DateTime)acc.birthday;
+                    Setting.lbBirthday.Text = birthday.ToString("dd/MM/yyyy");
+                }
+                Setting.pbAvatar.Image = ChatAppUtils.ByteToImage(acc.avatar);
+            }
+            this.pbUserAvatar.Image = ChatAppUtils.ByteToImage(acc.avatar);
+            this.lbUserName.Text = acc.firstName + " " + acc.lastName;
+        }
+        public void FailUpdate()
+        {
+            CustomMessageBox msb = new CustomMessageBox();
+            msb.show("Cập nhật không thành công!", "Không thành công", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Error);
         }
     }
 }

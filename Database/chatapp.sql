@@ -111,7 +111,11 @@ INSERT INTO Message(id, conversationId, senderId, content, messageType,createdAt
 ('message00028','conversation0003',3,N'vaynesieupham_000000000000002_.jpg','FILE', '20200619 03:05:02 PM'),
 ('message00029','conversation0003',3,N'Tin nhắn 19.','TEXT', '20200619 03:05:18 PM'),
 ('message00030','conversation0003',4,N'garenloanthethanbinh_000000000000003_.jpg','FILE', '20200619 03:05:23 PM'),
-('message00031','conversation0003',4,N'Tin nhắn 20.','TEXT', '20200619 03:05:58 PM')
+('message00031','conversation0003',4,N'Tin nhắn 20.','TEXT', '20200619 03:05:58 PM'),
+('message00032','conversation0003',1,N'Tin nhắn 21.','TEXT', '20200619 03:06:02 PM'),
+('message00033','conversation0003',2,N'Tin nhắn 22.','TEXT', '20200619 03:06:21 PM'),
+('message00034','conversation0003',3,N'Tin nhắn 23.','TEXT', '20200619 03:06:56 PM'),
+('message00035','conversation0003',4,N'Tin nhắn 24.','TEXT', '20200619 03:07:08 PM')
 GO
 CREATE PROCEDURE Usp_InsertMessage(@id AS VARCHAR(30), @conversationId AS VARCHAR(30), @senderId AS INT, @content AS NTEXT, @messageType AS VARCHAR(4), @createdAt AS DATETIME)
 AS

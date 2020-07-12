@@ -21,6 +21,7 @@ namespace ChatApp.Handler
         {
             this.form = form;
         }
+
         public void Handle(object sender, EventArgs e)
         {
             if(form.SignUpBox.CheckSignUp())

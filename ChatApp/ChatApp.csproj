@@ -71,10 +71,10 @@
     <Compile Include="Handler\SendRequestHandler.cs" />
     <Compile Include="Handler\SignInHandler.cs" />
     <Compile Include="Handler\SignUpHandler.cs" />
+    <Compile Include="Handler\UpdateAccountHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\ChatClient.cs" />
-    <Compile Include="Utils\ClientUtils.cs" />
     <Compile Include="Views\AddNewChat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +98,24 @@
     </Compile>
     <Compile Include="Views\Components\Conversation.Designer.cs">
       <DependentUpon>Conversation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\EditBirthDay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\EditBirthDay.Designer.cs">
+      <DependentUpon>EditBirthDay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\EditPassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\EditPassword.Designer.cs">
+      <DependentUpon>EditPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Components\EditUserName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\EditUserName.Designer.cs">
+      <DependentUpon>EditUserName.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Components\FileBubble.cs">
       <SubType>UserControl</SubType>
@@ -195,6 +213,12 @@
     <Compile Include="Views\Overlay.Designer.cs">
       <DependentUpon>Overlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +246,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\Conversation.resx">
       <DependentUpon>Conversation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\EditBirthDay.resx">
+      <DependentUpon>EditBirthDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\EditPassword.resx">
+      <DependentUpon>EditPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Components\EditUserName.resx">
+      <DependentUpon>EditUserName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\FileBubble.resx">
       <DependentUpon>FileBubble.cs</DependentUpon>
@@ -271,6 +304,9 @@
     <EmbeddedResource Include="Views\Overlay.resx">
       <DependentUpon>Overlay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +344,7 @@
     <None Include="Resources\circleclose.png" />
     <None Include="Resources\close.png" />
     <None Include="Resources\groupavatar.png" />
+    <None Include="Resources\edit.png" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\newchat.png" />
     <None Include="Resources\newchathover.png" />
