@@ -38,7 +38,7 @@ namespace ChatApp.Views
                     SearchResult searchResult = new SearchResult(acc);
                     searchResult.Size = new Size(410, 62);
                     pnlResultList.flowLayoutPanel.Controls.Add(searchResult);
-                    searchResult.SearchResultClick(new SearchResultClickHandler(form, acc).Handle);
+                    searchResult.SearchResultClick(new SearchResultClickHandler(form, acc).Handle2);
                 }
             }
             pnlResultList.UpdateUi();
@@ -62,7 +62,7 @@ namespace ChatApp.Views
                             SearchResult sr = new SearchResult(u);
                             sr.Size = new Size(410, 62);
                             this.pnlResultList.flowLayoutPanel.Controls.Add(sr);
-                            sr.SearchResultClick(new SearchResultClickHandler(form, u).Handle);
+                            sr.SearchResultClick(new SearchResultClickHandler(form, u).Handle2);
                         }
                     }
 

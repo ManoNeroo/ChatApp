@@ -10,7 +10,6 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\bin\Debug\Guna.UI2.dll
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CopyComplete
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.Conversation.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.ScrollPanel.resources
-F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.TestForm.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.ChatBox.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.IncomingMessage.resources
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatApp\obj\Debug\ChatApp.Views.Components.TextBubble.resources
