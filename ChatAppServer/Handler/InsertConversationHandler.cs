@@ -23,7 +23,7 @@ namespace ChatAppServer.Handler
         public void Handle(SocketData data)
         {
             ReferenceData.Entity.Conversation cvst = (ReferenceData.Entity.Conversation)data.Data;
-            if (cvst.avatar2 != null)
+            if (cvst.avatar2 != null && cvst.avatar != null)
             {
                 string imagesFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + @"\Files\Images\";
                 string[] info = getFileInfo(cvst.avatar2);

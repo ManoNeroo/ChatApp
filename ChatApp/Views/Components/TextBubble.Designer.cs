@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.bubble = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.message = new System.Windows.Forms.Label();
             this.option = new System.Windows.Forms.Label();
+            this.cmtOption = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.saoChépToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bubble.SuspendLayout();
+            this.cmtOption.SuspendLayout();
             this.SuspendLayout();
             // 
             // bubble
@@ -71,6 +75,21 @@
             this.option.Name = "option";
             this.option.Size = new System.Drawing.Size(15, 16);
             this.option.TabIndex = 5;
+            this.option.Click += new System.EventHandler(this.option_Click);
+            // 
+            // cmtOption
+            // 
+            this.cmtOption.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saoChépToolStripMenuItem});
+            this.cmtOption.Name = "cmtOption";
+            this.cmtOption.Size = new System.Drawing.Size(181, 48);
+            // 
+            // saoChépToolStripMenuItem
+            // 
+            this.saoChépToolStripMenuItem.Name = "saoChépToolStripMenuItem";
+            this.saoChépToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saoChépToolStripMenuItem.Text = "Sao chép";
+            this.saoChépToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
             // 
             // TextBubble
             // 
@@ -83,6 +102,7 @@
             this.Name = "TextBubble";
             this.Size = new System.Drawing.Size(457, 39);
             this.bubble.ResumeLayout(false);
+            this.cmtOption.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -92,5 +112,7 @@
         private Guna.UI2.WinForms.Guna2GradientPanel bubble;
         private System.Windows.Forms.Label message;
         private System.Windows.Forms.Label option;
+        private System.Windows.Forms.ContextMenuStrip cmtOption;
+        private System.Windows.Forms.ToolStripMenuItem saoChépToolStripMenuItem;
     }
 }

@@ -65,7 +65,7 @@
             // 
             // btnSignUp
             // 
-            this.btnSignUp.BorderRadius = 15;
+            this.btnSignUp.BorderRadius = 18;
             this.btnSignUp.CheckedState.Parent = this.btnSignUp;
             this.btnSignUp.CustomImages.Parent = this.btnSignUp;
             this.btnSignUp.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(26)))), ((int)(((byte)(206)))));
@@ -87,7 +87,7 @@
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtPassword.BorderRadius = 15;
+            this.txtPassword.BorderRadius = 18;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtPassword.DefaultText = "";
             this.txtPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -110,13 +110,14 @@
             this.txtPassword.Size = new System.Drawing.Size(250, 36);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyUp);
             // 
             // txtEmail
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtEmail.BorderRadius = 15;
+            this.txtEmail.BorderRadius = 18;
             this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtEmail.DefaultText = "";
             this.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -139,13 +140,14 @@
             this.txtEmail.Size = new System.Drawing.Size(250, 36);
             this.txtEmail.TabIndex = 5;
             this.txtEmail.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtEmail.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEmail_KeyUp);
             // 
             // txtRePassword
             // 
             this.txtRePassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(37)))));
-            this.txtRePassword.BorderRadius = 15;
+            this.txtRePassword.BorderRadius = 18;
             this.txtRePassword.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtRePassword.DefaultText = "";
             this.txtRePassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -205,7 +207,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.BorderRadius = 15;
+            this.btnBack.BorderRadius = 18;
             this.btnBack.CheckedState.Parent = this.btnBack;
             this.btnBack.CustomImages.Parent = this.btnBack;
             this.btnBack.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(26)))), ((int)(((byte)(206)))));
@@ -283,6 +285,7 @@
             this.txtLastName.Size = new System.Drawing.Size(250, 36);
             this.txtLastName.TabIndex = 5;
             this.txtLastName.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtLastName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtLastName_KeyUp);
             // 
             // txtFirstName
             // 
@@ -312,6 +315,7 @@
             this.txtFirstName.Size = new System.Drawing.Size(250, 36);
             this.txtFirstName.TabIndex = 5;
             this.txtFirstName.TextOffset = new System.Drawing.Point(10, 0);
+            this.txtFirstName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtFirstName_KeyUp);
             // 
             // pnlError
             // 
@@ -353,6 +357,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SignUpBox";
             this.Size = new System.Drawing.Size(450, 370);
+            this.Load += new System.EventHandler(this.SignUpBox_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

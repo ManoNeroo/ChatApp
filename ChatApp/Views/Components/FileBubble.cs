@@ -9,13 +9,14 @@ using System.Windows.Forms;
 using ChatApp.Utils;
 using ReferenceData.Entity;
 using ReferenceData.Utils;
+using System.IO;
 
 namespace ChatApp.Views.Components
 {
     public partial class FileBubble : UserControl
     {
         public string FileName { get; set; }
-        public byte[] File { get; set; }
+        public byte[] Files { get; set; }
         public FileBubble()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace ChatApp.Views.Components
             InitializeComponent();
             string[] fileInfo = getFileInfo(fileName);
             FileName = fileInfo[0] + fileInfo[1].ToLower();
-            File = file;
+            Files = file;
             if (type.ToString() == "Out")
             {
                 this.pnlBubble.Location = new Point(457 - (pnlBubble.Width + 20), 0);
@@ -34,14 +35,14 @@ namespace ChatApp.Views.Components
             {
                 this.picture.Size = new Size(230, 130);
                 this.picture.Location = new Point(10, 10);
-                this.picture.Image = ChatAppUtils.ByteToImage(File);
+                this.picture.Image = ChatAppUtils.ByteToImage(Files);
                 this.fileName.Visible = false;
                 this.fileSize.Visible = false;
             }
             else
             {
                 this.fileName.Text = FileName;
-                this.fileSize.Text = getFileSize(File);
+                this.fileSize.Text = getFileSize(Files);
             }
         }
 
@@ -93,6 +94,23 @@ namespace ChatApp.Views.Components
         {
             In,
             Out
+        }
+
+        private void option_Click(object sender, EventArgs e)
+        {
+            cmtOption.Show(this, 325, 16);
+        }
+
+        private void downloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog folderChooser = new SaveFileDialog();
+            folderChooser.FileName = this.FileName;
+            DialogResult result = folderChooser.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string path = folderChooser.FileName;
+                File.WriteAllBytes(path, this.Files);
+            }
         }
     }
 }

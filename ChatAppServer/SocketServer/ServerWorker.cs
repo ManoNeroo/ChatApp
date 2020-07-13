@@ -89,12 +89,26 @@ namespace ChatAppServer.SocketServer
         }
         public void send(object obj)
         {
-            ClientSocket.Send(ChatAppUtils.Serialize(obj));
+            try
+            {
+                ClientSocket.Send(ChatAppUtils.Serialize(obj));
+            }catch (Exception e)
+            {
+                Console.WriteLine(e);
+                ClientSocket.Close();
+            }
         }
         public SocketData receive()
         {
             byte[] data = new byte[79000000];
-            ClientSocket.Receive(data);
+            try
+            {
+                ClientSocket.Receive(data);
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
+                ClientSocket.Close();
+            }
             return (SocketData)ChatAppUtils.Deserialize(data);
         }
 

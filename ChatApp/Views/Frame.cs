@@ -275,14 +275,20 @@ namespace ChatApp.Views
             msb.show("Cập nhật không thành công!", "Không thành công", CustomMessageBox.MessageBoxButtons.Ok, CustomMessageBox.MessageBoxIcon.Error);
         }
 
-        private void Frame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Restart();
-        }
-
         private void Frame_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Client.SignOut(User);
         }
+        private void Frame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                Application.Restart();
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
     }
 }

@@ -185,6 +185,7 @@
             this.lbNumMember.TabStop = true;
             this.lbNumMember.Text = "3 thành viên";
             this.lbNumMember.VisitedLinkColor = System.Drawing.Color.Gray;
+            this.lbNumMember.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbNumMember_LinkClicked);
             // 
             // btnAddMember
             // 

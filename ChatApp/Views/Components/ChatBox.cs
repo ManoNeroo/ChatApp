@@ -416,5 +416,15 @@ namespace ChatApp.Views.Components
             fl.Controls.Add(flow);
             this.messageBox.UpdateUi();
         }
+
+        private void lbNumMember_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Overlay overlay = new Overlay();
+            overlay.Location = new Point(Form.Location.X, Form.Location.Y + 32);
+            overlay.Show();
+            MemberForm mbf = new MemberForm(Conversation.memberList);
+            mbf.ShowDialog();
+            overlay.Dispose();
+        }
     }
 }

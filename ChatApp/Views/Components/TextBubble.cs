@@ -43,5 +43,15 @@ namespace ChatApp.Views.Components
             this.Height = bubble.Height;
 
         }
+
+        private void option_Click(object sender, EventArgs e)
+        {
+            cmtOption.Show(this, 325, 16);
+        }
+
+        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(message.Text);
+        }
     }
 }

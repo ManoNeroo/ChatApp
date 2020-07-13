@@ -15,11 +15,14 @@ namespace ChatApp.Views.Components
         public SignUpBox()
         {
             InitializeComponent();
-            pnlError.Visible = false;
         }
         public void BtnSignUpClick(EventHandler e)
         {
             this.btnSignUp.Click += new System.EventHandler(e);
+        }
+        public void TxtRepasswordKeyUp(KeyEventHandler e)
+        {
+            this.txtRePassword.KeyUp += e;
         }
         public void LinkToLoginClick(EventHandler e)
         {
@@ -83,6 +86,68 @@ namespace ChatApp.Views.Components
                 return true;
             }
             return false;
+        }
+
+        private void txtFirstName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string str = txtFirstName.Text.Trim();
+                if (str.Length > 0)
+                {
+                    txtLastName.Focus();
+                }
+            }
+        }
+
+        private void txtLastName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                string firstName = txtFirstName.Text.Trim();
+                string lastName = txtLastName.Text.Trim();
+                if (firstName.Equals("") || lastName.Equals(""))
+                {
+                    pnlError.Visible = true;
+                    lbError.Text = "Vui lòng điền đầy đủ thông tin.";
+                }
+                else
+                {
+                    pnlError.Visible = false;
+                    this.panel1.BringToFront();
+                    txtEmail.Focus();
+                }
+            }
+        }
+
+        private void txtEmail_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string str = txtEmail.Text.Trim();
+                if (str.Length > 0)
+                {
+                    txtPassword.Focus();
+                }
+            }
+        }
+
+        private void txtPassword_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string str = txtPassword.Text.Trim();
+                if (str.Length > 0)
+                {
+                    txtRePassword.Focus();
+                }
+            }
+        }
+
+        private void SignUpBox_Load(object sender, EventArgs e)
+        {
+            pnlError.Visible = false;
+            txtFirstName.Focus();
         }
     }
 }

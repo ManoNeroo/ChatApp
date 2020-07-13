@@ -49,6 +49,7 @@ namespace ChatApp.Utils
             if(IsConnected)
             {
                 send(new SocketData("CLOSE", null));
+                this.Socket.Close();
                 IsConnected = false;
             }
         }
@@ -82,6 +83,7 @@ namespace ChatApp.Utils
             {
                 SocketData data = new SocketData("SIGNOUT", acc);
                 send(data);
+                this.Socket.Close();
                 IsConnected = false;
             }
         }
@@ -99,7 +101,13 @@ namespace ChatApp.Utils
         {
             if(IsConnected)
             {
-                Socket.Send(ChatAppUtils.Serialize(obj));
+                try
+                {
+                    Socket.Send(ChatAppUtils.Serialize(obj));
+                } catch(Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
         }
         public SocketData receive()
@@ -107,7 +115,13 @@ namespace ChatApp.Utils
             byte[] data = new byte[79000000];
             if (IsConnected)
             {
-                Socket.Receive(data);
+                try
+                {
+                    Socket.Receive(data);
+                }catch(Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
             return (SocketData)ChatAppUtils.Deserialize(data);
         }

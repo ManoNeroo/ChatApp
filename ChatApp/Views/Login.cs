@@ -26,6 +26,7 @@ namespace ChatApp.Views
             SignUpBox.Location = new Point(0, 0);
             SignUpBox.LinkToLoginClick(linkToLogin_Click);
             SignUpBox.BtnSignUpClick(new SignUpHandler(this).Handle);
+            SignUpBox.TxtRepasswordKeyUp(new SignUpHandler(this).Handle2);
         }
         public void addLoginBox()
         {

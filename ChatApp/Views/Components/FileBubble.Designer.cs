@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.fileName = new System.Windows.Forms.Label();
             this.fileSize = new System.Windows.Forms.Label();
             this.picture = new System.Windows.Forms.PictureBox();
             this.option = new System.Windows.Forms.Label();
             this.pnlBubble = new Guna.UI2.WinForms.Guna2Panel();
+            this.cmtOption = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.downloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.pnlBubble.SuspendLayout();
+            this.cmtOption.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileName
@@ -79,6 +83,7 @@
             this.option.Name = "option";
             this.option.Size = new System.Drawing.Size(15, 16);
             this.option.TabIndex = 6;
+            this.option.Click += new System.EventHandler(this.option_Click);
             // 
             // pnlBubble
             // 
@@ -94,6 +99,20 @@
             this.pnlBubble.Size = new System.Drawing.Size(250, 150);
             this.pnlBubble.TabIndex = 7;
             // 
+            // cmtOption
+            // 
+            this.cmtOption.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downloadToolStripMenuItem});
+            this.cmtOption.Name = "cmtOption";
+            this.cmtOption.Size = new System.Drawing.Size(181, 48);
+            // 
+            // downloadToolStripMenuItem
+            // 
+            this.downloadToolStripMenuItem.Name = "downloadToolStripMenuItem";
+            this.downloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downloadToolStripMenuItem.Text = "Tải xuống";
+            this.downloadToolStripMenuItem.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
+            // 
             // FileBubble
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -105,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             this.pnlBubble.ResumeLayout(false);
             this.pnlBubble.PerformLayout();
+            this.cmtOption.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -116,5 +136,7 @@
         private System.Windows.Forms.Label fileSize;
         private System.Windows.Forms.Label option;
         private Guna.UI2.WinForms.Guna2Panel pnlBubble;
+        private System.Windows.Forms.ContextMenuStrip cmtOption;
+        private System.Windows.Forms.ToolStripMenuItem downloadToolStripMenuItem;
     }
 }
