@@ -15,7 +15,7 @@ namespace ChatApp.Handler
         public SignInHandler(Login form)
         {
             this.form = form;
-            client = new ChatClient("127.0.0.1", 6868);
+            client = new ChatClient("192.168.1.3", 6868);
         }
 
         public void Handle(object sender, EventArgs e)

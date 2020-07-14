@@ -12,3 +12,16 @@ F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\EntityFramework
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\ReferenceData.dll
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\bin\Debug\ReferenceData.pdb
 F:\Test_Projects\C#\winforms_app\ChatApp\ChatAppServer\obj\Debug\ChatAppServer.csprojAssemblyReference.cache
+D:\ChatApp\ChatAppServer\bin\Debug\ChatAppServer.exe.config
+D:\ChatApp\ChatAppServer\bin\Debug\ChatAppServer.exe
+D:\ChatApp\ChatAppServer\bin\Debug\ChatAppServer.pdb
+D:\ChatApp\ChatAppServer\bin\Debug\EntityFramework.dll
+D:\ChatApp\ChatAppServer\bin\Debug\EntityFramework.SqlServer.dll
+D:\ChatApp\ChatAppServer\bin\Debug\ReferenceData.dll
+D:\ChatApp\ChatAppServer\bin\Debug\EntityFramework.xml
+D:\ChatApp\ChatAppServer\bin\Debug\EntityFramework.SqlServer.xml
+D:\ChatApp\ChatAppServer\bin\Debug\ReferenceData.pdb
+D:\ChatApp\ChatAppServer\obj\Debug\ChatAppServer.csproj.CoreCompileInputs.cache
+D:\ChatApp\ChatAppServer\obj\Debug\ChatAppServer.csproj.CopyComplete
+D:\ChatApp\ChatAppServer\obj\Debug\ChatAppServer.exe
+D:\ChatApp\ChatAppServer\obj\Debug\ChatAppServer.pdb

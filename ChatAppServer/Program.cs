@@ -11,7 +11,7 @@ namespace ChatAppServer
     {
         static void Main(string[] args)
         {
-            string serverName = "127.0.0.1";
+            string serverName = "192.168.1.3";
             int serverPort = 6868;
             Server server = new Server(serverName, serverPort);
             server.Start();

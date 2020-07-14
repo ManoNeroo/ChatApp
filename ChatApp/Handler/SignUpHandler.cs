@@ -11,17 +11,17 @@ namespace ChatApp.Handler
     public class SignUpHandler
     {
         private Login form;
-
+        public ChatClient client { get; set; }
         public SignUpHandler(Login form)
         {
             this.form = form;
+            client = new ChatClient("192.168.1.3", 6868);
         }
 
         public void Handle(object sender, EventArgs e)
         {
             if (form.SignUpBox.CheckSignUp())
             {
-                ChatClient client = new ChatClient("127.0.0.1", 6868);
                 client.Connect();
                 if (client.IsConnected)
                 {
@@ -58,7 +58,6 @@ namespace ChatApp.Handler
             {
                 if (form.SignUpBox.CheckSignUp())
                 {
-                    ChatClient client = new ChatClient("127.0.0.1", 6868);
                     client.Connect();
                     if (client.IsConnected)
                     {
